@@ -3,7 +3,7 @@
 *.jar
 *.class
 *.txt
-*.jpg
+
 
 #Directories
 
@@ -15,4 +15,3 @@ target/
 dependency-reduce-pom.xml
 nbactions.xml
 tarea.iml
-/targetTareaCooperativa/
