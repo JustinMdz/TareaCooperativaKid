@@ -21,7 +21,7 @@ import static java.util.logging.Level.SEVERE;
 public class RegistroAsociado {
 
     private ArrayList<Asociado> asociados;
-    public static final String DIRECTORY = "cr/ac/tarea/resources/Registros/";// ruta
+    public static final String DIRECTORY = "./Registros/";// ruta .. cr/ac/tarea/resources/Registros/
     private static final String ARCHIVO_ASOCIADOS = "dataAsociados.json";
 
     public RegistroAsociado() {

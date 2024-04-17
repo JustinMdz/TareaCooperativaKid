@@ -2,17 +2,20 @@ package cr.ac.una.tareacooperativa.controller;
 
 import cr.ac.una.tareacooperativa.model.Asociado;
 import cr.ac.una.tareacooperativa.model.AsociadoCuenta;
-import cr.ac.una.tareacooperativa.model.Cuenta;
 import cr.ac.una.tareacooperativa.model.RegistroAsociado;
 import cr.ac.una.tareacooperativa.model.RegistroCuenta;
 import cr.ac.una.tareacooperativa.util.AppContext;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import cr.ac.una.tareacooperativa.model.RegistroAsociadoCuenta;
 import cr.ac.una.tareacooperativa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+
 import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -81,7 +84,9 @@ public class CuentasController extends Controller implements Initializable {
         txtfFolio.setDisable(false);
         printCuentasCliente();
         almacenarAsociadoCuenta();
+        eliminarAsociadoCuenta();
         registroAsociadoCuenta.guardarAsociadoCuenta();
+        limpiarCampos();
     }
 
     @FXML
@@ -89,12 +94,10 @@ public class CuentasController extends Controller implements Initializable {
 
         txtfFolio.setText(txtfFolio.getText().toUpperCase());
         Asociado asociado = registroAsociado.buscarAsociado(txtfFolio.getText());
-        if (asociado != null)
-        {
+        if (asociado != null) {
             cargarListasAsociado(asociado);
             txtfFolio.setDisable(true);
-        } else
-        {
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Asociado no encontrado");
         }
     }
@@ -153,8 +156,7 @@ public class CuentasController extends Controller implements Initializable {
     }
 
     private void onDragOverListas(DragEvent event, MFXListView<String> lista) {
-        if (event.getGestureSource() != lista && event.getDragboard().hasString())
-        {
+        if (event.getGestureSource() != lista && event.getDragboard().hasString()) {
             event.acceptTransferModes(TransferMode.COPY);
         }
         event.consume();
@@ -180,12 +182,10 @@ public class CuentasController extends Controller implements Initializable {
         toStringCuentasAsociados(asociado.getFolio());
         cargarCuentasDisponibles();
 
-        if (!cuentasDisponibles.isEmpty())
-        {
+        if (!cuentasDisponibles.isEmpty()) {
             listViewCuentasDisponibles.getItems().addAll(cuentasDisponibles);
         }
-        if (!cuentasAsociado.isEmpty())
-        {
+        if (!cuentasAsociado.isEmpty()) {
             listViewCuentasCliente.getItems().addAll(cuentasAsociado);
         }
         printCuentasCliente();
@@ -193,20 +193,16 @@ public class CuentasController extends Controller implements Initializable {
 
     private void cargarCuentasDisponibles() {
         cuentasDisponibles = registroCuenta.toStringCuentas();
-        for (String cuentaNombre : cuentasAsociado)
-        {
-            if (cuentasDisponibles.contains(cuentaNombre))
-            {
+        for (String cuentaNombre : cuentasAsociado) {
+            if (cuentasDisponibles.contains(cuentaNombre)) {
                 cuentasDisponibles.remove(cuentaNombre);
             }
 
         }
-        if (cuentasDisponibles.isEmpty())
-        {
+        if (cuentasDisponibles.isEmpty()) {
             System.out.println("La lista está vacía.");
             cuentasDisponibles = new ArrayList<>();
-        } else
-        {
+        } else {
             System.out.println("La lista no está vacía. Tiene " + cuentasDisponibles.size() + " elementos.");
         }
     }
@@ -214,8 +210,7 @@ public class CuentasController extends Controller implements Initializable {
     private void printCuentasCliente() {
         System.out.println("Elementos en listViewCuentasCliente:");
         int index = 0;
-        for (Object item : listViewCuentasCliente.getItems())
-        {
+        for (Object item : listViewCuentasCliente.getItems()) {
             index++;
             System.out.println(item.toString());
         }
@@ -224,18 +219,14 @@ public class CuentasController extends Controller implements Initializable {
 
     private void almacenarAsociadoCuenta() {
 
-        if (!txtfFolio.getText().isEmpty())
-        {
-            for (Object item : listViewCuentasCliente.getItems())
-            {
+        if (!txtfFolio.getText().isEmpty()) {
+            for (Object item : listViewCuentasCliente.getItems()) {
 
-                if (!cuentasAsociado.contains(item))
-                {
+                if (!cuentasAsociado.contains(item)) {
                     AsociadoCuenta asociadoCuenta = createAsociadoCuentaInstance((String) item, txtfFolio.getText());
-                    if (asociadoCuenta != null)
-                    {
+                    if (asociadoCuenta != null) {
                         registroAsociadoCuenta.agregarAsociadoCuenta(asociadoCuenta);
-                        new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "CuentasInfo", getStage(), "Cuenta abierta Correctamente");
+                        new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "CuentasInfo", getStage(), "Cuenta" + item + " abierta Correctamente");
 
                     }
                 }
@@ -244,11 +235,32 @@ public class CuentasController extends Controller implements Initializable {
         }
     }
 
-    private AsociadoCuenta createAsociadoCuentaInstance(String item, String folioSocio) {
-        Integer cuentaId = registroCuenta.getIdCuentaByNaame(item);
+    private void eliminarAsociadoCuenta() {
 
-        if (cuentaId != 0 && !folioSocio.isEmpty())
-        {
+        if (!txtfFolio.getText().isEmpty()) {
+            for (Object item : listViewCuentasDisponibles.getItems()) {
+
+                if (!cuentasDisponibles.contains(item)) {///...
+                    Integer cuentaId = registroCuenta.buscarCuentaPorNombre(item.toString());
+                    AsociadoCuenta asociadoCuenta = registroAsociadoCuenta.buscarAsociadoCuenta(txtfFolio.getText(), cuentaId);
+                    if (asociadoCuenta.getBalanceCuenta() <= 0) {
+                        registroAsociadoCuenta.eliminarAsociadoCuenta(txtfFolio.getText(), cuentaId);
+                        new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "CuentasInfo", getStage(), "Cuenta" + item + " eliminada correctamente");
+
+                    } else {
+                        new Mensaje().showModal(Alert.AlertType.ERROR, "CuentasInfo", getStage(), "Cuenta" + item + " no se ha podido eliminar correctamente, el asociado tiene dinero en la cuenta");
+                        System.out.println("El balance de la cuenta es: " + asociadoCuenta.getBalanceCuenta());
+                    }
+                }
+            }
+
+        }
+    }
+
+    private AsociadoCuenta createAsociadoCuentaInstance(String item, String folioSocio) {
+        Integer cuentaId = registroCuenta.buscarCuentaPorNombre(item);
+
+        if (cuentaId != 0 && !folioSocio.isEmpty()) {
             AsociadoCuenta asociadoCuenta = new AsociadoCuenta(folioSocio, cuentaId, 0);
             return asociadoCuenta;
         }
@@ -258,11 +270,9 @@ public class CuentasController extends Controller implements Initializable {
     private void toStringCuentasAsociados(String folioAsociado) {
         ArrayList<Integer> idCuentasAsociado = registroAsociadoCuenta.idCuentasByFolio(folioAsociado);
 
-        for (Integer auxId : idCuentasAsociado)
-        {
+        for (Integer auxId : idCuentasAsociado) {
             cuentasAsociado.add(registroCuenta.getNombreCuentaByID(auxId));
         }
-
     }
 
 }

@@ -100,7 +100,7 @@ public class RegistroCuenta {
         return proximoId + 1;
     }
 
-    public Integer getIdCuentaByNaame(String nameCuenta) {
+    public Integer buscarCuentaPorNombre(String nameCuenta) {
         for (Cuenta cuentaId : cuentas)
         {
             if (cuentaId.getNombre().equals(nameCuenta))

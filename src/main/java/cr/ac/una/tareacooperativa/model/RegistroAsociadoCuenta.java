@@ -72,7 +72,7 @@ public class RegistroAsociadoCuenta {
             return "Cuenta eliminada del asociado exitosamente";
         } else
         {
-            return "";
+            return "Cuenta no se ha podido elimanar del socio correctamente";
         }
     }
 
