@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.AsociadoController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+   <left>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="600.0" prefHeight="400.0" prefWidth="224.0" styleClass="asociado-vbox--menu_principal" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--tituloLogo" VBox.vgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/asociadoLogo.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="asociado-titulo" text="Asociados" />
+               </children>
+            </HBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                     <image>
+                        <Image url="@../resources/logoCarnet.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionBtnRegistro" styleClass="asociado-boton--menu" text="Registro" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                     <image>
+                        <Image url="@../resources/logoCuentas.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEstadoCuenta" styleClass="asociado-boton--menu" text="Estado cuentas" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                     <image>
+                        <Image url="@../resources/LogoTransacciones.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionBtnBuzon" styleClass="asociado-boton--menu" text="Buzón" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--boton_menu" VBox.vgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                     <image>
+                        <Image url="@../resources/Exit.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton maxHeight="45.0" maxWidth="100.0" onAction="#onActionBtnSalir" styleClass="asociado-boton--salir" text="Salir" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="asociado-imagen" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

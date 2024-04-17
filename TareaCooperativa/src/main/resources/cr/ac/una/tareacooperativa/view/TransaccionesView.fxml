@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" styleClass="transacciones-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.TransaccionesController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+   <children>
+      <VBox layoutX="318.0" layoutY="56.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-header--hbox" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Label maxWidth="125.0" styleClass="transacciones-title" text="Transacciones" HBox.hgrow="ALWAYS" />
+                  <MFXTextField fx:id="txtfFolio" floatingText="Folio" maxHeight="25.0" maxWidth="150.0" HBox.hgrow="ALWAYS" />
+                  <MFXButton maxHeight="50.0" maxWidth="90.0" onAction="#onActionBtnBuscar" styleClass="boton-buscar" text="Buscar" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="transacciones-header--vbox" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <MFXComboBox fx:id="comboCuentas" floatingText="Cuentas" styleClass="transacciones-txt" />
+                        <MFXTextField fx:id="txtfSaldo" allowEdit="false" floatingText="Saldo" minHeight="25.0" prefHeight="25.0" prefWidth="141.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-hbox--deno" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/BilleteMil.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="spnMil" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/BilleteDosmil.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="spnDosmil" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/BilleteCincomil.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="spnCincomil" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/BilleteDiezmil.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="spnDiezmil" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/BilleteVeintemil.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="spnVeintemil" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="CENTER" prefHeight="292.0" prefWidth="346.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/MonedaCinco.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Spinner fx:id="spnCinco" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/MonedaDiez.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Spinner fx:id="spnDiez" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/MonedaVeinticinco.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Spinner fx:id="spnVeinticinco" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/MonedaCincuenta.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Spinner fx:id="spnCincuenta" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/MonedaCien.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Spinner fx:id="spnCien" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" styleClass="transacciones-hbox--moneda" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/MonedaQuinientos.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Spinner fx:id="spnQuinientos" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-hbox-botones" VBox.vgrow="SOMETIMES">
+               <children>
+                  <MFXButton maxHeight="75.0" maxWidth="200.0" onAction="#onActionBtnDepositar" text="Depositar" HBox.hgrow="ALWAYS" />
+                  <MFXButton maxHeight="75.0" maxWidth="200.0" onAction="#onActionBtnRetirar" text="Retirar" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

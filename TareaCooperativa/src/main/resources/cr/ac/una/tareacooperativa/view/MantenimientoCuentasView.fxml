@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.MantenimientoCuentasController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label contentDisplay="CENTER" styleClass="manCuentas-titulo" text="Mantenimiento Cuentas" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="contenedor-forms">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <MFXListView fx:id="listView" prefHeight="137.0" prefWidth="131.0" HBox.hgrow="ALWAYS" />
+                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="manCuentas-containers">
+                                 <children>
+                                    <MFXTextField fx:id="txtfIdCuenta" floatingText="ID Cuenta" prefWidth="119.0" />
+                                    <MFXTextField fx:id="txtfEditarNombreTipoCuenta" floatingText="Nombre Cuenta" prefWidth="89.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <MFXButton fx:id="btnEditar" onAction="#onActionbtnEditar" prefHeight="50.0" prefWidth="196.0" styleClass="boton-profesor" text="Editar" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="45.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXTextField fx:id="txtfNuevoNombreTipoCuenta" floatingText="Nombre/Tipo de Cuenta" prefWidth="225.0" />
+                        <MFXButton fx:id="btnCrear" onAction="#onActionbtnCrear" styleClass="boton-profesor" text="Crear" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="manCuentas-containers">
+               <children>
+                  <MFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" styleClass="boton-profesor" text="Guardar" />
+                  <MFXButton fx:id="btnEliminarCuenta" onAction="#onActionBtnEliminarCuenta" styleClass="boton-profesor" text="Eliminar Cuenta" />
+                  <MFXButton fx:id="btnCambiarNombre" onAction="#onActionBtnCambiarNombre" styleClass="boton-profesor" text="Cambiar Nombre Cuenta" />
+               </children>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="contenedor-menus" />
+            <String fx:value="contenedor-menus-profesor" />
+         </styleClass>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="standard-root" />
+      <String fx:value="standard-profesor-root" />
+   </styleClass>
+</AnchorPane>

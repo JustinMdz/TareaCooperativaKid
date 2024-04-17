@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="400.0" maxWidth="600.0" styleClass="manCope-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.MantenimientoCoopeController">
+    <stylesheets>
+      <URL value="@style.css" />
+   </stylesheets>
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="manCope-titulo" text="Mantenimiento cooperativa" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="manCope-main" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="manCope-sub-titulo" text="Logo de la cooperativa" />
+                        <ImageView fx:id="imvLogo" fitHeight="102.0" fitWidth="114.0" onDragDropped="#onDragDroppedImageView" onDragOver="#onDragOverImageView" pickOnBounds="true" preserveRatio="true">
+                           <styleClass>
+                              <String fx:value="camara-photo" />
+                              <String fx:value="manCoope-Image" />
+                           </styleClass>
+                           <image>
+                              <Image url="@../resources/LogoBanco02.jpg" />
+                           </image>
+                        </ImageView>
+                        <MFXButton maxHeight="45.0" maxWidth="150.0" styleClass="manCope-boton" text="Cambiar" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets top="45.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="manCope-sub-titulo" text="Nombre de la cooperativa" />
+                        <Label fx:id="lblNombreCoope" styleClass="manCope-titulo-coope" text="Nombre" />
+                        <MFXTextField fx:id="txtfNombreCooperativa" floatingText="Nuevo nombre" maxWidth="150.0" promptText="CoopeKinder!">
+                           <VBox.margin>
+                              <Insets top="100.0" />
+                           </VBox.margin>
+                        </MFXTextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="600.0" spacing="20.0" VBox.vgrow="SOMETIMES">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <children>
+                  <MFXButton onAction="#onActionBtnGuardar" styleClass="manCope-boton" text="Guardar cambios">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                           <image>
+                              <Image url="@../resources/SaveIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,18 @@
+#Binary Files
+
+*.jar
+*.class
+*.txt
+*.jpg
+
+#Directories
+
+.idea/
+target/
+
+#Others
+
+dependency-reduce-pom.xml
+nbactions.xml
+tarea.iml
+/targetTareaCooperativa/

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" maxHeight="400.0" maxWidth="600.0" styleClass="manAso-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.MantenimientoAsociadosController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+   <top>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" styleClass="manAso-header--hbox" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/asociadoLogo.png" />
+               </image>
+            </ImageView>
+            <Label styleClass="manAso-titulo" text="Asociados" />
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="200.0" styleClass="manAso-menuBotones--vbox" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="manAso-hbox--boton_menu" VBox.vgrow="SOMETIMES" />
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="manAso-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                     <image>
+                        <Image url="@../resources/DeleteIcon.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton fx:id="mbtnEliminar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEliminar" text="Eliminar" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="manAso-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/UpdateIcon.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton fx:id="mbtnModificar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionBtnModificar" text="Modificar" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="manAso-hbox--boton_menu" VBox.vgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                     <image>
+                        <Image url="@../resources/cleanIcon.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton maxHeight="45.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnLimpiar" text="Limpiar" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="manAso-form--hbox" BorderPane.alignment="CENTER">
+         <children>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="242.0" styleClass="manAso-form--vbox_img" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label styleClass="manAso-form--main_label" text="Asociado:" />
+                  <ImageView fx:id="imvFoto" fitHeight="146.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/userNotFound.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="223.0" styleClass="manAso-form--vbox_data" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox maxHeight="100.0" styleClass="manAso-form--folio_boton" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXTextField fx:id="txtfFolio" floatingText="Folio" maxHeight="25.0" maxWidth="223.0" styleClass="manAso-form--data" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </MFXTextField>
+                        <MFXButton fx:id="mbtnBuscar" maxHeight="50.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnBuscar" prefHeight="42.0" prefWidth="0.0" text="Buscar" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+                  <MFXTextField fx:id="txtfNombre" floatingText="Nombre" prefWidth="311.0" />
+                  <MFXTextField fx:id="txtfPApellido" floatingText="Primer apellido" prefWidth="311.0" />
+                  <MFXTextField fx:id="txtfSApellido" floatingText="Segundo apellido" prefWidth="311.0" />
+                  <MFXTextField fx:id="txtfEdad" floatingText="Edad" prefWidth="311.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

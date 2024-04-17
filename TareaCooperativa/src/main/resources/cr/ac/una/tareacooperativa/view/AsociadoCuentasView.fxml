@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" prefHeight="400.0" prefWidth="600.0" styleClass="standard-root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.AsociadoCuentasController">
+   <children>
+      <HBox layoutX="200.0" layoutY="150.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="215.0" prefHeight="200.0" prefWidth="215.0" spacing="10.0" styleClass="contenedor-menus" HBox.hgrow="SOMETIMES">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <Label styleClass="estCuentas-titulo" text="Estados de cuenta" />
+                  <MFXTextField fx:id="txtfFolio" floatingText="Folio" />
+                  <MFXButton onAction="#onActionBtnBuscar" styleClass="boton-buscar" text="Buscar">
+                     <VBox.margin>
+                        <Insets top="70.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton onAction="#onActionBtnLimpiar" styleClass="boton-buscar" text="Limpiar">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </MFXButton>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" spacing="10.0" styleClass="contenedor-forms" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <children>
+                  <MFXComboBox fx:id="mcbTipoCuenta" floatingText="Cuenta" maxWidth="150.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </MFXComboBox>
+                  <Separator maxWidth="215.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="40.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <MFXTextField fx:id="txtfTipoCuenta" allowEdit="false" editable="false" floatingText="Tipo de cuenta" maxWidth="150.0" />
+                  <MFXTextField fx:id="txtfSaldo" allowEdit="false" editable="false" floatingText="Saldo" maxWidth="150.0" prefWidth="108.0" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

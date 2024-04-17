@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.FuncionarioController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+    <left>
+        <VBox maxWidth="600.0" prefHeight="396.0" prefWidth="220.0" styleClass="funcionario-vbox--menu_principal" BorderPane.alignment="CENTER">
+            <children>
+                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--tituloLogo" VBox.vgrow="ALWAYS">
+                    <children>
+                        <ImageView fitHeight="36.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/funcionarioLogo.png" />
+                            </image>
+                        </ImageView>
+                        <Label styleClass="funcionario-titulo" text="Funcionarios">
+                            <HBox.margin>
+                                <Insets top="3.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+                    <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../resources/asociadoLogo.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="3.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <MFXButton onAction="#onActionAsociadosButton" text="Asociados" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+                    <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                            <image>
+                                <Image url="@../resources/logoCarnet.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="1.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <MFXButton onAction="#onActionCarnetButton" text="Carnet" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+                    <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                            <image>
+                                <Image url="@../resources/logoCuentas.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="3.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <MFXButton onAction="#onActionCuentasButton" text="Cuentas" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+                    <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                            <image>
+                                <Image url="@../resources/LogoTransacciones.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="3.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <MFXButton onAction="#onActionTransaccionesButton" text="Transacciones" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="ALWAYS">
+                    <children>
+                        <ImageView fitHeight="40.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                            <image>
+                                <Image url="@../resources/Exit.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="3.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <MFXButton onAction="#onActionSalirButton" styleClass="boton-salir" text="Salir" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="CENTER" styleClass="funcionario-imagen" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></VBox>
+    </center>
+</BorderPane>
