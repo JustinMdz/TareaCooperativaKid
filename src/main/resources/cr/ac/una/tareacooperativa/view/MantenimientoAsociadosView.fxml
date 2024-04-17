@@ -72,11 +72,12 @@
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="242.0" styleClass="manAso-form--vbox_img" HBox.hgrow="ALWAYS">
                <children>
                   <Label styleClass="manAso-form--main_label" text="Asociado:" />
-                  <ImageView fx:id="imvFoto" fitHeight="146.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imvFoto" fitHeight="146.0" fitWidth="146.0" onDragDropped="#onDragDroppedImvFoto" onDragOver="#onDragOverImvFoto" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/userNotFound.jpg" />
                      </image>
                   </ImageView>
+                  <Label fx:id="lblInfoImvDragAndDrop" styleClass="transacciones-label--monto" text="Arrastra una Imagen" />
                </children>
             </VBox>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="223.0" styleClass="manAso-form--vbox_data" HBox.hgrow="ALWAYS">

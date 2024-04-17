@@ -131,7 +131,7 @@ public class MantenimientoCoopeController extends Controller implements Initiali
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Usuario agregado", getStage(), "Los cambios se han efectuado existosamente");
             this.isImageChanged = false;
             this.txtfNombreCooperativa.setText("");
-        } else
+        } else 
         {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "No existen cambios que guardar");
         }

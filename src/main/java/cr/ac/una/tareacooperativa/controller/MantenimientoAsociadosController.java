@@ -16,6 +16,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import cr.ac.una.tareacooperativa.util.Mensaje;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javax.imageio.ImageIO;
 
 /**
  * <p>
@@ -27,7 +38,7 @@ import cr.ac.una.tareacooperativa.util.Mensaje;
  * @author Justin Mendez
  */
 public class MantenimientoAsociadosController extends Controller implements Initializable {
-
+    
     RegistroAsociado registroAsociado;
     @javafx.fxml.FXML
     private BorderPane root;
@@ -49,11 +60,14 @@ public class MantenimientoAsociadosController extends Controller implements Init
     private MFXTextField txtfSApellido;
     @javafx.fxml.FXML
     private MFXTextField txtfEdad;
-
+    private boolean isImageChanged;
+    @FXML
+    private Label lblInfoImvDragAndDrop;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-
+    
     @Override
     public void initialize() {
         limpiarCampos();
@@ -61,7 +75,7 @@ public class MantenimientoAsociadosController extends Controller implements Init
         setBotones(true);
         setFormFields(true);
     }
-
+    
     @javafx.fxml.FXML
     public void onActionBtnModificar(ActionEvent actionEvent) {
         if (txtfNombre.getText().isEmpty())
@@ -86,11 +100,13 @@ public class MantenimientoAsociadosController extends Controller implements Init
             asociado.setEdad(Integer.parseInt(txtfEdad.getText()));
             asociado.setRutaFoto(registroAsociado.buscarAsociado(txtfFolio.getText().toUpperCase()).getRutaFoto());
             new Mensaje().showModal(Alert.AlertType.INFORMATION, "Modificar usuario", getStage(), registroAsociado.modificarAsociado(asociado));
+            guardarFotoAsociado(asociado.getRutaFoto());
             registroAsociado.guardarAsociados();
             onActionBtnLimpiar(actionEvent);
+            
         }
     }
-
+    
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) {
         txtfFolio.setText(txtfFolio.getText().toUpperCase());
@@ -104,35 +120,61 @@ public class MantenimientoAsociadosController extends Controller implements Init
             txtfEdad.setText(String.valueOf(asociado.getEdad()));
             setBotones(false);
             setFormFields(false);
+            lblInfoImvDragAndDrop.setDisable(false);
         } else
         {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Asociado no encontrado");
         }
     }
-
+    
     @javafx.fxml.FXML
     public void onActionBtnEliminar(ActionEvent actionEvent) {
         new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar usuario", getStage(), registroAsociado.eliminarAsociado(txtfFolio.getText()));
         registroAsociado.guardarAsociados();
         onActionBtnLimpiar(actionEvent);
     }
-
+    
     @javafx.fxml.FXML
     public void onActionBtnLimpiar(ActionEvent actionEvent) {
         limpiarCampos();
     }
-
+    
+    @FXML
+    private void onDragOverImvFoto(DragEvent event) {
+        Dragboard dragboard = event.getDragboard();
+        if (dragboard.hasImage() || dragboard.hasFiles())
+        {
+            event.acceptTransferModes(TransferMode.COPY);
+        }
+    }
+    
+    @FXML
+    private void onDragDroppedImvFoto(DragEvent event) {
+        Dragboard dragboard = event.getDragboard();
+        if (dragboard.hasImage() || dragboard.hasFiles())
+        {
+            try
+            {
+                imvFoto.setImage(new Image(new FileInputStream(dragboard.getFiles().get(0))));
+                isImageChanged = true;
+            } catch (FileNotFoundException ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
     private void setRegistros() {
         registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
         registroAsociado.cargarAsociados();
     }
-
+    
     private void setBotones(boolean value) {
         mbtnEliminar.setDisable(value);
         mbtnModificar.setDisable(value);
         mbtnBuscar.setDisable(!value);
     }
-
+    
     private void setFormFields(boolean value) {
         txtfNombre.setDisable(value);
         txtfPApellido.setDisable(value);
@@ -140,7 +182,7 @@ public class MantenimientoAsociadosController extends Controller implements Init
         txtfEdad.setDisable(value);
         txtfFolio.setDisable(!value);
     }
-
+    
     private boolean isNumber(String text) {
         try
         {
@@ -151,7 +193,7 @@ public class MantenimientoAsociadosController extends Controller implements Init
             return false;
         }
     }
-
+    
     private void cargarImagenAsociado(String ruta) {
         try
         {
@@ -174,7 +216,7 @@ public class MantenimientoAsociadosController extends Controller implements Init
             imvFoto.setImage(null);
         }
     }
-
+    
     private void limpiarCampos() {
         txtfFolio.setText("");
         txtfNombre.setText("");
@@ -184,5 +226,37 @@ public class MantenimientoAsociadosController extends Controller implements Init
         cargarImagenAsociado("./src/main/resources/cr/ac/una/tareacooperativa/resources/userNotFound.jpg");
         setFormFields(true);
         setBotones(true);
+        isImageChanged = false;
+        lblInfoImvDragAndDrop.setDisable(true);
     }
+    
+    private void guardarFotoAsociado(String rutaFoto) {
+        System.out.println("Euta: " + rutaFoto);
+        
+        if (isImageChanged)
+        {
+            Image image = imvFoto.getImage();
+            
+            if (image != null)
+            {
+                BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+                
+                try
+                {
+                    File output = new File(rutaFoto);
+                    ImageIO.write(bufferedImage, "jpg", output);
+                    System.out.println("Imagen guardada correctamente en: " + output.getAbsolutePath());
+                } catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+            } else
+            {
+                System.out.println("No hay ninguna imagen para guardar.");
+            }
+            isImageChanged = false;
+            
+        }
+    }
+    
 }

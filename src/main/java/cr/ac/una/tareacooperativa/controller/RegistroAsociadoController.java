@@ -190,7 +190,7 @@ public class RegistroAsociadoController extends Controller implements Initializa
         }
     }
 
-    private void guardarFoto(String folio) {
+    public void guardarFoto(String folio) {
         try
         {
             Image image = fotoCapturada.getImage();
