@@ -592,7 +592,7 @@ Separator{
 }
 
 .profesor-center {
-    -fx-background-image: url(../resources/profesor.jpg);
+    -fx-background-image: url(../resources/profesor.jpeg);
     -fx-background-position: center;
     -fx-background-size: stretch;
 }
