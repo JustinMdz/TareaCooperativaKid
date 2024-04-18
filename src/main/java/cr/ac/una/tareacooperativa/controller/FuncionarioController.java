@@ -54,4 +54,8 @@ public class FuncionarioController extends Controller implements Initializable {
         FlowController.getInstance().salir();
     }
 
+    @FXML
+    public void onActionLinkAcercaDe(ActionEvent actionEvent) {
+        //TODO: abrir webView con pagina web
+    }
 }

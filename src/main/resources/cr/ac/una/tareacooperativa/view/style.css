@@ -110,6 +110,18 @@ Separator{
     -fx-background-color: rgb(160, 21, 62);
 }
 
+.acercade-link{
+    -fx-text-fill: black;
+    -fx-underline: true;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-opacity: .6;
+}.acercade-link:hover{
+     -fx-text-fill: #2f2f98;
+     -fx-cursor: hand;
+     -fx-opacity: 1;
+ }
+
 /* LOGIN VIEW */
 
 .login-titulo {

@@ -42,6 +42,8 @@ public class RegistroAsociado {
     public Asociado buscarAsociado(String folio) {
         for (Asociado asociado : asociados)
         {
+//            System.out.println(asociado.getFolio());
+//            System.out.println(folio);
             if (asociado.getFolio().equals(folio))
             {
                 return asociado;

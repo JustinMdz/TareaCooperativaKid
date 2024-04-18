@@ -41,18 +41,19 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <children>
-                  <MFXComboBox fx:id="mcbTipoCuenta" floatingText="Cuenta" maxWidth="150.0">
+                  <MFXComboBox fx:id="mcbTipoCuenta" floatingText="Cuenta" maxWidth="216.0" prefWidth="216.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </MFXComboBox>
+                  <MFXButton onAction="#onActionBtnVer" styleClass="boton-buscar" text="Ver" />
                   <Separator maxWidth="215.0" prefWidth="200.0">
                      <VBox.margin>
-                        <Insets bottom="40.0" />
+                        <Insets bottom="20.0" />
                      </VBox.margin>
                   </Separator>
-                  <MFXTextField fx:id="txtfTipoCuenta" allowEdit="false" editable="false" floatingText="Tipo de cuenta" maxWidth="150.0" />
-                  <MFXTextField fx:id="txtfSaldo" allowEdit="false" editable="false" floatingText="Saldo" maxWidth="150.0" prefWidth="108.0" />
+                  <MFXTextField fx:id="txtfTipoCuenta" allowEdit="false" editable="false" floatingText="Tipo de cuenta" maxWidth="200.0" />
+                  <MFXTextField fx:id="txtfSaldo" allowEdit="false" editable="false" floatingText="Saldo" maxWidth="125.0" prefWidth="108.0" />
                </children>
             </VBox>
          </children>

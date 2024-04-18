@@ -2,10 +2,12 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -34,6 +36,11 @@
                      </image>
                   </ImageView>
                </graphic></MFXButton>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Hyperlink alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="50.0" layoutY="367.0" onAction="#onActionLinkAcercaDe" styleClass="acercade-link" text="Acerca de..." />
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
    </left>

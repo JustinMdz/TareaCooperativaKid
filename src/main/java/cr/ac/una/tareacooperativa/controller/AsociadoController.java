@@ -42,4 +42,9 @@ public class AsociadoController extends Controller implements Initializable {
     public void onActionBtnSalir(ActionEvent actionEvent) {
         FlowController.getInstance().salir();
     }
+
+    @FXML
+    public void onActionLinkAcercaDe(ActionEvent actionEvent) {
+        //TODO: abrir webView con pagina web
+    }
 }

@@ -45,6 +45,17 @@ public class RegistroCuenta {
         return -1;
     }
 
+    public Cuenta buscarCuentaNombre(String nombre){
+        for (Cuenta cuenta : cuentas)
+        {
+            if (cuenta.getNombre().equals(nombre))
+            {
+                return cuenta;
+            }
+        }
+        return null;
+    }
+
     public Cuenta buscarCuenta(int idCuenta) {
         for (Cuenta cuenta : cuentas)
         {

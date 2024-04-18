@@ -43,4 +43,8 @@ public class ProfesorController extends Controller implements Initializable {
         FlowController.getInstance().goView("MantenimientoCopeeView");
     }
 
+    @FXML
+    public void onActionLinkAcercaDe(ActionEvent actionEvent) {
+        //TODO: abrir webView con pagina web
+    }
 }
