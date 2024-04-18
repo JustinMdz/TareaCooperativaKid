@@ -24,11 +24,11 @@ import java.io.IOException;
  */
 public class App extends Application {
 
+    private static String accessParameter = "";
     RegistroAsociado asociados = new RegistroAsociado();
     RegistroCuenta cuentas = new RegistroCuenta();
     RegistroAsociadoCuenta asociadosCuentas = new RegistroAsociadoCuenta();
-    Cooperativa cooperativa = new Cooperativa();  
-    
+    Cooperativa cooperativa = new Cooperativa();
 
     private static Scene scene;
 
@@ -40,10 +40,31 @@ public class App extends Application {
         AppContext.getInstance().set("cooperativa", cooperativa);
 
         FlowController.getInstance().InitializeFlow(stage, null);
-        FlowController.getInstance().goViewInWindow("LoginView");
+        goViewAccesParameter(accessParameter);
+        // FlowController.getInstance().goViewInWindow("LoginView");
     }
 
     public static void main(String[] args) {
+        if (args.length > 0)
+        {
+            accessParameter = args[0];
+        }
+
         launch();
+    }
+
+    private void goViewAccesParameter(String parameter) {
+        if ("P".equals(parameter))
+        {
+            FlowController.getInstance().goViewInWindow("ProfesorView");
+        }
+        if ("F".equals(parameter))
+        {
+            FlowController.getInstance().goViewInWindow("FuncionarioView");
+        }
+        if ("A".equals(parameter))
+        {
+            FlowController.getInstance().goViewInWindow("AsociadoView");
+        }
     }
 }
