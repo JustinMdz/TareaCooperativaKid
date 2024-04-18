@@ -29,7 +29,8 @@ import java.io.InputStream;
 public class PdfManager {
 
     private static final String BASE_PDF = "BaseCarnet.pdf";
-    private static final String DIRECTORY = "./PdfAsociados/";
+    private static final String DIRECTORY = "cr/ac/una/tareacooperativa/resources/";
+    private static final String DIRECTORY_REGISTRO = "./PdfAsociados/";
 
     private Image userImage;
     private Image coopeImage;
@@ -115,10 +116,16 @@ public class PdfManager {
     }
 
     public String crearPDF() {
+
         try
         {
+            File directorio = new File(DIRECTORY_REGISTRO);
+            if (!directorio.exists())
+            {
+                directorio.mkdirs();
+            }
             // Cargar el documento PDF existente
-            PdfDocument pdfDocument = new PdfDocument(new PdfReader(DIRECTORY + BASE_PDF), new PdfWriter(DIRECTORY + folioSocio + ".pdf"));
+            PdfDocument pdfDocument = new PdfDocument(new PdfReader(DIRECTORY + BASE_PDF), new PdfWriter(DIRECTORY_REGISTRO + folioSocio + ".pdf"));
 
             // Obtener la primera página del documento
             PdfPage page = pdfDocument.getFirstPage();
@@ -132,7 +139,7 @@ public class PdfManager {
             Desktop desktop = Desktop.getDesktop();
 
             // Crear un objeto File con el nombre correcto del archivo PDF
-            File file = new File(DIRECTORY + folioSocio + ".pdf");
+            File file = new File(DIRECTORY_REGISTRO + folioSocio + ".pdf");
 
             // Abrir el archivo con el programa predeterminado
             desktop.open(file);

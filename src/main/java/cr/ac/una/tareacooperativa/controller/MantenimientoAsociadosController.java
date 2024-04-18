@@ -38,7 +38,7 @@ import javax.imageio.ImageIO;
  * @author Justin Mendez
  */
 public class MantenimientoAsociadosController extends Controller implements Initializable {
-    
+
     RegistroAsociado registroAsociado;
     @javafx.fxml.FXML
     private BorderPane root;
@@ -63,11 +63,11 @@ public class MantenimientoAsociadosController extends Controller implements Init
     private boolean isImageChanged;
     @FXML
     private Label lblInfoImvDragAndDrop;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-    
+
     @Override
     public void initialize() {
         limpiarCampos();
@@ -75,7 +75,7 @@ public class MantenimientoAsociadosController extends Controller implements Init
         setBotones(true);
         setFormFields(true);
     }
-    
+
     @javafx.fxml.FXML
     public void onActionBtnModificar(ActionEvent actionEvent) {
         if (txtfNombre.getText().isEmpty())
@@ -103,10 +103,10 @@ public class MantenimientoAsociadosController extends Controller implements Init
             guardarFotoAsociado(asociado.getRutaFoto());
             registroAsociado.guardarAsociados();
             onActionBtnLimpiar(actionEvent);
-            
+
         }
     }
-    
+
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) {
         txtfFolio.setText(txtfFolio.getText().toUpperCase());
@@ -126,19 +126,19 @@ public class MantenimientoAsociadosController extends Controller implements Init
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Asociado no encontrado");
         }
     }
-    
+
     @javafx.fxml.FXML
     public void onActionBtnEliminar(ActionEvent actionEvent) {
         new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar usuario", getStage(), registroAsociado.eliminarAsociado(txtfFolio.getText()));
         registroAsociado.guardarAsociados();
         onActionBtnLimpiar(actionEvent);
     }
-    
+
     @javafx.fxml.FXML
     public void onActionBtnLimpiar(ActionEvent actionEvent) {
         limpiarCampos();
     }
-    
+
     @FXML
     private void onDragOverImvFoto(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
@@ -147,7 +147,7 @@ public class MantenimientoAsociadosController extends Controller implements Init
             event.acceptTransferModes(TransferMode.COPY);
         }
     }
-    
+
     @FXML
     private void onDragDroppedImvFoto(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
@@ -163,18 +163,18 @@ public class MantenimientoAsociadosController extends Controller implements Init
             }
         }
     }
-    
+
     private void setRegistros() {
         registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
         registroAsociado.cargarAsociados();
     }
-    
+
     private void setBotones(boolean value) {
         mbtnEliminar.setDisable(value);
         mbtnModificar.setDisable(value);
         mbtnBuscar.setDisable(!value);
     }
-    
+
     private void setFormFields(boolean value) {
         txtfNombre.setDisable(value);
         txtfPApellido.setDisable(value);
@@ -182,7 +182,7 @@ public class MantenimientoAsociadosController extends Controller implements Init
         txtfEdad.setDisable(value);
         txtfFolio.setDisable(!value);
     }
-    
+
     private boolean isNumber(String text) {
         try
         {
@@ -193,7 +193,7 @@ public class MantenimientoAsociadosController extends Controller implements Init
             return false;
         }
     }
-    
+
     private void cargarImagenAsociado(String ruta) {
         try
         {
@@ -216,31 +216,31 @@ public class MantenimientoAsociadosController extends Controller implements Init
             imvFoto.setImage(null);
         }
     }
-    
+
     private void limpiarCampos() {
         txtfFolio.setText("");
         txtfNombre.setText("");
         txtfPApellido.setText("");
         txtfSApellido.setText("");
         txtfEdad.setText("");
-        cargarImagenAsociado("./src/main/resources/cr/ac/una/tareacooperativa/resources/userNotFound.jpg");
+        cargarImagenAsociado("cr/ac/una/tareacooperativa/resources/userNotFound.jpg");
         setFormFields(true);
         setBotones(true);
         isImageChanged = false;
         lblInfoImvDragAndDrop.setDisable(true);
     }
-    
+
     private void guardarFotoAsociado(String rutaFoto) {
         System.out.println("Euta: " + rutaFoto);
-        
+
         if (isImageChanged)
         {
             Image image = imvFoto.getImage();
-            
+
             if (image != null)
             {
                 BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
-                
+
                 try
                 {
                     File output = new File(rutaFoto);
@@ -255,8 +255,8 @@ public class MantenimientoAsociadosController extends Controller implements Init
                 System.out.println("No hay ninguna imagen para guardar.");
             }
             isImageChanged = false;
-            
+
         }
     }
-    
+
 }

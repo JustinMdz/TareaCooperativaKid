@@ -40,8 +40,8 @@ public class App extends Application {
         AppContext.getInstance().set("cooperativa", cooperativa);
 
         FlowController.getInstance().InitializeFlow(stage, null);
-        goViewAccesParameter(accessParameter);
-        // FlowController.getInstance().goViewInWindow("LoginView");
+        //goViewAccesParameter(accessParameter);
+        FlowController.getInstance().goViewInWindow("LoginView");
     }
 
     public static void main(String[] args) {
@@ -54,17 +54,17 @@ public class App extends Application {
     }
 
     private void goViewAccesParameter(String parameter) {
-        if ("P".equals(parameter))
+        if (parameter.equals("P"))
         {
-            FlowController.getInstance().goViewInWindow("ProfesorView");
+            FlowController.getInstance().goMain("ProfesorView");
         }
-        if ("F".equals(parameter))
+        if (parameter.equals("F"))
         {
-            FlowController.getInstance().goViewInWindow("FuncionarioView");
+            FlowController.getInstance().goMain("FuncionarioView");
         }
-        if ("A".equals(parameter))
+        if (parameter.equals("A"))
         {
-            FlowController.getInstance().goViewInWindow("AsociadoView");
+            FlowController.getInstance().goMain("AsociadoView");
         }
     }
 }
