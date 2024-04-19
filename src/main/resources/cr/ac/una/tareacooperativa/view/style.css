@@ -117,10 +117,16 @@ Separator{
     -fx-font-size: 15px;
     -fx-opacity: .6;
 }.acercade-link:hover{
-     -fx-text-fill: #2f2f98;
-     -fx-cursor: hand;
-     -fx-opacity: 1;
- }
+    -fx-text-fill: #2f2f98;
+    -fx-cursor: hand;
+    -fx-opacity: 1;
+}
+
+.base-img-usuario{
+    -fx-background-image: url("../resources/userNotFound.jpg");
+    -fx-background-position: center;
+    -fx-background-size: stretch;
+}
 
 /* LOGIN VIEW */
 

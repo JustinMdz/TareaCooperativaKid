@@ -1,9 +1,6 @@
 package cr.ac.una.tareacooperativa;
 
-import cr.ac.una.tareacooperativa.model.Cooperativa;
-import cr.ac.una.tareacooperativa.model.RegistroAsociado;
-import cr.ac.una.tareacooperativa.model.RegistroAsociadoCuenta;
-import cr.ac.una.tareacooperativa.model.RegistroCuenta;
+import cr.ac.una.tareacooperativa.model.*;
 import cr.ac.una.tareacooperativa.util.AppContext;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -29,6 +26,7 @@ public class App extends Application {
     RegistroCuenta cuentas = new RegistroCuenta();
     RegistroAsociadoCuenta asociadosCuentas = new RegistroAsociadoCuenta();
     Cooperativa cooperativa = new Cooperativa();
+    RegistroSolicitudDeposito solicitudesDepositos = new RegistroSolicitudDeposito();
 
     private static Scene scene;
 
@@ -38,6 +36,7 @@ public class App extends Application {
         AppContext.getInstance().set("cuentas", cuentas);
         AppContext.getInstance().set("asociadosCuentas", asociadosCuentas);
         AppContext.getInstance().set("cooperativa", cooperativa);
+        AppContext.getInstance().set("depositos", solicitudesDepositos);
 
         FlowController.getInstance().InitializeFlow(stage, null);
         //goViewAccesParameter(accessParameter);
