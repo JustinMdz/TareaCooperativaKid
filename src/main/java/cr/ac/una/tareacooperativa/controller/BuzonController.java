@@ -99,6 +99,7 @@ public class BuzonController extends Controller implements Initializable {
 
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) {
+        mcbCuentas.getItems().clear();
         if (txtfFolio.getText().isEmpty())
         {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes ingresar un Folio");
@@ -123,10 +124,17 @@ public class BuzonController extends Controller implements Initializable {
     @javafx.fxml.FXML
     public void onActionBtnVer(ActionEvent actionEvent) {
         Cuenta cuenta = registroCuenta.buscarCuentaNombre(mcbCuentas.getSelectedItem().toString());
-        AsociadoCuenta asoCu = registroAsociadoCuenta.buscarAsociadoCuenta(txtfFolio.getText(), cuenta.getId());
-        mcbCuentas.setText(cuenta.getNombre());
-        txtfSaldo.setText(String.valueOf(asoCu.getBalanceCuenta()));
-        mbtnEnviar.setDisable(false);
+        if (cuenta != null)
+        {
+            AsociadoCuenta asoCu = registroAsociadoCuenta.buscarAsociadoCuenta(txtfFolio.getText(), cuenta.getId());
+            mcbCuentas.setText(cuenta.getNombre());
+            txtfSaldo.setText(String.valueOf(asoCu.getBalanceCuenta()));
+            mbtnEnviar.setDisable(false);
+        } else
+        {
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Cuentas", getStage(), "Debes preguntarle a un fucionario que te abra una cuenta");
+        }
+
     }
 
     private void setSpnValueFactories() {

@@ -28,16 +28,18 @@ public class RegistroSolicitudDeposito {
 
     }
 
-    public Integer buscarSolicitudDepositoMonto(String folio, Integer idCuenta) {
+    public ArrayList<Integer> getDepositosPorFolioYId(String folio, Integer idCuenta) {
+        ArrayList<Integer> montos = new ArrayList<>();
         for (SolicitudDeposito solicitud : solicitudes)
         {
-            AsociadoCuenta asoCuenta = new AsociadoCuenta(folio, idCuenta, 0);
-            if (asoCuenta.getFolioAsociado().equals(solicitud.getAsociadoCuenta().getFolioAsociado()) && asoCuenta.getIdCuenta() == solicitud.getAsociadoCuenta().getIdCuenta())
+            AsociadoCuenta asoCuenta = solicitud.getAsociadoCuenta();
+            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta)
             {
-                return solicitud.getDeposito();
+                montos.add(solicitud.getDeposito());
             }
         }
-        return null;
+
+        return montos;
     }
 
     public SolicitudDeposito buscarSolicitudDeposito(String folio, Integer idCuenta) {

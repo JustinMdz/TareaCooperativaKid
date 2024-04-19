@@ -111,33 +111,15 @@ public class TransaccionesController extends Controller implements Initializable
                 retiroSinSoliciutd();
             } else
             {
-//                Integer monto = getTotal();
-//
-//                registroAsociadoCuenta.retirarDinero(txtfFolio.getText().toUpperCase(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), monto);
-//                if (monto == 1)
-//                {
-//                    new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "No hay suficientes fondos en esta cuenta para realizar un retiro");
-//                } else
-//                {
-//                    SolicitudDeposito deposito = registroSolicitudDeposito.buscarSolicitudDepositoPorMonto(txtfFolio.getText(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), (Integer) mcbDepositos.getSelectedItem());
-//
-//                    if (deposito != null)
-//                    {
-//                        registroSolicitudDeposito.eliminarSolicitud(deposito);
-//                        registroSolicitudDeposito.guardarSolicitudes();
-//                        registroAsociadoCuenta.guardarAsociadoCuenta();
-//                    }
-//
-//                    JOptionPane.showMessageDialog(null, getTotal());
-//                    new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Funcionario", getStage(), "Retiro realizado con exito");
-//                }
-
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Solo los depositos necesitan solitud");
+                cargarSolicitudDepositos();
             }
         } else
         {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar un monto para su retiro");
         }
         mcbDepositos.getItems().clear();
+        setSpnValueFactories();
     }
 
     private void retiroSinSoliciutd() {
@@ -190,6 +172,8 @@ public class TransaccionesController extends Controller implements Initializable
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes depositar un monto");
         }
         mcbDepositos.getItems().clear();
+        cargarSolicitudDepositos();
+        setSpnValueFactories();
     }
 
     @javafx.fxml.FXML
@@ -219,15 +203,14 @@ public class TransaccionesController extends Controller implements Initializable
 
     private void cargarSolicitudDepositos() {
         mcbDepositos.getItems().clear();
-        ArrayList<SolicitudDeposito> solicitudDepositos = registroSolicitudDeposito.getDepositos();
-
         Cuenta cuenta = registroCuenta.buscarCuentaNombre(mcbCuentas.getSelectedItem().toString());
+        ArrayList<Integer> solicitudDepositosMontos = registroSolicitudDeposito.getDepositosPorFolioYId(txtfFolio.getText(), cuenta.getId());
 
-        for (SolicitudDeposito solicitud : solicitudDepositos)
+        if (cuenta != null)
         {
-            if (cuenta != null)
+            if (!solicitudDepositosMontos.isEmpty())
             {
-                mcbDepositos.getItems().add(registroSolicitudDeposito.buscarSolicitudDepositoMonto(txtfFolio.getText().toUpperCase(), cuenta.getId()));
+                mcbDepositos.getItems().addAll(solicitudDepositosMontos);
             }
         }
     }
