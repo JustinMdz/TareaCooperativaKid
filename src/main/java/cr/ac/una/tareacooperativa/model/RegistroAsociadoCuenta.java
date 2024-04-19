@@ -99,7 +99,6 @@ public class RegistroAsociadoCuenta {
             }
 
         }
-        monto = null;
         return "No existen suficientes fondos para realizar un retiro";
     }
 

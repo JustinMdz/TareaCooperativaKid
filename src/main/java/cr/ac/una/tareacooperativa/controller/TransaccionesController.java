@@ -108,36 +108,50 @@ public class TransaccionesController extends Controller implements Initializable
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar una cuenta");
             } else if (mcbDepositos.getSelectedItem() == null)
             {
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar un montoDeposito");
+                retiroSinSoliciutd();
             } else
             {
-                Integer monto = getTotal();
-
-                registroAsociadoCuenta.retirarDinero(txtfFolio.getText().toUpperCase(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), monto);
-                if (monto == null)
-                {
-                    new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "No hay suficientes fondos en esta cuenta para realizar un retiro");
-                } else
-                {
-                    SolicitudDeposito deposito = registroSolicitudDeposito.buscarSolicitudDepositoPorMonto(txtfFolio.getText(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), (Integer) mcbDepositos.getSelectedItem());
-
-                    if (deposito != null)
-                    {
-                        registroSolicitudDeposito.eliminarSolicitud(deposito);
-                        registroSolicitudDeposito.guardarSolicitudes();
-                        registroAsociadoCuenta.guardarAsociadoCuenta();
-                    }
-
-                    JOptionPane.showMessageDialog(null, getTotal());
-                    new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Funcionario", getStage(), "Retiro realizado con exito");
-                }
+//                Integer monto = getTotal();
+//
+//                registroAsociadoCuenta.retirarDinero(txtfFolio.getText().toUpperCase(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), monto);
+//                if (monto == 1)
+//                {
+//                    new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "No hay suficientes fondos en esta cuenta para realizar un retiro");
+//                } else
+//                {
+//                    SolicitudDeposito deposito = registroSolicitudDeposito.buscarSolicitudDepositoPorMonto(txtfFolio.getText(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), (Integer) mcbDepositos.getSelectedItem());
+//
+//                    if (deposito != null)
+//                    {
+//                        registroSolicitudDeposito.eliminarSolicitud(deposito);
+//                        registroSolicitudDeposito.guardarSolicitudes();
+//                        registroAsociadoCuenta.guardarAsociadoCuenta();
+//                    }
+//
+//                    JOptionPane.showMessageDialog(null, getTotal());
+//                    new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Funcionario", getStage(), "Retiro realizado con exito");
+//                }
 
             }
         } else
         {
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes depositar un monto");
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar un monto para su retiro");
         }
         mcbDepositos.getItems().clear();
+    }
+
+    private void retiroSinSoliciutd() {
+        Integer monto = getTotal();
+        String mensaje = registroAsociadoCuenta.retirarDinero(txtfFolio.getText().toUpperCase(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), monto);
+        new Mensaje().showModal(Alert.AlertType.INFORMATION, " Funcionario", getStage(), mensaje);
+        registroAsociadoCuenta.guardarAsociadoCuenta();
+    }
+
+    private void depositoSinSoliciutd() {
+        Integer monto = getTotal();
+        registroAsociadoCuenta.depositarDinero(txtfFolio.getText().toUpperCase(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), monto);
+        new Mensaje().showModal(Alert.AlertType.INFORMATION, " Funcionario", getStage(), "Monto depositado con exito");
+        registroAsociadoCuenta.guardarAsociadoCuenta();
     }
 
     @javafx.fxml.FXML
@@ -152,7 +166,7 @@ public class TransaccionesController extends Controller implements Initializable
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar una cuenta");
             } else if (mcbDepositos.getSelectedItem() == null)
             {
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar un montoDeposito");
+                depositoSinSoliciutd();
             } else
             {
 
