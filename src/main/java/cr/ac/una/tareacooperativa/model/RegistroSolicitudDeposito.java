@@ -71,7 +71,7 @@ public class RegistroSolicitudDeposito {
         try (FileReader fileReader = new FileReader(archivo))
         {
             Gson gson = new Gson();
-            solicitudes = gson.fromJson(fileReader, new TypeToken<ArrayList<Asociado>>() {
+            solicitudes = gson.fromJson(fileReader, new TypeToken<ArrayList<SolicitudDeposito>>() {
             }.getType());
             System.out.println("Datos cargados desde " + DIRECTORY + " correctamente.");
         } catch (IOException ex)

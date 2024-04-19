@@ -10,19 +10,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import cr.ac.una.tareacooperativa.model.RegistroAsociadoCuenta;
 
 import javax.swing.*;
 
 /**
  * Universidad Nacional - Programación II 2024
  * <p>
- *     Controlador de la pantalla de transacciones
+ * Controlador de la pantalla de transacciones
  * </p>
+ *
  * @author Stiward Araya
  * @author Justin Mendez
  */
 public class TransaccionesController extends Controller implements Initializable {
 
+    RegistroAsociadoCuenta registroAsociado;
     @javafx.fxml.FXML
     private MFXTextField txtfFolio;
     @javafx.fxml.FXML
@@ -53,7 +56,8 @@ public class TransaccionesController extends Controller implements Initializable
     private Spinner spnCien;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
     @Override
     public void initialize() {
@@ -74,18 +78,18 @@ public class TransaccionesController extends Controller implements Initializable
         //registroAsociado.buscarAsociado((txtfFolio.getText()).toUpperCase());
     }
 
-    private void setSpnValueFactories(){
-        SpinnerValueFactory<Integer> valueMil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueDosmil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueCincomil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueDiezmil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueVeintemil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueCinco = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueDiez = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueVeinticinco = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueCincuenta = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueCien = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueQuinientos = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
+    private void setSpnValueFactories() {
+        SpinnerValueFactory<Integer> valueMil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueDosmil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueCincomil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueDiezmil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueVeintemil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueCinco = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueDiez = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueVeinticinco = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueCincuenta = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueCien = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueQuinientos = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
 
         valueMil.setValue(0);
         valueDosmil.setValue(0);
@@ -112,7 +116,7 @@ public class TransaccionesController extends Controller implements Initializable
         spnQuinientos.setValueFactory(valueQuinientos);
     }
 
-    private int getTotal(){
+    private int getTotal() {
         int total = 0;
         total += ((Integer) spnMil.getValue()) * 1000;
         total += ((Integer) spnDosmil.getValue()) * 2000;
