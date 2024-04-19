@@ -2,14 +2,14 @@ package cr.ac.una.tareacooperativa.model;
 
 public class SolicitudDeposito {
     private AsociadoCuenta asociadoCuenta;
-    private int deposito;
+    private Integer deposito;
 
     public SolicitudDeposito(){
         asociadoCuenta = null;
         deposito = 0;
     }
 
-    public SolicitudDeposito(AsociadoCuenta asociadoCuenta, int deposito){
+    public SolicitudDeposito(AsociadoCuenta asociadoCuenta, Integer deposito){
         this.asociadoCuenta = asociadoCuenta;
         this.deposito = deposito;
     }
@@ -18,7 +18,7 @@ public class SolicitudDeposito {
         this.asociadoCuenta = asociadoCuenta;
     }
 
-    public void setDeposito(int deposito){
+    public void setDeposito(Integer deposito){
         this.deposito = deposito;
     }
 

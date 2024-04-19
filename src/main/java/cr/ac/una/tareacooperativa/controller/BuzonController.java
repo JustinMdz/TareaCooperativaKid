@@ -55,7 +55,8 @@ public class BuzonController extends Controller implements Initializable {
     private MFXButton mbtnEnviar;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
     @Override
     public void initialize() {
@@ -67,28 +68,51 @@ public class BuzonController extends Controller implements Initializable {
 
     @javafx.fxml.FXML
     public void onActionBtnEnviar(ActionEvent actionEvent) {
-        //TODO: Almacenar un objeto deposito con el monto que el asociado ingresó
-        //Usar getTotal()
+        if (getTotal() > 0)
+
+        {
+            String nombreCuenta = (String) mcbCuentas.getSelectionModel().getSelectedItem();
+            System.out.println("Este es el nombre de la cuenta a buscar: " + nombreCuenta);
+            Integer idCuenta = registroCuenta.getIdCuentaByNombre(nombreCuenta);
+            System.out.println("Este es el ID de la cuenta a buscar: " + idCuenta);
+            System.out.println("Este es el folio del asociado a buscar: " + txtfFolio.getText());
+            guardarDeposito(txtfFolio.getText().toUpperCase(), idCuenta);
+
+        } else
+        {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes depositar la plata en el chanchito");
+        }
     }
 
     @javafx.fxml.FXML
     public void onActionBtnLimpiar(ActionEvent actionEvent) {
+        limpiarCampos();
+    }
+
+    private void limpiarCampos() {
         mbtnEnviar.setDisable(true);
         txtfFolio.setText("");
         mcbCuentas.getItems().clear();
         txtfSaldo.setText("");
+        setSpnValueFactories();
     }
 
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) {
-        if(txtfFolio.getText().isEmpty()){
+        if (txtfFolio.getText().isEmpty())
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes ingresar un Folio");
-        }else if(registroAsociado.buscarAsociado(txtfFolio.getText()) == null){
+        } else if (registroAsociado.buscarAsociado(txtfFolio.getText().toUpperCase()) == null)
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Usuario no encontrado");
-        }else{
+        } else
+        {
+            txtfFolio.setText(txtfFolio.getText().toUpperCase());
             ArrayList<AsociadoCuenta> asociadosCuentas = registroAsociadoCuenta.getAsociadosCuentas();
-            for (AsociadoCuenta asoCu : asociadosCuentas){
-                if(asoCu.getFolioAsociado().equals(txtfFolio.getText())){
+            for (AsociadoCuenta asoCu : asociadosCuentas)
+            {
+                if (asoCu.getFolioAsociado().equals(txtfFolio.getText().toUpperCase()))
+                {
                     mcbCuentas.getItems().add(registroCuenta.buscarCuenta(asoCu.getIdCuenta()).getNombre());
                 }
             }
@@ -105,18 +129,18 @@ public class BuzonController extends Controller implements Initializable {
         mbtnEnviar.setDisable(false);
     }
 
-    private void setSpnValueFactories(){
-        SpinnerValueFactory<Integer> valueMil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueDosmil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueCincomil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueDiezmil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueVeintemil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueCinco = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueDiez = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueVeinticinco = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueCincuenta = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueCien = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
-        SpinnerValueFactory<Integer> valueQuinientos = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10);
+    private void setSpnValueFactories() {
+        SpinnerValueFactory<Integer> valueMil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueDosmil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueCincomil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueDiezmil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueVeintemil = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueCinco = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueDiez = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueVeinticinco = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueCincuenta = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueCien = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
+        SpinnerValueFactory<Integer> valueQuinientos = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10);
 
         valueMil.setValue(0);
         valueDosmil.setValue(0);
@@ -143,7 +167,7 @@ public class BuzonController extends Controller implements Initializable {
         spnQuinientos.setValueFactory(valueQuinientos);
     }
 
-    private int getTotal(){
+    private Integer getTotal() {
         int total = 0;
         total += ((Integer) spnMil.getValue()) * 1000;
         total += ((Integer) spnDosmil.getValue()) * 2000;
@@ -159,16 +183,32 @@ public class BuzonController extends Controller implements Initializable {
         return total;
     }
 
-    private void cargarRegistros(){
-        registroCuenta = ((RegistroCuenta) AppContext.getInstance().get("cuentas") );
+    private void cargarRegistros() {
+        registroCuenta = ((RegistroCuenta) AppContext.getInstance().get("cuentas"));
         registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
         registroAsociadoCuenta = ((RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas"));
         registroSolicitudDeposito = ((RegistroSolicitudDeposito) AppContext.getInstance().get("depositos"));
         registroCuenta.cargarCuentas();
         registroAsociado.cargarAsociados();
         registroAsociadoCuenta.cargarAsociadoCuenta();
-        //registroSolicitudDeposito.cargarSolicitudes();
+        registroSolicitudDeposito.cargarSolicitudes();
     }
 
+    private void guardarDeposito(String folio, Integer idCuenta) {
+        if (idCuenta > 0)
+        {
+            AsociadoCuenta asoCuenta = registroAsociadoCuenta.buscarAsociadoCuenta(txtfFolio.getText().toUpperCase(), idCuenta);
+            if (asoCuenta != null)
+            {
+                SolicitudDeposito nuevoDeposito = new SolicitudDeposito(asoCuenta, getTotal());
+                new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Chanchito", getStage(), registroSolicitudDeposito.agregarDeposito(nuevoDeposito));
+                registroSolicitudDeposito.guardarSolicitudes();
+                limpiarCampos();
+            } else
+            {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Chanchito", getStage(), "AsociadoCuenta no encontrada");
+            }
+        }
+    }
 
 }
