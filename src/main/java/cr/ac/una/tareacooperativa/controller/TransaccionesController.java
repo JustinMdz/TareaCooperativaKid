@@ -7,7 +7,6 @@ import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
@@ -126,5 +125,53 @@ public class TransaccionesController extends Controller implements Initializable
         total += ((Integer) spnCien.getValue()) * 100;
         total += ((Integer) spnQuinientos.getValue()) * 500;
         return total;
+    }
+
+    private int procesarMonto(int monto) {
+        if (( monto / 20000 ) != 0) {
+            spnVeintemil.getValueFactory().setValue(monto / 20000);
+            monto -= 20000 * ( monto / 20000 );
+        }
+        if (( monto / 10000 ) != 0) {
+            spnDiezmil.getValueFactory().setValue(monto / 10000);
+            monto -= 10000 * ( monto / 10000 );
+        }
+        if (( monto / 5000 ) != 0) {
+            spnCincomil.getValueFactory().setValue(monto / 5000);
+            monto -= 5000 * ( monto / 5000 );
+        }
+        if (( monto / 2000 ) != 0) {
+            spnDosmil.getValueFactory().setValue(monto / 2000);
+            monto -= 2000 * ( monto / 2000 );
+        }
+        if (( monto / 1000 ) != 0) {
+            spnMil.getValueFactory().setValue(monto / 1000);
+            monto -= 1000 * ( monto / 1000 );
+        }
+        if (( monto / 500 ) != 0) {
+            spnQuinientos.getValueFactory().setValue(monto / 500);
+            monto -= 500 * ( monto / 500 );
+        }
+        if (( monto / 100 ) != 0) {
+            spnCien.getValueFactory().setValue(monto / 100);
+            monto -= 100 * ( monto / 100 );
+        }
+        if (( monto / 50 ) != 0) {
+            spnCincuenta.getValueFactory().setValue(monto / 50);
+            monto -= 50 * ( monto / 50 );
+        }
+        if (( monto / 25 ) != 0) {
+            spnVeinticinco.getValueFactory().setValue(monto / 25);
+            monto -= 25 * ( monto / 25 );
+        }
+        if (( monto / 10 ) != 0) {
+            spnDiez.getValueFactory().setValue(monto / 10);
+            monto -= 10 * ( monto / 10 );
+        }
+        if (( monto / 2000 ) != 0) {
+            spnCinco.getValueFactory().setValue(monto / 5);
+            monto -= 5 * ( monto / 5 );
+        }
+        return monto;
     }
 }
