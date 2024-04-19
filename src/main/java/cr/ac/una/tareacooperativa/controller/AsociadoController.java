@@ -35,7 +35,7 @@ public class AsociadoController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnBuzon(ActionEvent event) {
-        FlowController.getInstance().goView("TransaccionesView");
+        FlowController.getInstance().goView("BuzonView");
     }
 
     @FXML
