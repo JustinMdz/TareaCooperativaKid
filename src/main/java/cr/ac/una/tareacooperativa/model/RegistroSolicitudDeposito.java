@@ -13,33 +13,80 @@ import java.util.logging.Logger;
 import static java.util.logging.Level.SEVERE;
 
 public class RegistroSolicitudDeposito {
+
     private ArrayList<SolicitudDeposito> solicitudes;
     public static final String DIRECTORY = "./Registros/";
     private static final String ARCHIVO_SOLICITUDES = "dataSolicitudes.json";
 
-    public RegistroSolicitudDeposito(){
+    public RegistroSolicitudDeposito() {
         solicitudes = new ArrayList<>();
     }
 
-    public String agregarDeposito(SolicitudDeposito solicitud){
-        if(solicitud != null){
+    public AsociadoCuenta buscarAsociadoCuenta() {
+
+        return null;
+
+    }
+
+    public Integer buscarSolicitudDepositoMonto(String folio, Integer idCuenta) {
+        for (SolicitudDeposito solicitud : solicitudes)
+        {
+            AsociadoCuenta asoCuenta = new AsociadoCuenta(folio, idCuenta, 0);
+            if (asoCuenta.getFolioAsociado().equals(solicitud.getAsociadoCuenta().getFolioAsociado()) && asoCuenta.getIdCuenta() == solicitud.getAsociadoCuenta().getIdCuenta())
+            {
+                return solicitud.getDeposito();
+            }
+        }
+        return null;
+    }
+
+    public SolicitudDeposito buscarSolicitudDeposito(String folio, Integer idCuenta) {
+        for (SolicitudDeposito solicitud : solicitudes)
+        {
+            AsociadoCuenta asoCuenta = new AsociadoCuenta(folio, idCuenta, 0);
+            if (asoCuenta.getFolioAsociado().equals(solicitud.getAsociadoCuenta().getFolioAsociado()) && asoCuenta.getIdCuenta() == solicitud.getAsociadoCuenta().getIdCuenta())
+            {
+                return solicitud;
+            }
+        }
+        return null;
+    }
+
+    public SolicitudDeposito buscarSolicitudDepositoPorMonto(String folio, Integer idCuenta, Integer monto) {
+        for (SolicitudDeposito solicitud : solicitudes)
+        {
+            AsociadoCuenta asoCuenta = new AsociadoCuenta(folio, idCuenta, 0);
+            if (asoCuenta.getFolioAsociado().equals(solicitud.getAsociadoCuenta().getFolioAsociado()) && asoCuenta.getIdCuenta() == solicitud.getAsociadoCuenta().getIdCuenta() && monto == solicitud.getDeposito())
+            {
+                return solicitud;
+            }
+        }
+        return null;
+    }
+
+    public String agregarDeposito(SolicitudDeposito solicitud) {
+        if (solicitud != null)
+        {
             solicitudes.add(solicitud);
             return "Solicitud enviada exitosamente";
-        }else{
+        } else
+        {
             return "Error al agregar el deposito";
         }
     }
 
-    public String eliminarSolicitud(SolicitudDeposito solicitud){
-        if(solicitud != null){
+    public String eliminarSolicitud(SolicitudDeposito solicitud) {
+        if (solicitud != null)
+        {
             solicitudes.remove(solicitud);
             return "Solicitud eliminada exitosamente";
-        }else{
+        } else
+        {
             return "Error al eliminar la solicitud";
         }
     }
 
-    public ArrayList<SolicitudDeposito> getDepositos(){
+    public ArrayList<SolicitudDeposito> getDepositos() {
         return solicitudes;
     }
 
@@ -61,7 +108,7 @@ public class RegistroSolicitudDeposito {
         }
     }
 
-    public void cargarSolicitudes(){
+    public void cargarSolicitudes() {
         File archivo = new File(DIRECTORY + ARCHIVO_SOLICITUDES);
         if (!archivo.exists() || archivo.length() == 0)
         {

@@ -1,40 +1,56 @@
 package cr.ac.una.tareacooperativa.model;
 
 public class SolicitudDeposito {
+
     private AsociadoCuenta asociadoCuenta;
     private Integer deposito;
 
-    public SolicitudDeposito(){
+    public SolicitudDeposito() {
         asociadoCuenta = null;
         deposito = 0;
     }
 
-    public SolicitudDeposito(AsociadoCuenta asociadoCuenta, Integer deposito){
+    public SolicitudDeposito(AsociadoCuenta asociadoCuenta, Integer deposito) {
         this.asociadoCuenta = asociadoCuenta;
         this.deposito = deposito;
     }
 
-    public void setAsociadoCuenta(AsociadoCuenta asociadoCuenta){
+    public void setAsociadoCuenta(AsociadoCuenta asociadoCuenta) {
         this.asociadoCuenta = asociadoCuenta;
     }
 
-    public void setDeposito(Integer deposito){
+    public void setDeposito(Integer deposito) {
         this.deposito = deposito;
     }
 
-    public AsociadoCuenta getAsociadoCuenta(){
+    public AsociadoCuenta getAsociadoCuenta() {
         return asociadoCuenta;
     }
 
-    public int getDeposito(){
+    public int getDeposito() {
         return deposito;
     }
 
-    public String getDataDeposito(){
+    public String convertToString(Integer number) {
+        try
+        {
+            return String.valueOf(number);
+        } catch (NumberFormatException e)
+        {
+            System.err.println("NumberFormatException occurred: " + e.getMessage());
+            return null; // or throw a custom exception if needed
+        } catch (Exception e)
+        {
+            System.err.println("An unexpected exception occurred: " + e.getMessage());
+            return null; // or throw a custom exception if needed
+        }
+    }
+
+    public String getDataDeposito() {
         String detalle = "";
-        detalle += "Asociado folio: "+asociadoCuenta.getFolioAsociado()+"\n";
-        detalle += "solicita un deposito en su cuenta identificada: "+asociadoCuenta.getIdCuenta()+"\n";
-        detalle += "por un monto de: "+deposito;
+        detalle += "Asociado folio: " + asociadoCuenta.getFolioAsociado() + "\n";
+        detalle += "solicita un deposito en su cuenta identificada: " + asociadoCuenta.getIdCuenta() + "\n";
+        detalle += "por un monto de: " + deposito;
         return detalle;
     }
 }

@@ -76,6 +76,33 @@ public class RegistroAsociadoCuenta {
         }
     }
 
+    public void depositarDinero(String folio, int idCuenta, Integer monto) {
+        for (AsociadoCuenta asoCuenta : asociadosCuentas)
+        {
+            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta)
+            {
+                asoCuenta.depositarDinero(monto);
+            }
+        }
+    }
+
+    public String retirarDinero(String folio, int idCuenta, Integer monto) {
+        for (AsociadoCuenta asoCuenta : asociadosCuentas)
+        {
+            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta)
+            {
+                if (monto <= asoCuenta.getBalanceCuenta())
+                {
+                    asoCuenta.retirarDinero(monto);
+                    return "Retiro realizado exitosamente";
+                }
+            }
+
+        }
+        monto = null;
+        return "No existen suficientes fondos para realizar un retiro";
+    }
+
     public ArrayList<AsociadoCuenta> getAsociadosCuentas() {
         return asociadosCuentas;
     }

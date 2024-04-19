@@ -28,8 +28,9 @@
                   <MFXButton maxHeight="50.0" maxWidth="90.0" onAction="#onActionBtnBuscar" styleClass="boton-buscar" text="Buscar" HBox.hgrow="ALWAYS" />
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="transacciones-header--vbox" HBox.hgrow="SOMETIMES">
                      <children>
-                        <MFXComboBox fx:id="comboCuentas" floatingText="Cuentas" styleClass="transacciones-txt" />
+                        <MFXComboBox fx:id="mcbCuentas" floatingText="Cuentas" styleClass="transacciones-txt" />
                         <MFXTextField fx:id="txtfSaldo" allowEdit="false" floatingText="Saldo" minHeight="25.0" prefHeight="25.0" prefWidth="141.0" />
+                        <MFXComboBox fx:id="mcbDepositos" styleClass="transacciones-txt" />
                      </children>
                   </VBox>
                </children>

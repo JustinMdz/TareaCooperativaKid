@@ -55,20 +55,12 @@ public class AsociadoCuenta {
         return balanceCuenta;
     }
 
-    public String depositarDinero(int cantidad) {
+    public void depositarDinero(Integer cantidad) {
         balanceCuenta += cantidad;
-        return "Deposito de dinero Exitoso";
     }
 
-    public String retirarDinero(int cantidad) {
-        if (cantidad < balanceCuenta)
-        {
-            balanceCuenta -= cantidad;
-            return "Retiro de de dinero Existoso";
-        } else
-        {
-            return "No tienes ese dinero en la cuenta";
-        }
+    public void retirarDinero(Integer cantidad) {
+        balanceCuenta -= cantidad;
     }
 
 }
