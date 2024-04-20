@@ -1,27 +1,29 @@
 /*
- * Universidad Nacional - Programación II 2024
+*  Universidad Nacional - Programación II 2024
 *  Tarea Cooperativa
 *  Stiward Araya & Justin Mendez 
-*/
-
-/* Paleta:
-* Blanco crema: rgb(234, 223, 180)
-* Celeste pastel: rgb(155, 176, 193)
-* Azul pastel: rgb(81, 130, 155)
-* Naranja pastel: rgb(246, 153, 92)
 */
 
 * {
     -mfx-main: rgb(81, 130, 155);
     -mfx-purple: rgb(81, 130, 155);
+    -fx-beige: rgb(234, 223, 180);
+    -fx-celeste-pastel:rgb(155, 176, 193);
+    -fx-azul-pastel: rgb(81, 130, 155);
+    -fx-naranja: rgb(246, 153, 92);
+    -fx-magenta: rgb(255, 32, 78);
+    -fx-fucsia: rgb(160, 21, 62);
+    -fx-morado: rgb(93, 14, 65);
+    -fx-azul: rgb(0, 34, 77);
+    -fx-celeste-hielo: rgb(223, 245, 255);
 }
 
 .separator-orange{
-    -fx-background-color: rgb(246, 153, 92);
+    -fx-background-color: -fx-naranja;
 }
 
 .separator-blue{
-    -fx-background-color: rgb(0, 34, 77);
+    -fx-background-color: -fx-azul;
 }
 
 .mfx-text-field {
@@ -47,16 +49,16 @@
     -fx-min-width: 190px;
     -fx-max-height: 50px;
     -fx-min-height: 50px;
-    -fx-background-color: rgb(155, 176, 193);
+    -fx-background-color: -fx-celeste-pastel;
 }
 
 .mfx-button:hover{
-    -fx-background-color: rgb(81, 130, 155);
+    -fx-background-color: -fx-azul-pastel;
     -fx-text-fill: white;
 }
 
 .boton-salir, .boton-salir:armed, .boton-salir:focused{
-    -fx-background-color: rgb(246, 153, 92);
+    -fx-background-color: -fx-naranja;
     -fx-alignment: CENTER;
     -fx-max-width: 85px;
     -fx-min-width: 85px;
@@ -76,7 +78,7 @@
 }
 
 .contenedor-menus{
-    -fx-background-color: rgb(234, 223, 180);
+    -fx-background-color: -fx-beige;
     -fx-background-radius: 4.0;
     -fx-padding: 10;
     -fx-spacing: 10;
@@ -84,30 +86,30 @@
 }
 
 .standard-root{
-    -fx-background-color: rgb(81, 130, 155);
+    -fx-background-color: -fx-azul-pastel;
     -fx-spacing: 5px;
     -fx-padding: 5px;
     -fx-border-style: solid;
     -fx-border-width: 3px;
-    -fx-border-color: rgb(246, 153, 92);
+    -fx-border-color: -fx-naranja;
 }
 
 .standard-profesor-root{
-    -fx-background-color: rgb(0, 34, 77);
-    -fx-border-color: rgb(255, 32, 78);
+    -fx-background-color: -fx-azul;
+    -fx-border-color: -fx-magenta;
 }
 
 .contenedor-menus-profesor{
-    -fx-background-color: rgb(223, 245, 255);
+    -fx-background-color: -fx-celeste-hielo;
 }
 
 .boton-profesor, .boton-profesor:armed, .boton-profesor:focused{
-    -fx-background-color: rgb(0, 34, 77);
-    -fx-text-fill: rgb(223, 245, 255);
+    -fx-background-color: -fx-azul;
+    -fx-text-fill: -fx-celeste-hielo;
 }
 
 .boton-profesor:hover {
-    -fx-background-color: rgb(160, 21, 62);
+    -fx-background-color: -fx-fucsia;
 }
 
 .acercade-link{
@@ -117,7 +119,7 @@
     -fx-font-size: 15px;
     -fx-opacity: .6;
 }.acercade-link:hover{
-    -fx-text-fill: #2f2f98;
+    -fx-text-fill: -fx-azul;
     -fx-cursor: hand;
     -fx-opacity: 1;
 }
@@ -139,67 +141,10 @@
     -fx-font-size: 14px;
 }
 
-/* LOGIN VIEW */
-.login-titulo {
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-fill: rgb(0, 0, 0);
-}
-
-.login-hbox--tituloLogo {
-    -fx-padding: 5px;
-    -fx-spacing: 5px;
-    -fx-alignment: CENTER;
-}
-
-.login-vbox {
-    -fx-alignment: CENTER;
-    -fx-spacing: 15px;
-    -fx-background-color: rgb(234, 223, 180);
-    -fx-padding: 10px;
-    -fx-max-width: 275px;
-    -fx-pref-width: 200px;
-}
-
-.login-boton--menu {
-    -fx-background-color: rgb(155, 176, 193);
-    -fx-text-fill: rgb(40, 90, 120);
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-alignment: BASELINE_LEFT;
-    -fx-label-padding: 10px;
-    -fx-cursor: hand;
-    -mfx-button-type: RAISED;
-    -mfx-depth-level: LEVEL2;
-}
-
-.login-boton--menu:hover {
-    -fx-background-color: rgb(81, 130, 155);
-    -fx-text-fill: rgb(234, 223, 180);
-}
-
-.login-boton--menu:pressed {
-    -fx-background-color: rgb(40, 100, 120);
-}
-
 .login-imagen {
     -fx-background-image: url("../resources/loginImagen.jpg");
     -fx-background-position: center;
     -fx-background-size: stretch;
-}
-
-.login-web--label {
-    -fx-font-size: 15px;
-    -fx-text-fill: rgb(50, 50, 50);
-    -fx-underline: true;
-    -fx-cursor: hand;
-    -fx-font-weight: bold;
-    -fx-alignment: CENTER;
-}
-
-.login-hbox--boton {
-    -fx-padding: 5px;
-    -fx-spacing: 5px;
 }
 
 .funcionario-imagen {
@@ -215,7 +160,7 @@
 }
 
 .profesor-imagen {
-    -fx-background-image: url(../resources/profesor.jpeg);
+    -fx-background-image: url("../resources/profesor.jpeg");
     -fx-background-position: center;
     -fx-background-size: stretch;
 }
@@ -226,320 +171,11 @@
     -fx-background-size: stretch;
 }
 
-/* CUENTAS VIEW */
-
-.vtncuentas-root--view {
-    -fx-background-color: rgb(234, 223, 180);
-    -fx-border-color: rgb(81, 130, 155);
-    -fx-border-width: 5px;
-    -fx-border-style: solid;
-}
-
-.vtncuentas-titulo {
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-text-fill: rgb(0, 0, 0);
-}
-
-.vtncuentas-txtfolio {
-    -mfx-float-mode: BORDER;
-    -fx-font-size: 16px;
-}
-
-.vtncuentas-lista {
-    -fx-text-fill: rgb(40, 90, 120);
-    -fx-background-radius: 10%;
-}
-
-.vtncuentas-vbox {
-    -fx-padding: 5px;
-    -fx-spacing: 5px;
-}
-
-.vtncuentas-hbox--form_folio {
-    -fx-spacing: 10px;
-}
-
-.vtncuentas-hbox--listas {
-    -fx-padding: 5px;
-    -fx-spacing: 5px;
-    -fx-alignment: CENTER;
-    -fx-background-color: white;
-}
-
-.vtncuentas-hbox--botones {
-    -fx-spacing: 30px;
-    -fx-padding: 5px;
-    -fx-alignment: CENTER;
-}
-
-/* MANTENIMIENTO ASOCIADOS VIEW */
-.manAso-root {
-    -fx-background-color: rgb(234, 223, 180);
-    -fx-border-color: rgb(81, 130, 155);
-    -fx-border-width: 5px;
-    -fx-border-style: solid;
-}
-
-.manAso-header--hbox {
-    -fx-alignment: CENTER;
-    -fx-spacing: 15px;
-}
-
-.manAso-titulo {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-}
-
-.manAso-menuBotones--vbox {
-    -fx-background-color: white;
-    -fx-alignment: CENTER;
-    -fx-spacing: 15px;
-    -fx-padding: 5px;
-}
-
-.manAso-hbox--boton_menu {
-    -fx-padding: 5px;
-    -fx-spacing: 5px;
-    -fx-alignment: CENTER;
-}
-
-.manAso-form--main_label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
-
-.manAso-form--vbox_img {
-    -fx-alignment: CENTER;
-    -fx-spacing: 20px;
-    -fx-padding: 5px;
-}
-
-.manAso-form--hbox {
-    -fx-spacing: 5px;
-    -fx-background-color: white;
-    -fx-padding: 5px;
-}
-
-.manAso-form--vbox_data {
-    -fx-alignment: CENTER;
-    -fx-spacing: 20px;
-    -fx-padding: 5px;
-}
-
-.manAso-form--folio_boton {
-    -fx-alignment: CENTER;
-    -fx-padding: 5px;
-    -fx-spacing: 25px;
-}
-
-.manAso-txt--folio {
-    -mfx-float-mode: BORDER;
-    -fx-font-size: 16px;
-}
-
-
-
-/* IMPRIMIR CARNET VIEW */
-.impCarnet-root {
-    -fx-background-color: rgb(234, 223, 180);
-    -fx-border-color: rgb(81, 130, 155);
-    -fx-border-width: 5px;
-    -fx-border-style: solid;
-}
-
-.impCarnet-hbox--base {
-    -fx-spacing: 5px;
-    -fx-padding: 5px;
-}
-
-.impCarnet-vbox--foto {
-    -fx-background-color: white;
-    -fx-alignment: CENTER;
-    -fx-padding: 5px;
-    -fx-spacing: 5px;
-}
-
-.impCarnet-vbox--imprimir {
-    -fx-alignment: CENTER;
-    -fx-padding: 5px;
-}
-
-.impCarnet-txt {
-    -mfx-float-mode: BORDER;
-    -fx-font-size: 16px;
-}
-
-.impCarnet-titulo {
-    -fx-alignment: TOP_CENTER;
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-}
-
-.impCarnet-boton {
-    -fx-background-color: rgb(155, 176, 193);
-    -fx-text-fill: rgb(40, 90, 120);
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-alignment: BASELINE_LEFT;
-    -fx-label-padding: 10px;
-    -fx-cursor: hand;
-    -mfx-button-type: RAISED;
-    -mfx-depth-level: LEVEL2;
-}
-
-.impCarnet-boton:hover {
-    -fx-background-color: rgb(81, 130, 155);
-    -fx-text-fill: rgb(234, 223, 180);
-}
-
-.impCarnet-boton:pressed {
-    -fx-background-color: rgb(40, 100, 120);
-}
-
-/* TRANSACCIONES VIEW */
-.transacciones-root {
-    -fx-background-color: rgb(234, 223, 180);
-    -fx-border-color: rgb(81, 130, 155);
-    -fx-border-width: 5px;
-    -fx-border-style: solid;
-}
-
-.transacciones-header--hbox {
-    -fx-alignment: TOP-LEFT;
-    -fx-spacing: 5px;
-    -fx-padding: 5px;
-}
-
-.transacciones-header--vbox {
-    -fx-alignment: TOP_CENTER;
-    -fx-spacing: 5px;
-}
-
-.transacciones-title {
-    -fx-font-weight: bold;
-    -fx-font-size: 18px;
-}
-
-.transacciones-label--monto {
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-}
-
-.transacciones-hbox--moneda {
-    -fx-alignment: CENTER;
-    -fx-padding: 5px;
-    -fx-spacing: 5px;
-}
-
-.transacciones-hbox-botones {
-    -fx-alignment: CENTER;
-    -fx-spacing: 20px;
-    -fx-padding: 5px;
-}
-
-.transacciones-txt {
-    -mfx-float-mode: BORDER;
-    -fx-font-size: 16px;
-}
-
-.transacciones-hbox--deno {
-    -fx-background-color: rgb(255, 255, 255);
-    -fx-padding: 5px;
-}
-
-/* PROFESOR VIEW */
-/*
-    Paleta de profesor
-
-    Magenta: rgb(255, 32, 78)
-    Fucsia oscuro: rgb(160, 21, 62)
-    Morado: rgb(93, 14, 65)
-    Azul: rgb(0, 34, 77)
-    Celeste: rgb(223, 245, 255)
-*/
-
-/* MANTENIMIENTO COOPE VIEW */
 .manCope-titulo-coope {
     -fx-border-width: 2px;
-    -fx-border-color: rgb(0, 34, 77);
+    -fx-border-color: -fx-azul;
     -fx-border-style: solid;
     -fx-font-size: 16px;
     -fx-border-radius: 5px;
     -fx-padding: 10px;
-}
-
-/* ASOCIADO CUENTAS VIEW */
-
-.asoCuentas-buttonsPane {
-    -fx-background-color: rgb(0, 84, 120);
-}
-.asoCuentas-titulo {
-    -fx-font-size: 28px;
-    -fx-padding: 5 0 5 0;
-    -fx-text-fill: rgb(255, 0, 247);
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0), 2, 0.0, 1, 2);
-    -fx-underline: true;
-}
-
-.asoCuentas-containers{
-    -fx-spacing: 10px;
-    -fx-padding: 10px;
-}
-
-.asoCuentas-comboBox{
-    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0), 2, 0.0, 1, 2);
-    fx-background-color: rgb(0, 34, 77);
-    -fx-text-fill: rgb(238, 255, 0);
-    -fx-font-size: 14px;
-    -fx-alignment: BASELINE_LEFT;
-    -mfx-button-type: RAISED;
-    -mfx-depth-level: LEVEL3;
-    -fx-cursor: hand;
-}
-.asoCuentas-comboBox:hover {
-    -fx-background-color: rgb(0, 44, 100);
-}
-
-.asoCuentas-comboBox:pressed {
-    -fx-background-color: rgba(0, 84, 120);
-}
-
-.asoCuentas-button{
-    -fx-background-color: rgb(77, 0, 0);
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-alignment: BASELINE_LEFT;
-    -mfx-button-type: RAISED;
-    -mfx-depth-level: LEVEL3;
-    -fx-cursor: hand;
-}
-.asoCuentas-button:hover {
-    -fx-background-color: rgb(255, 255, 255);
-    -fx-text-fill: black;
-}
-.asoCuentas-button:pressed {
-    -fx-background-color: rgb(250, 0, 0);
-    -fx-text-fill: black;
-}
-
-.asoCuentas-textfield{
-    -mfx-float-mode: BORDER;
-    -fx-font-size: 14px;
-    -fx-pref-height: 40px;
-    -fx-min-height: 40px;
-    -fx-max-height: 40px;
-    -fx-alignment: TOP_LEFT;
-    -fx-text-fill: black;
-    -fx-prompt-text-fill:  #4d4d4d;
-}
-
-.asoCuentas-labels{
-    -fx-font-size: 14px;
-    -fx-padding: 5 0 5 0;
-    -fx-text-fill: rgb(234, 255, 0);
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0), 2, 0.0, 1, 2);
-    -fx-underline: true;
 }

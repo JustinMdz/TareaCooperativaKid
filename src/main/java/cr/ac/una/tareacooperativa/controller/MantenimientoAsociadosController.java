@@ -209,7 +209,6 @@ public class MantenimientoAsociadosController extends Controller implements Init
         txtfPApellido.setText("");
         txtfSApellido.setText("");
         txtfEdad.setText("");
-        cargarImagenAsociado("cr/ac/una/tareacooperativa/resources/userNotFound.jpg");
         setFormFields(true);
         setBotones(true);
         isImageChanged = false;

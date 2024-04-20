@@ -2,10 +2,10 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,84 +13,96 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="400.0" maxWidth="600.0" styleClass="manAso-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.MantenimientoAsociadosController">
+<BorderPane fx:id="root" maxHeight="400.0" maxWidth="600.0" styleClass="standard-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.MantenimientoAsociadosController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
    <top>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" styleClass="manAso-header--hbox" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="5.0" styleClass="manAso-header--hbox" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/asociadoLogo.png" />
                </image>
             </ImageView>
-            <Label styleClass="manAso-titulo" text="Asociados" />
+            <Label styleClass="titulo" text="Asociados" />
          </children>
       </HBox>
    </top>
    <left>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="200.0" styleClass="manAso-menuBotones--vbox" BorderPane.alignment="CENTER">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="200.0" spacing="7.0" styleClass="contenedor-menus" BorderPane.alignment="CENTER">
          <children>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="manAso-hbox--boton_menu" VBox.vgrow="SOMETIMES" />
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="manAso-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" VBox.vgrow="SOMETIMES">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/DeleteIcon.png" />
+                        <Image url="@../resources/DeleteIcon2.png" />
                      </image>
                   </ImageView>
                   <MFXButton fx:id="mbtnEliminar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEliminar" text="Eliminar" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="manAso-hbox--boton_menu" VBox.vgrow="SOMETIMES">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" VBox.vgrow="SOMETIMES">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/UpdateIcon.png" />
+                        <Image url="@../resources/UpdateIconChildren.png" />
                      </image>
                   </ImageView>
                   <MFXButton fx:id="mbtnModificar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onActionBtnModificar" text="Modificar" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="manAso-hbox--boton_menu" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="SOMETIMES">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/cleanIcon.png" />
+                        <Image url="@../resources/Limpiar.png" />
                      </image>
                   </ImageView>
                   <MFXButton maxHeight="45.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnLimpiar" text="Limpiar" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets right="5.0" />
+         </BorderPane.margin>
       </VBox>
    </left>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="manAso-form--hbox" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0" styleClass="contenedor-forms" BorderPane.alignment="CENTER">
          <children>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="242.0" styleClass="manAso-form--vbox_img" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="242.0" styleClass="manAso-form--vbox_img" HBox.hgrow="ALWAYS">
                <children>
-                  <Label styleClass="manAso-form--main_label" text="Asociado:" />
+                  <Label text="Asociado:">
+                     <styleClass>
+                        <String fx:value="titulo" />
+                        <String fx:value="sub-titulo" />
+                     </styleClass></Label>
                   <AnchorPane styleClass="base-img-usuario">
                      <children>
                         <ImageView fx:id="imvFoto" fitHeight="146.0" fitWidth="146.0" onDragDropped="#onDragDroppedImvFoto" onDragOver="#onDragOverImvFoto" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
-                  <Label fx:id="lblInfoImvDragAndDrop" styleClass="transacciones-label--monto" text="Arrastra una Imagen" />
+                  <Label fx:id="lblInfoImvDragAndDrop" text="Arrastra una Imagen">
+                     <styleClass>
+                        <String fx:value="sub-titulo" />
+                        <String fx:value="titulo" />
+                     </styleClass></Label>
                </children>
             </VBox>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="223.0" styleClass="manAso-form--vbox_data" HBox.hgrow="ALWAYS">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="223.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox maxHeight="100.0" styleClass="manAso-form--folio_boton" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" maxHeight="100.0" spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
                         <MFXTextField fx:id="txtfFolio" floatingText="Folio" maxHeight="25.0" maxWidth="223.0" styleClass="manAso-form--data" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </MFXTextField>
-                        <MFXButton fx:id="mbtnBuscar" maxHeight="50.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnBuscar" prefHeight="42.0" prefWidth="0.0" text="Buscar" HBox.hgrow="ALWAYS">
+                        <MFXButton fx:id="mbtnBuscar" maxHeight="50.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnBuscar" prefHeight="42.0" prefWidth="0.0" styleClass="boton-buscar" text="Buscar" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -102,6 +114,9 @@
                   <MFXTextField fx:id="txtfSApellido" floatingText="Segundo apellido" prefWidth="311.0" />
                   <MFXTextField fx:id="txtfEdad" floatingText="Edad" prefWidth="311.0" />
                </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
             </VBox>
          </children>
       </HBox>
