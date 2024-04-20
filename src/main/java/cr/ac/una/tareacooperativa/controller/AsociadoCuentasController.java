@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import cr.ac.una.tareacooperativa.model.*;
 import cr.ac.una.tareacooperativa.util.AppContext;
 import cr.ac.una.tareacooperativa.util.Mensaje;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
@@ -35,6 +36,8 @@ public class AsociadoCuentasController extends Controller implements Initializab
     private MFXTextField txtfSaldo;
     @javafx.fxml.FXML
     private MFXTextField txtfTipoCuenta;
+    @javafx.fxml.FXML
+    private MFXButton mbtnVer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,6 +47,7 @@ public class AsociadoCuentasController extends Controller implements Initializab
     public void initialize() {
         txtfSaldo.setEditable(false);
         txtfTipoCuenta.setEditable(false);
+        mbtnVer.setDisable(true);
         cargarRegistros();
     }
 
@@ -61,6 +65,7 @@ public class AsociadoCuentasController extends Controller implements Initializab
                 }
             }
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Cuentas", getStage(), "Cuentas cargadas");
+            mbtnVer.setDisable(false);
         }
     }
 

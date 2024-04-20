@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" styleClass="standard-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.BuzonController">
+<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="800.0" prefWidth="800.0" styleClass="standard-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.BuzonController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
@@ -23,24 +23,39 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="SOMETIMES">
                <children>
-                  <VBox alignment="CENTER_LEFT" maxWidth="135.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" spacing="5.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label styleClass="estCuentas-titulo" text="Buzón" />
-                        <MFXTextField fx:id="txtfFolio" floatingText="Folio" prefWidth="131.0" />
+                        <VBox alignment="CENTER_LEFT" maxWidth="135.0" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label styleClass="titulo" text="Buzón">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <MFXTextField fx:id="txtfFolio" floatingText="Folio" prefWidth="131.0" />
+                           </children>
+                        </VBox>
+                        <MFXButton onAction="#onActionBtnBuscar" styleClass="boton-buscar" text="Buscar">
+                           <HBox.margin>
+                              <Insets top="45.0" />
+                           </HBox.margin>
+                        </MFXButton>
                      </children>
-                  </VBox>
-                  <MFXButton onAction="#onActionBtnBuscar" styleClass="boton-buscar" text="Buscar" />
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <MFXComboBox fx:id="mcbCuentas" floatingText="Cuentas" />
-                              <MFXButton onAction="#onActionBtnVer" styleClass="boton-buscar" text="Ver" />
+                              <MFXTextField fx:id="txtfSaldo" floatingText="Saldo" prefWidth="130.0" />
                            </children>
-                        </HBox>
-                        <MFXTextField fx:id="txtfSaldo" floatingText="Saldo" prefWidth="130.0" />
+                        </VBox>
+                        <MFXButton fx:id="mbtnVer" onAction="#onActionBtnVer" styleClass="boton-buscar" text="Ver" />
                      </children>
-                  </VBox>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
                </children></HBox>
              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="transacciones-hbox--deno" VBox.vgrow="ALWAYS">
                  <children>
@@ -101,7 +116,7 @@
                              </HBox>
                          </children>
                      </VBox>
-                     <Separator orientation="VERTICAL" prefHeight="200.0" />
+                     <Separator orientation="VERTICAL" prefHeight="200.0" styleClass="separator-orange" />
                      <VBox alignment="CENTER" prefHeight="292.0" prefWidth="346.0" spacing="5.0" HBox.hgrow="ALWAYS">
                          <padding>
                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

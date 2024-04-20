@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="800.0" prefHeight="400.0" prefWidth="600.0" styleClass="standard-root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.AsociadoCuentasController">
+<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" styleClass="standard-root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.AsociadoCuentasController">
    <children>
       <HBox layoutX="200.0" layoutY="150.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -19,7 +19,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <children>
-                  <Label styleClass="estCuentas-titulo" text="Estados de cuenta" />
+                  <Label styleClass="titulo" text="Estados de cuenta" />
                   <MFXTextField fx:id="txtfFolio" floatingText="Folio" />
                   <MFXButton onAction="#onActionBtnBuscar" styleClass="boton-buscar" text="Buscar">
                      <VBox.margin>
@@ -46,8 +46,8 @@
                         <Insets />
                      </VBox.margin>
                   </MFXComboBox>
-                  <MFXButton onAction="#onActionBtnVer" styleClass="boton-buscar" text="Ver" />
-                  <Separator maxWidth="215.0" prefWidth="200.0">
+                  <MFXButton fx:id="mbtnVer" onAction="#onActionBtnVer" styleClass="boton-buscar" text="Ver" />
+                  <Separator maxWidth="215.0" prefWidth="200.0" styleClass="separator-orange">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>

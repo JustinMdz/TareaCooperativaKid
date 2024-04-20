@@ -39,16 +39,19 @@
                                  </image>
                               </ImageView>
                            </graphic></MFXButton>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                            <children>
                               <MFXListView fx:id="listView" prefHeight="137.0" prefWidth="131.0" HBox.hgrow="ALWAYS" />
-                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="manCuentas-containers">
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="manCuentas-containers">
                                  <children>
                                     <MFXTextField fx:id="txtfIdCuenta" floatingText="ID Cuenta" prefWidth="119.0" />
                                     <MFXTextField fx:id="txtfEditarNombreTipoCuenta" floatingText="Nombre Cuenta" prefWidth="89.0" />
                                  </children>
                               </VBox>
                            </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
                         </HBox>
                      </children>
                   </VBox>
@@ -71,7 +74,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="manCuentas-containers">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <MFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" styleClass="boton-profesor" text="Guardar">
                      <graphic>
@@ -98,6 +101,9 @@
                         </ImageView>
                      </graphic></MFXButton>
                </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
             </HBox>
          </children>
          <styleClass>

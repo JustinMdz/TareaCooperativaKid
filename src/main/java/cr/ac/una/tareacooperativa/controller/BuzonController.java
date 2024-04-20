@@ -59,6 +59,8 @@ public class BuzonController extends Controller implements Initializable {
     private MFXTextField txtfSaldo;
     @javafx.fxml.FXML
     private MFXButton mbtnEnviar;
+    @javafx.fxml.FXML
+    private MFXButton mbtnVer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,6 +72,7 @@ public class BuzonController extends Controller implements Initializable {
         cargarRegistros();
         txtfSaldo.setEditable(false);
         mbtnEnviar.setDisable(true);
+        mbtnVer.setDisable(true);
     }
 
     @javafx.fxml.FXML
@@ -116,6 +119,7 @@ public class BuzonController extends Controller implements Initializable {
                 }
             }
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Cuentas", getStage(), "Cuentas cargadas");
+            mbtnVer.setDisable(false);
         }
     }
 

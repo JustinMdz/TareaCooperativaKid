@@ -34,15 +34,11 @@
                               <String fx:value="titulo" />
                            </styleClass></Label>
                         <ImageView fx:id="imvLogo" fitHeight="102.0" fitWidth="114.0" onDragDropped="#onDragDroppedImageView" onDragOver="#onDragOverImageView" pickOnBounds="true" preserveRatio="true">
-                           <styleClass>
-                              <String fx:value="camara-photo" />
-                              <String fx:value="manCoope-Image" />
-                           </styleClass>
                            <image>
                               <Image url="@../resources/LogoBanco02.jpg" />
                            </image>
                         </ImageView>
-                        <MFXButton maxHeight="45.0" maxWidth="150.0" text="Cambiar" VBox.vgrow="ALWAYS">
+                        <MFXButton maxHeight="45.0" maxWidth="150.0" styleClass="boton-profesor" text="Cambiar" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="45.0" />
                            </VBox.margin>
@@ -82,7 +78,7 @@
                   <Insets top="10.0" />
                </padding>
                <children>
-                  <MFXButton onAction="#onActionBtnGuardar" text="Guardar cambios">
+                  <MFXButton onAction="#onActionBtnGuardar" styleClass="boton-profesor" text="Guardar cambios">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
                            <image>
