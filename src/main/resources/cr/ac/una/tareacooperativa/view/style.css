@@ -16,12 +16,12 @@
     -mfx-purple: rgb(81, 130, 155);
 }
 
-Separator{
+.separator-orange{
     -fx-background-color: rgb(246, 153, 92);
 }
 
-.icon-color--fix {
-    -fx-opacity: .61;
+.separator-blue{
+    -fx-background-color: rgb(0, 34, 77);
 }
 
 .mfx-text-field {

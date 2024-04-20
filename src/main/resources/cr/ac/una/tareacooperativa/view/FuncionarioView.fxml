@@ -11,16 +11,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.FuncionarioController">
+<BorderPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1000.0" styleClass="standard-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.FuncionarioController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
     <left>
-        <VBox maxWidth="600.0" prefHeight="396.0" prefWidth="220.0" styleClass="funcionario-vbox--menu_principal" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" maxWidth="600.0" prefHeight="396.0" prefWidth="220.0" styleClass="contenedor-menus" BorderPane.alignment="TOP_CENTER">
             <children>
                 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--tituloLogo" VBox.vgrow="ALWAYS">
                     <children>
-                        <ImageView fitHeight="36.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../resources/funcionarioLogo.png" />
                             </image>
@@ -34,7 +34,7 @@
                 </HBox>
                 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="SOMETIMES">
                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../resources/asociadoLogo.png" />
                             </image>
@@ -47,7 +47,7 @@
                 </HBox>
                 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="SOMETIMES">
                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../resources/logoCarnet.png" />
                             </image>
@@ -60,7 +60,7 @@
                 </HBox>
                 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="SOMETIMES">
                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../resources/logoCuentas.png" />
                             </image>
@@ -73,7 +73,7 @@
                 </HBox>
                 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="SOMETIMES">
                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../resources/LogoTransacciones.png" />
                             </image>
@@ -86,7 +86,7 @@
                 </HBox>
                 <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="funcionario-hbox--boton_menu" VBox.vgrow="ALWAYS">
                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../resources/Exit.png" />
                             </image>
@@ -97,12 +97,15 @@
                         <MFXButton onAction="#onActionSalirButton" styleClass="boton-salir" text="Salir" HBox.hgrow="ALWAYS" />
                     </children>
                 </HBox>
-            <Hyperlink onAction="#onActionLinkAcercaDe" styleClass="acercade-link" text="Acerca de...">
+            <Hyperlink alignment="CENTER" contentDisplay="CENTER" onAction="#onActionLinkAcercaDe" styleClass="acercade-link" text="Acerca de..." VBox.vgrow="SOMETIMES">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Hyperlink>
             </children>
+         <BorderPane.margin>
+            <Insets right="7.0" />
+         </BorderPane.margin>
         </VBox>
     </left>
     <center>

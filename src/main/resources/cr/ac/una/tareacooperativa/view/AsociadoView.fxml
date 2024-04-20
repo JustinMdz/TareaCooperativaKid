@@ -11,16 +11,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.AsociadoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="standard-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.AsociadoController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
    <left>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="600.0" prefHeight="400.0" prefWidth="224.0" styleClass="asociado-vbox--menu_principal" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="600.0" prefHeight="400.0" prefWidth="224.0" styleClass="contenedor-menus" BorderPane.alignment="CENTER">
          <children>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--tituloLogo" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/asociadoLogo.png" />
                      </image>
@@ -30,7 +30,7 @@
             </HBox>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--boton_menu" VBox.vgrow="SOMETIMES">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/logoCarnet.png" />
                      </image>
@@ -40,7 +40,7 @@
             </HBox>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--boton_menu" VBox.vgrow="SOMETIMES">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/logoCuentas.png" />
                      </image>
@@ -50,7 +50,7 @@
             </HBox>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--boton_menu" VBox.vgrow="SOMETIMES">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/LogoTransacciones.png" />
                      </image>
@@ -60,12 +60,12 @@
             </HBox>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="asociado-hbox--boton_menu" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/Exit.png" />
                      </image>
                   </ImageView>
-                  <MFXButton maxHeight="45.0" maxWidth="100.0" onAction="#onActionBtnSalir" styleClass="asociado-boton--salir" text="Salir" HBox.hgrow="ALWAYS" />
+                  <MFXButton maxHeight="45.0" maxWidth="100.0" onAction="#onActionBtnSalir" styleClass="boton-salir" text="Salir" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <Hyperlink onAction="#onActionLinkAcercaDe" styleClass="acercade-link" text="Acerca de...">
@@ -74,6 +74,9 @@
                </VBox.margin>
             </Hyperlink>
          </children>
+         <BorderPane.margin>
+            <Insets right="7.0" />
+         </BorderPane.margin>
       </VBox>
    </left>
    <center>
