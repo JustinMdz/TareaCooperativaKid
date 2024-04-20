@@ -3,6 +3,7 @@ package cr.ac.una.tareacooperativa.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import cr.ac.una.tareacooperativa.util.FlowController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,10 +12,12 @@ import javafx.scene.layout.BorderPane;
 
 
 /**
+ * Universidad Nacional de Costa Rica - Programación II 2024
  * <p>
- *     Controlador de la pantalla principal de funcionarios<br>
- *     Contiene los metodos para mostrar las ventanas de funcionarios
+ * Controlador de la pantalla principal de funcionarios<br>
+ * Contiene los metodos para mostrar las ventanas de funcionarios
  * </p>
+ *
  * @author Stiward Araya
  * @author Justin Mendez
  */
@@ -24,10 +27,12 @@ public class FuncionarioController extends Controller implements Initializable {
     private BorderPane root;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) { }
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
     @Override
-    public void initialize() {}
+    public void initialize() {
+    }
 
     @FXML
     public void onActionAsociadosButton(ActionEvent actionEvent) {

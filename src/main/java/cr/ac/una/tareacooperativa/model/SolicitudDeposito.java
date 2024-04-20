@@ -1,5 +1,13 @@
 package cr.ac.una.tareacooperativa.model;
 
+/**
+ * <p>
+ * Clase objeto de solicitud de deposito
+ * </p>
+ *
+ * @author Stiward Araya
+ * @author Justin Mendez
+ */
 public class SolicitudDeposito {
 
     private AsociadoCuenta asociadoCuenta;
@@ -32,15 +40,12 @@ public class SolicitudDeposito {
     }
 
     public String convertToString(Integer number) {
-        try
-        {
+        try {
             return String.valueOf(number);
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             System.err.println("NumberFormatException occurred: " + e.getMessage());
             return null; // or throw a custom exception if needed
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println("An unexpected exception occurred: " + e.getMessage());
             return null; // or throw a custom exception if needed
         }

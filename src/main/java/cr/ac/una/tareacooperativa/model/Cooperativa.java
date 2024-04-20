@@ -2,6 +2,7 @@ package cr.ac.una.tareacooperativa.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -51,11 +52,9 @@ public class Cooperativa {
     }
 
     public void cargarDatosCooperativa() {
-        try
-        {
+        try {
             File archivo = new File(DIRECTORY + ARCHIVO_COOPERATIVA);
-            if (!archivo.exists() || archivo.length() == 0)
-            {
+            if (!archivo.exists() || archivo.length() == 0) {
                 System.out.println("El archivo está vacío o no existe.");
                 return;
             }
@@ -68,18 +67,15 @@ public class Cooperativa {
             this.nombreCooperativa = cooperativa.getNombreCooperativa();
             this.rutaLogoCooperativa = cooperativa.getLogoCooperativa();
 
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     public void guardarDatosCooperativa() {
-        try
-        {
+        try {
             File directorio = new File(DIRECTORY);
-            if (!directorio.exists())
-            {
+            if (!directorio.exists()) {
                 directorio.mkdirs();
             }
 
@@ -92,8 +88,7 @@ public class Cooperativa {
 
             System.out.println("Datos de la cooperativa guardados exitosamente.");
 
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

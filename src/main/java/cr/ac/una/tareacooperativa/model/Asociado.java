@@ -38,8 +38,7 @@ public class Asociado {
     }
 
     private String capitalizeFirstCharacter(String str) {
-        if (str == null || str.isEmpty())
-        {
+        if (str == null || str.isEmpty()) {
             return str;
         }
 

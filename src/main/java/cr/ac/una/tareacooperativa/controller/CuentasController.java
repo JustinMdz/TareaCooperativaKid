@@ -64,9 +64,9 @@ public class CuentasController extends Controller implements Initializable {
     private void cargarRegistros() {
         cuentasAsociado = new ArrayList<>();
         cuentasDisponibles = new ArrayList<>();
-        registroAsociadoCuenta = ((RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas"));
-        registroCuenta = ((RegistroCuenta) AppContext.getInstance().get("cuentas"));
-        registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
+        registroAsociadoCuenta = ( (RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas") );
+        registroCuenta = ( (RegistroCuenta) AppContext.getInstance().get("cuentas") );
+        registroAsociado = ( (RegistroAsociado) AppContext.getInstance().get("asociados") );
         registroAsociado.cargarAsociados();
         registroCuenta.cargarCuentas();
         registroAsociadoCuenta.cargarAsociadoCuenta();

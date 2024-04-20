@@ -37,7 +37,8 @@ public class AsociadoCuentasController extends Controller implements Initializab
     private MFXTextField txtfTipoCuenta;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
     @Override
     public void initialize() {
@@ -48,14 +49,14 @@ public class AsociadoCuentasController extends Controller implements Initializab
 
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) {
-        if(txtfFolio.getText().isEmpty()){
+        if (txtfFolio.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes ingresar un Folio");
-        }else if(registroAsociado.buscarAsociado(txtfFolio.getText()) == null){
+        } else if (registroAsociado.buscarAsociado(txtfFolio.getText()) == null) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Usuario no encontrado");
-        }else{
+        } else {
             ArrayList<AsociadoCuenta> asociadosCuentas = registroAsociadoCuenta.getAsociadosCuentas();
-            for (AsociadoCuenta asoCu : asociadosCuentas){
-                if(asoCu.getFolioAsociado().equals(txtfFolio.getText())){
+            for (AsociadoCuenta asoCu : asociadosCuentas) {
+                if (asoCu.getFolioAsociado().equals(txtfFolio.getText())) {
                     mcbTipoCuenta.getItems().add(registroCuenta.buscarCuenta(asoCu.getIdCuenta()).getNombre());
                 }
             }
@@ -79,10 +80,10 @@ public class AsociadoCuentasController extends Controller implements Initializab
         mcbTipoCuenta.getItems().clear();
     }
 
-    private void cargarRegistros(){
-        registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
-        registroAsociadoCuenta = ((RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas"));
-        registroCuenta = ((RegistroCuenta) AppContext.getInstance().get("cuentas"));
+    private void cargarRegistros() {
+        registroAsociado = ( (RegistroAsociado) AppContext.getInstance().get("asociados") );
+        registroAsociadoCuenta = ( (RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas") );
+        registroCuenta = ( (RegistroCuenta) AppContext.getInstance().get("cuentas") );
         registroAsociado.cargarAsociados();
         registroAsociadoCuenta.cargarAsociadoCuenta();
         registroCuenta.cargarCuentas();

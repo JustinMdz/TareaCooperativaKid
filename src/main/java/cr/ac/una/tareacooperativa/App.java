@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import cr.ac.una.tareacooperativa.util.FlowController;
+
 import java.io.IOException;
 
 /**
@@ -32,20 +33,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        AppContext.getInstance().set("asociados", asociados);
-        AppContext.getInstance().set("cuentas", cuentas);
-        AppContext.getInstance().set("asociadosCuentas", asociadosCuentas);
-        AppContext.getInstance().set("cooperativa", cooperativa);
-        AppContext.getInstance().set("depositos", solicitudesDepositos);
-
+        guardarRegistros();
         FlowController.getInstance().InitializeFlow(stage, null);
-        //goViewAccesParameter(accessParameter);
         FlowController.getInstance().goViewInWindow("LoginView");
     }
 
     public static void main(String[] args) {
-        if (args.length > 0)
-        {
+        if (args.length > 0) {
             accessParameter = args[0];
         }
 
@@ -53,17 +47,22 @@ public class App extends Application {
     }
 
     private void goViewAccesParameter(String parameter) {
-        if (parameter.equals("P"))
-        {
+        if (parameter.equals("P")) {
             FlowController.getInstance().goMain("ProfesorView");
         }
-        if (parameter.equals("F"))
-        {
+        if (parameter.equals("F")) {
             FlowController.getInstance().goMain("FuncionarioView");
         }
-        if (parameter.equals("A"))
-        {
+        if (parameter.equals("A")) {
             FlowController.getInstance().goMain("AsociadoView");
         }
+    }
+
+    private void guardarRegistros() {
+        AppContext.getInstance().set("asociados", asociados);
+        AppContext.getInstance().set("cuentas", cuentas);
+        AppContext.getInstance().set("asociadosCuentas", asociadosCuentas);
+        AppContext.getInstance().set("cooperativa", cooperativa);
+        AppContext.getInstance().set("depositos", solicitudesDepositos);
     }
 }

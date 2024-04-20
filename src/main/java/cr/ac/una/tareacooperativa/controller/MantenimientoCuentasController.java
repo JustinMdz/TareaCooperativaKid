@@ -4,17 +4,21 @@ import cr.ac.una.tareacooperativa.model.Cuenta;
 import cr.ac.una.tareacooperativa.model.RegistroCuenta;
 import cr.ac.una.tareacooperativa.util.AppContext;
 import cr.ac.una.tareacooperativa.util.Mensaje;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,9 +27,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 
 /**
- * FXML Controller class
+ * <p>
+ * Controlador del mantenimiento de cuentas
+ * </p>
  *
- * @author Justin Mendez && Stiward Araya
+ * @author Stiward Araya
+ * @author Justin Mendez
  */
 public class MantenimientoCuentasController extends Controller implements Initializable {
 
@@ -62,7 +69,7 @@ public class MantenimientoCuentasController extends Controller implements Initia
     @Override
     public void initialize() {
         disableAll();
-        registroCuenta = ((RegistroCuenta) AppContext.getInstance().get("cuentas"));
+        registroCuenta = ( (RegistroCuenta) AppContext.getInstance().get("cuentas") );
         registroCuenta.cargarCuentas();
         this.listView.getItems().addAll(registroCuenta.toStringCuentasAndId());
     }
@@ -91,42 +98,35 @@ public class MantenimientoCuentasController extends Controller implements Initia
 
     @FXML
     private void onActionBtnEliminarCuenta(ActionEvent event) {
-        if (!txtfIdCuenta.getText().isEmpty())
-        {
-            try
-            {
+        if (!txtfIdCuenta.getText().isEmpty()) {
+            try {
                 int idCuenta = Integer.parseInt(txtfIdCuenta.getText());
                 String aux = registroCuenta.eliminarCuenta(idCuenta);
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Mantenimiento", getStage(), aux);
                 this.listView.getItems().clear();
                 this.listView.getItems().addAll(registroCuenta.toStringCuentasAndId());
                 this.isDeleteAccountButtonPressed = true;
-            } catch (NumberFormatException e)
-            {
+            } catch (NumberFormatException e) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", getStage(), "Ingrese un número válido para el ID de la cuenta.");
             }
-        } else
-        {
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", getStage(), "Debes ingresar un ID de cuenta para poder eliminarla");
         }
     }
 
     @FXML
     private void onActionBtnCambiarNombre(ActionEvent event) {
-        if (txtfIdCuenta.getText().isEmpty())
-        {
+        if (txtfIdCuenta.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", getStage(), "Ingrese un ID de cuenta valido");
             return;
         }
 
-        if (txtfEditarNombreTipoCuenta.getText().isEmpty())
-        {
+        if (txtfEditarNombreTipoCuenta.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", getStage(), "Ingrese un nombre de cuenta para su modificación");
             return;
         }
 
-        try
-        {
+        try {
             int idCuenta = Integer.parseInt(txtfIdCuenta.getText());
             String tipoCuenta = txtfEditarNombreTipoCuenta.getText();
             Cuenta nuevaCuenta = new Cuenta(idCuenta, tipoCuenta);
@@ -134,26 +134,22 @@ public class MantenimientoCuentasController extends Controller implements Initia
             this.isEditAccountButtonPressed = true;
             this.listView.getItems().clear();
             this.listView.getItems().addAll(registroCuenta.toStringCuentasAndId());
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", getStage(), "Ingrese un número válido para el ID de la cuenta.");
         }
     }
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
-        if (isCreateButtonPressed)
-        {
+        if (isCreateButtonPressed) {
             almacenarCuenta();
             txtfNuevoNombreTipoCuenta.clear();
 
-        } else if (isEditButtonPressed)
-        {
+        } else if (isEditButtonPressed) {
             checkParteEditarCuenta();
             txtfIdCuenta.clear();
             txtfEditarNombreTipoCuenta.clear();
-        } else
-        {
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes editar o crear una cuenta");
         }
         disableAll();
@@ -169,8 +165,7 @@ public class MantenimientoCuentasController extends Controller implements Initia
     }
 
     private void almacenarCuenta() {
-        if (checkParteCrearCuenta())
-        {
+        if (checkParteCrearCuenta()) {
             Cuenta nuevaCuenta = new Cuenta();
             nuevaCuenta.setNombre(txtfNuevoNombreTipoCuenta.getText());
             nuevaCuenta.setId(registroCuenta.getProximoIdCuenta());
@@ -182,16 +177,13 @@ public class MantenimientoCuentasController extends Controller implements Initia
     }
 
     private void checkParteEditarCuenta() {
-        if (listView == null)
-        {
+        if (listView == null) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "No existen cuentas aun");
 
-        } else if (txtfIdCuenta.getText().isEmpty())
-        {
+        } else if (txtfIdCuenta.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes eliminar una cuenta o modificarla");
 
-        } else if (isDeleteAccountButtonPressed || isEditAccountButtonPressed)
-        {
+        } else if (isDeleteAccountButtonPressed || isEditAccountButtonPressed) {
             registroCuenta.guardarCuentas();
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Mantenimiento Cuentas", getStage(), "Cambios guardados exitosamente");
             this.isDeleteAccountButtonPressed = false;
@@ -201,12 +193,10 @@ public class MantenimientoCuentasController extends Controller implements Initia
     }
 
     private boolean checkParteCrearCuenta() {
-        if (txtfNuevoNombreTipoCuenta.getText().isEmpty())
-        {
+        if (txtfNuevoNombreTipoCuenta.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes nombrar una cuenta");
             return false;
-        } else if (registroCuenta.isCuentaIntheList(txtfNuevoNombreTipoCuenta.getText()))
-        {
+        } else if (registroCuenta.isCuentaIntheList(txtfNuevoNombreTipoCuenta.getText())) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Ya existe una cuenta con ese nombre");
             return false;
         }

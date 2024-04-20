@@ -12,9 +12,10 @@ import java.util.logging.Logger;
 import static java.util.logging.Level.SEVERE;
 
 /**
- * Clase registro de asociados, controla el flujo <br>
- * de datos de los asociados en el sistema.
- *
+ *<p>
+ *     Clase registro de asociados, controla el flujo <br>
+ *     de datos de los asociados en el sistema.
+ *</p>
  * @author Stiward Araya
  * @author Justin Mendez
  */
@@ -42,8 +43,6 @@ public class RegistroAsociado {
     public Asociado buscarAsociado(String folio) {
         for (Asociado asociado : asociados)
         {
-//            System.out.println(asociado.getFolio());
-//            System.out.println(folio);
             if (asociado.getFolio().equals(folio))
             {
                 return asociado;

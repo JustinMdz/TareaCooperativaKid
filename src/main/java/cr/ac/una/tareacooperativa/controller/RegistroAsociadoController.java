@@ -9,12 +9,14 @@ import cr.ac.una.tareacooperativa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,14 +25,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import javax.imageio.ImageIO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * FXML Controller class
+ * <p>
+ * Controlador de registro asociado
+ * </p>
  *
- * @author Justin Mendez && Stiward Araya
+ * @author Stiward Araya
+ * @author Justin Mendez
  */
 public class RegistroAsociadoController extends Controller implements Initializable {
 
@@ -70,18 +77,16 @@ public class RegistroAsociadoController extends Controller implements Initializa
     public void initialize() {
         limpiarCampos();
         controlCam();
-        registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
+        registroAsociado = ( (RegistroAsociado) AppContext.getInstance().get("asociados") );
         registroAsociado.cargarAsociados();
     }
 
     @FXML
     private void onActionBtnIniciarApagar(ActionEvent event) {
-        if (!isRunning)
-        {
+        if (!isRunning) {
             startCameraPreview();
             btnTomarFoto.setDisable(false);
-        } else
-        {
+        } else {
             isRunning = false;
             setNotUsingCameraImage("./src/main/resources/cr/ac/una/tareacooperativa/resources/banWebcam.png", previewImageView);
             webcam.close();
@@ -90,36 +95,28 @@ public class RegistroAsociadoController extends Controller implements Initializa
 
     @FXML
     private void onActionBtnTomarFoto(ActionEvent event) {
-        try
-        {
+        try {
             BufferedImage image = webcam.getImage();
             Image javafxImage = SwingFXUtils.toFXImage(image, null);
             fotoCapturada.setImage(javafxImage);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             LOGGER.error("Error capturing image: {}", e.getMessage());
         }
     }
 
     @FXML
     public void onActionBtnNuevo(ActionEvent actionEvent) {
-        if (txtfNombre.getText().isEmpty())
-        {
+        if (txtfNombre.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir tu nombre");
-        } else if (txtfApellidoP.getText().isEmpty())
-        {
+        } else if (txtfApellidoP.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir tu primer apellido");
-        } else if (txtfApellidoS.getText().isEmpty())
-        {
+        } else if (txtfApellidoS.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir tu segundo apellido");
-        } else if (txtfEdad.getText().isEmpty() || !(isNumber(txtfEdad.getText())))
-        {
+        } else if (txtfEdad.getText().isEmpty() || !( isNumber(txtfEdad.getText()) )) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir tu edad");
-        } else if (fotoCapturada.getImage() == null)
-        {
+        } else if (fotoCapturada.getImage() == null) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes tomarte una foto");
-        } else
-        {
+        } else {
             almacenarAsociado();
             limpiarCampos();
         }
@@ -149,17 +146,14 @@ public class RegistroAsociadoController extends Controller implements Initializa
         isRunning = true;
         Thread previewThread = new Thread(() ->
         {
-            try
-            {
-                while (isRunning)
-                {
+            try {
+                while (isRunning) {
                     BufferedImage image = webcam.getImage();
                     Image javafxImage = SwingFXUtils.toFXImage(image, null);
                     previewImageView.setImage(javafxImage);
                     Thread.sleep(17);
                 }
-            } catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 LOGGER.error("Error in camera preview thread: {}", e.getMessage());
             }
         });
@@ -168,22 +162,18 @@ public class RegistroAsociadoController extends Controller implements Initializa
     }
 
     private void controlCam() {
-        try
-        {
+        try {
             webcam = Webcam.getDefault();
             this.webcam.close();
-            if (webcam != null)
-            {
+            if (webcam != null) {
                 webcam.setViewSize(new Dimension(WebcamResolution.VGA.getWidth(), WebcamResolution.VGA.getHeight()));
                 isRunning = false;
-            } else
-            {
+            } else {
                 LOGGER.error("No se encontró una cámara disponible en el sistema.");
                 btnPowerOn_OffCamera.setDisable(true);
                 btnTomarFoto.setDisable(true);
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             LOGGER.error("Error al inicializar la cámara: {}", e.getMessage());
             btnPowerOn_OffCamera.setDisable(true);
             btnTomarFoto.setDisable(true);
@@ -191,31 +181,26 @@ public class RegistroAsociadoController extends Controller implements Initializa
     }
 
     public void guardarFoto(String folio) {
-        try
-        {
+        try {
             Image image = fotoCapturada.getImage();
             File directorio = new File(RUTA_FOTOS);
-            if (!directorio.exists())
-            {
+            if (!directorio.exists()) {
                 directorio.mkdirs();
             }
             BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
             File outputFile = new File(folio);
             ImageIO.write(bufferedImage, "png", outputFile);
             LOGGER.info("Imagen guardada exitosamente en: {}", folio);
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             LOGGER.error("Error al guardar la imagen: {}", e.getMessage());
         }
     }
 
     private boolean isNumber(String text) {
-        try
-        {
+        try {
             int numero = Integer.parseInt(text);
             return true;
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             return false;
         }
     }
@@ -233,19 +218,15 @@ public class RegistroAsociadoController extends Controller implements Initializa
     }
 
     private void setNotUsingCameraImage(String rutaFoto, ImageView imageView) {
-        try
-        {
+        try {
             File archivo = new File(rutaFoto);
-            if (archivo.exists())
-            {
+            if (archivo.exists()) {
                 Image imagen = new Image(archivo.toURI().toString());
                 imageView.setImage(imagen);
-            } else
-            {
+            } else {
                 imageView.setImage(null);
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             // Maneja la excepción de forma adecuada, por ejemplo, mostrando un mensaje de error
             System.err.println("Error al cargar la imagen: " + e.getMessage());
             // O simplemente no hagas nada y deja que el ImageView mantenga su estado actual

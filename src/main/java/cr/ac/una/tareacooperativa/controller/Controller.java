@@ -43,7 +43,7 @@ public abstract class Controller {
     public void sendTabEvent(KeyEvent event) {
         event.consume();
         KeyEvent keyEvent = new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.TAB, false, false, false, false);
-        ((Control) event.getSource()).fireEvent(keyEvent);
+        ( (Control) event.getSource() ).fireEvent(keyEvent);
     }
 
     public abstract void initialize();

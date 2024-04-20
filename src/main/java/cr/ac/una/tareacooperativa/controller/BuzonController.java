@@ -16,6 +16,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
+/**
+ * <p>Controlador del buzón</p>
+ *
+ * @author Stiward Araya
+ * @author Justin Mendez
+ */
 public class BuzonController extends Controller implements Initializable {
 
     RegistroCuenta registroCuenta;
@@ -68,9 +74,7 @@ public class BuzonController extends Controller implements Initializable {
 
     @javafx.fxml.FXML
     public void onActionBtnEnviar(ActionEvent actionEvent) {
-        if (getTotal() > 0)
-
-        {
+        if (getTotal() > 0) {
             String nombreCuenta = (String) mcbCuentas.getSelectionModel().getSelectedItem();
             System.out.println("Este es el nombre de la cuenta a buscar: " + nombreCuenta);
             Integer idCuenta = registroCuenta.getIdCuentaByNombre(nombreCuenta);
@@ -78,8 +82,7 @@ public class BuzonController extends Controller implements Initializable {
             System.out.println("Este es el folio del asociado a buscar: " + txtfFolio.getText());
             guardarDeposito(txtfFolio.getText().toUpperCase(), idCuenta);
 
-        } else
-        {
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes depositar la plata en el chanchito");
         }
     }
@@ -100,20 +103,15 @@ public class BuzonController extends Controller implements Initializable {
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) {
         mcbCuentas.getItems().clear();
-        if (txtfFolio.getText().isEmpty())
-        {
+        if (txtfFolio.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes ingresar un Folio");
-        } else if (registroAsociado.buscarAsociado(txtfFolio.getText().toUpperCase()) == null)
-        {
+        } else if (registroAsociado.buscarAsociado(txtfFolio.getText().toUpperCase()) == null) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Usuario no encontrado");
-        } else
-        {
+        } else {
             txtfFolio.setText(txtfFolio.getText().toUpperCase());
             ArrayList<AsociadoCuenta> asociadosCuentas = registroAsociadoCuenta.getAsociadosCuentas();
-            for (AsociadoCuenta asoCu : asociadosCuentas)
-            {
-                if (asoCu.getFolioAsociado().equals(txtfFolio.getText().toUpperCase()))
-                {
+            for (AsociadoCuenta asoCu : asociadosCuentas) {
+                if (asoCu.getFolioAsociado().equals(txtfFolio.getText().toUpperCase())) {
                     mcbCuentas.getItems().add(registroCuenta.buscarCuenta(asoCu.getIdCuenta()).getNombre());
                 }
             }
@@ -124,14 +122,12 @@ public class BuzonController extends Controller implements Initializable {
     @javafx.fxml.FXML
     public void onActionBtnVer(ActionEvent actionEvent) {
         Cuenta cuenta = registroCuenta.buscarCuentaNombre(mcbCuentas.getSelectedItem().toString());
-        if (cuenta != null)
-        {
+        if (cuenta != null) {
             AsociadoCuenta asoCu = registroAsociadoCuenta.buscarAsociadoCuenta(txtfFolio.getText(), cuenta.getId());
             mcbCuentas.setText(cuenta.getNombre());
             txtfSaldo.setText(String.valueOf(asoCu.getBalanceCuenta()));
             mbtnEnviar.setDisable(false);
-        } else
-        {
+        } else {
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Cuentas", getStage(), "Debes preguntarle a un fucionario que te abra una cuenta");
         }
 
@@ -177,25 +173,25 @@ public class BuzonController extends Controller implements Initializable {
 
     private Integer getTotal() {
         int total = 0;
-        total += ((Integer) spnMil.getValue()) * 1000;
-        total += ((Integer) spnDosmil.getValue()) * 2000;
-        total += ((Integer) spnCincomil.getValue()) * 5000;
-        total += ((Integer) spnDiezmil.getValue()) * 10000;
-        total += ((Integer) spnVeintemil.getValue()) * 20000;
-        total += ((Integer) spnCinco.getValue()) * 5;
-        total += ((Integer) spnDiez.getValue()) * 10;
-        total += ((Integer) spnVeinticinco.getValue()) * 25;
-        total += ((Integer) spnCincuenta.getValue()) * 50;
-        total += ((Integer) spnCien.getValue()) * 100;
-        total += ((Integer) spnQuinientos.getValue()) * 500;
+        total += ( (Integer) spnMil.getValue() ) * 1000;
+        total += ( (Integer) spnDosmil.getValue() ) * 2000;
+        total += ( (Integer) spnCincomil.getValue() ) * 5000;
+        total += ( (Integer) spnDiezmil.getValue() ) * 10000;
+        total += ( (Integer) spnVeintemil.getValue() ) * 20000;
+        total += ( (Integer) spnCinco.getValue() ) * 5;
+        total += ( (Integer) spnDiez.getValue() ) * 10;
+        total += ( (Integer) spnVeinticinco.getValue() ) * 25;
+        total += ( (Integer) spnCincuenta.getValue() ) * 50;
+        total += ( (Integer) spnCien.getValue() ) * 100;
+        total += ( (Integer) spnQuinientos.getValue() ) * 500;
         return total;
     }
 
     private void cargarRegistros() {
-        registroCuenta = ((RegistroCuenta) AppContext.getInstance().get("cuentas"));
-        registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
-        registroAsociadoCuenta = ((RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas"));
-        registroSolicitudDeposito = ((RegistroSolicitudDeposito) AppContext.getInstance().get("depositos"));
+        registroCuenta = ( (RegistroCuenta) AppContext.getInstance().get("cuentas") );
+        registroAsociado = ( (RegistroAsociado) AppContext.getInstance().get("asociados") );
+        registroAsociadoCuenta = ( (RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas") );
+        registroSolicitudDeposito = ( (RegistroSolicitudDeposito) AppContext.getInstance().get("depositos") );
         registroCuenta.cargarCuentas();
         registroAsociado.cargarAsociados();
         registroAsociadoCuenta.cargarAsociadoCuenta();
@@ -203,17 +199,14 @@ public class BuzonController extends Controller implements Initializable {
     }
 
     private void guardarDeposito(String folio, Integer idCuenta) {
-        if (idCuenta > 0)
-        {
+        if (idCuenta > 0) {
             AsociadoCuenta asoCuenta = registroAsociadoCuenta.buscarAsociadoCuenta(txtfFolio.getText().toUpperCase(), idCuenta);
-            if (asoCuenta != null)
-            {
+            if (asoCuenta != null) {
                 SolicitudDeposito nuevoDeposito = new SolicitudDeposito(asoCuenta, getTotal());
                 new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Chanchito", getStage(), registroSolicitudDeposito.agregarDeposito(nuevoDeposito));
                 registroSolicitudDeposito.guardarSolicitudes();
                 limpiarCampos();
-            } else
-            {
+            } else {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Chanchito", getStage(), "AsociadoCuenta no encontrada");
             }
         }

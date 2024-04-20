@@ -1,6 +1,7 @@
 package cr.ac.una.tareacooperativa.controller;
 
 import cr.ac.una.tareacooperativa.model.Cooperativa;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -10,9 +11,11 @@ import cr.ac.una.tareacooperativa.util.AppContext;
 import cr.ac.una.tareacooperativa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,12 +27,13 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+
 import javax.imageio.ImageIO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Universidad Nacional - Programación II 2024
  * <p>
  * Controlador de la pantalla de mantenimiento de la cooperativa
  * </p>
@@ -67,10 +71,10 @@ public class MantenimientoCoopeController extends Controller implements Initiali
 
     @Override
     public void initialize() {
-        String txt = ((Label) AppContext.getInstance().get("NombreCoope")).getText();
+        String txt = ( (Label) AppContext.getInstance().get("NombreCoope") ).getText();
         lblNombreCoope.setText(txt);
 
-        cooperativa = ((Cooperativa) AppContext.getInstance().get("cooperativa"));
+        cooperativa = ( (Cooperativa) AppContext.getInstance().get("cooperativa") );
         cooperativa.cargarDatosCooperativa();
     }
 
@@ -90,8 +94,7 @@ public class MantenimientoCoopeController extends Controller implements Initiali
     @FXML
     private void onDragOverImageView(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        if (dragboard.hasImage() || dragboard.hasFiles())
-        {
+        if (dragboard.hasImage() || dragboard.hasFiles()) {
             event.acceptTransferModes(TransferMode.COPY);
         }
     }
@@ -110,14 +113,11 @@ public class MantenimientoCoopeController extends Controller implements Initiali
     @FXML
     private void onDragDroppedImageView(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        if (dragboard.hasImage() || dragboard.hasFiles())
-        {
-            try
-            {
+        if (dragboard.hasImage() || dragboard.hasFiles()) {
+            try {
                 imvLogo.setImage(new Image(new FileInputStream(dragboard.getFiles().get(0))));
                 this.isImageChanged = true;
-            } catch (FileNotFoundException ex)
-            {
+            } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         }
@@ -125,14 +125,12 @@ public class MantenimientoCoopeController extends Controller implements Initiali
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
-        if (!(txtfNombreCooperativa.getText().isEmpty()) || isImageChanged)
-        {
+        if (!( txtfNombreCooperativa.getText().isEmpty() ) || isImageChanged) {
             saveChanges();
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Usuario agregado", getStage(), "Los cambios se han efectuado existosamente");
             this.isImageChanged = false;
             this.txtfNombreCooperativa.setText("");
-        } else 
-        {
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "No existen cambios que guardar");
         }
     }
@@ -140,30 +138,25 @@ public class MantenimientoCoopeController extends Controller implements Initiali
     private void guardarFoto() {
         Image image = imvLogo.getImage();
 
-        if (image != null)
-        {
+        if (image != null) {
             BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
 
-            try
-            {
+            try {
                 String file = RUTA_FOTO + NOMBRE_FOTO + ".jpg";
                 File output = new File(file);
                 ImageIO.write(bufferedImage, "jpg", output);
                 System.out.println("Imagen guardada correctamente en: " + output.getAbsolutePath());
                 cooperativa.setLogoCooperativa(file);
-            } catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        } else
-        {
+        } else {
             System.out.println("No hay ninguna imagen para guardar.");
         }
     }
 
     private void saveName() {
-        if (!txtfNombreCooperativa.getText().isEmpty())
-        {
+        if (!txtfNombreCooperativa.getText().isEmpty()) {
             cooperativa.setNombreCooperativa(txtfNombreCooperativa.getText());
         }
     }

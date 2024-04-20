@@ -1,8 +1,10 @@
 package cr.ac.una.tareacooperativa.model;
 
 import java.util.ArrayList;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -32,10 +34,8 @@ public class RegistroAsociadoCuenta {
     }
 
     private int getIndiceAsociadoCuenta(String folio, int idCuenta) {
-        for (int i = 0; i < asociadosCuentas.size(); i++)
-        {
-            if (asociadosCuentas.get(i).getFolioAsociado().equals(folio) && asociadosCuentas.get(i).getIdCuenta() == idCuenta)
-            {
+        for (int i = 0; i < asociadosCuentas.size(); i++) {
+            if (asociadosCuentas.get(i).getFolioAsociado().equals(folio) && asociadosCuentas.get(i).getIdCuenta() == idCuenta) {
                 return i;
             }
         }
@@ -43,10 +43,8 @@ public class RegistroAsociadoCuenta {
     }
 
     public AsociadoCuenta buscarAsociadoCuenta(String folio, int idCuenta) {
-        for (AsociadoCuenta asoCuenta : asociadosCuentas)
-        {
-            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta)
-            {
+        for (AsociadoCuenta asoCuenta : asociadosCuentas) {
+            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta) {
                 return asoCuenta;
             }
         }
@@ -54,45 +52,36 @@ public class RegistroAsociadoCuenta {
     }
 
     public String agregarAsociadoCuenta(AsociadoCuenta asociadoCuenta) {
-        if (buscarAsociadoCuenta(asociadoCuenta.getFolioAsociado(), asociadoCuenta.getIdCuenta()) == null)
-        {
+        if (buscarAsociadoCuenta(asociadoCuenta.getFolioAsociado(), asociadoCuenta.getIdCuenta()) == null) {
             asociadosCuentas.add(asociadoCuenta);
             return "Cuenta agregada al asociado exitosamente!";
-        } else
-        {
+        } else {
             return "";
         }
     }
 
     //El metodo modificar AsociadoCuenta se eliminó porque nunca se usaría
     public String eliminarAsociadoCuenta(String folio, int idCuenta) {
-        if (buscarAsociadoCuenta(folio, idCuenta) != null)
-        {
+        if (buscarAsociadoCuenta(folio, idCuenta) != null) {
             asociadosCuentas.remove(getIndiceAsociadoCuenta(folio, idCuenta));
             return "Cuenta eliminada del asociado exitosamente";
-        } else
-        {
+        } else {
             return "Cuenta no se ha podido elimanar del socio correctamente";
         }
     }
 
     public void depositarDinero(String folio, int idCuenta, Integer monto) {
-        for (AsociadoCuenta asoCuenta : asociadosCuentas)
-        {
-            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta)
-            {
+        for (AsociadoCuenta asoCuenta : asociadosCuentas) {
+            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta) {
                 asoCuenta.depositarDinero(monto);
             }
         }
     }
 
     public String retirarDinero(String folio, int idCuenta, Integer monto) {
-        for (AsociadoCuenta asoCuenta : asociadosCuentas)
-        {
-            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta)
-            {
-                if (monto <= asoCuenta.getBalanceCuenta())
-                {
+        for (AsociadoCuenta asoCuenta : asociadosCuentas) {
+            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta) {
+                if (monto <= asoCuenta.getBalanceCuenta()) {
                     asoCuenta.retirarDinero(monto);
                     return "Retiro realizado exitosamente";
                 }
@@ -115,18 +104,15 @@ public class RegistroAsociadoCuenta {
     public void guardarAsociadoCuenta() {
 
         File directorio = new File(DIRECTORY);
-        if (!directorio.exists())
-        {
+        if (!directorio.exists()) {
             directorio.mkdirs();
         }
         Gson gson = new Gson();
         String json = gson.toJson(asociadosCuentas);
-        try (FileWriter fileWriter = new FileWriter(DIRECTORY + ARCHIVO_ASOCUENTAS))
-        {
+        try (FileWriter fileWriter = new FileWriter(DIRECTORY + ARCHIVO_ASOCUENTAS)) {
             fileWriter.write(json);
             System.out.println("Datos guardados en: " + DIRECTORY + ARCHIVO_ASOCUENTAS + " correctamente.");
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(RegistroAsociado.class.getName()).log(SEVERE, "[IOException archivo no encontrado]", ex);
         }
     }
@@ -139,19 +125,16 @@ public class RegistroAsociadoCuenta {
      */
     public void cargarAsociadoCuenta() {
         File archivo = new File(DIRECTORY + ARCHIVO_ASOCUENTAS);
-        if (!archivo.exists() || archivo.length() == 0)
-        {
+        if (!archivo.exists() || archivo.length() == 0) {
             System.out.println("El archivo está vacío o no existe.");
             return;
         }
-        try (FileReader fileReader = new FileReader(archivo))
-        {
+        try (FileReader fileReader = new FileReader(archivo)) {
             Gson gson = new Gson();
             asociadosCuentas = gson.fromJson(fileReader, new TypeToken<ArrayList<AsociadoCuenta>>() {
             }.getType());
             System.out.println("Datos cargados desde " + DIRECTORY + ARCHIVO_ASOCUENTAS + " correctamente.");
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(RegistroAsociado.class.getName()).log(SEVERE, "[IOException archivo no encontrado]", ex);
         }
     }
@@ -159,10 +142,8 @@ public class RegistroAsociadoCuenta {
     public ArrayList<Integer> idCuentasByFolio(String folioAsociado) {
         ArrayList<Integer> idCuentasAsociado = new ArrayList<>();
 
-        for (AsociadoCuenta asociadoCuenta : asociadosCuentas)
-        {
-            if (asociadoCuenta.getFolioAsociado().equals(folioAsociado))
-            {
+        for (AsociadoCuenta asociadoCuenta : asociadosCuentas) {
+            if (asociadoCuenta.getFolioAsociado().equals(folioAsociado)) {
                 idCuentasAsociado.add(asociadoCuenta.getIdCuenta());
             }
         }

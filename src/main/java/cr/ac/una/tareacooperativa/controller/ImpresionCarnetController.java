@@ -7,13 +7,16 @@ import cr.ac.una.tareacooperativa.model.RegistroAsociado;
 import cr.ac.una.tareacooperativa.util.AppContext;
 import cr.ac.una.tareacooperativa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,8 +26,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 /**
- * Universidad Nacional - Programación II 2024 Controlador de la pantalla de
- * impresion de carnet
+ * <p>
+ * Controlador de la pantalla para imprimir carnet <br>
+ * Contiene los metodos que usan el pdfManager para crear pdf's
+ * </p>
  *
  * @author Stiward Araya
  * @author Justin Mendez
@@ -59,9 +64,9 @@ public class ImpresionCarnetController extends Controller implements Initializab
     }
 
     private void cargarDatos() {
-        registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
+        registroAsociado = ( (RegistroAsociado) AppContext.getInstance().get("asociados") );
         registroAsociado.cargarAsociados();
-        cooperativa = ((Cooperativa) AppContext.getInstance().get("cooperativa"));
+        cooperativa = ( (Cooperativa) AppContext.getInstance().get("cooperativa") );
         cooperativa.cargarDatosCooperativa();
     }
 
@@ -75,8 +80,7 @@ public class ImpresionCarnetController extends Controller implements Initializab
 
     @javafx.fxml.FXML
     public void onActionBtnImprimir(ActionEvent actionEvent) {
-        if (pdfManager != null)
-        {
+        if (pdfManager != null) {
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "PDF USER", getStage(), pdfManager.crearPDF());
             this.txtfFolio.clear();
             this.txtfNombre.clear();
@@ -88,58 +92,47 @@ public class ImpresionCarnetController extends Controller implements Initializab
 
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) throws IOException {
-        if (txtfFolio.getText().isEmpty())
-        {
+        if (txtfFolio.getText().isEmpty()) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir un folio");
             this.btnImprimir.setDisable(true);
-        } else
-        {
-            Asociado asociadoPdf = registroAsociado.buscarAsociado((txtfFolio.getText()).toUpperCase());
+        } else {
+            Asociado asociadoPdf = registroAsociado.buscarAsociado(( txtfFolio.getText() ).toUpperCase());
             crearPdfInstance(asociadoPdf, cooperativa);
-            if (asociadoPdf != null)
-            {
+            if (asociadoPdf != null) {
                 cargarImagenSocio(asociadoPdf.getRutaFoto());
             }
         }
     }
 
     private void crearPdfInstance(Asociado socio, Cooperativa coope) throws IOException {
-        if (socio != null && coope != null)
-        {
+        if (socio != null && coope != null) {
             this.pdfManager = new PdfManager(socio, coope);
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Usuario Encontrado", getStage(), "Usuario Encontrado");
             txtfNombre.setText(socio.getNombre());
             this.btnImprimir.setDisable(false);
 
-        } else
-        {
+        } else {
             this.btnImprimir.setDisable(true);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Folio incorrecto o asociado inexistente");
         }
     }
 
     private void cargarImagenSocio(String rutaFoto) {
-        try
-        {
-            if (imvFotoAsociado != null)
-            {
+        try {
+            if (imvFotoAsociado != null) {
                 File archivo = new File(rutaFoto);
-                if (archivo.exists())
-                {
+                if (archivo.exists()) {
                     Image imagen = new Image(archivo.toURI().toString());
                     this.imvFotoAsociado.setImage(imagen);
-                } else
-                {
+                } else {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Error ,Archivo no encontrado", getStage(), "La imagen no se encuentra en la ruta especificada.");
                     imvFotoAsociado.setImage(null);
                 }
-            } else
-            {
+            } else {
                 System.out.println("imvFotoAsociado es nulo");
                 imvFotoAsociado.setImage(null);
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error al cargar la imagen", getStage(), "Ocurrió un error al intentar cargar la imagen.");
         }
     }

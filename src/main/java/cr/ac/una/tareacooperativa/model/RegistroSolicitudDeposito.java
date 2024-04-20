@@ -12,6 +12,15 @@ import java.util.logging.Logger;
 
 import static java.util.logging.Level.SEVERE;
 
+/**
+ * <p>
+ * Clase Registro de solicitudes de deposito <br>
+ * Controla el flujo de datos de las solicitudes de deposito.
+ * </p>
+ *
+ * @author Stiward Araya
+ * @author Justin Mendez
+ */
 public class RegistroSolicitudDeposito {
 
     private ArrayList<SolicitudDeposito> solicitudes;
@@ -30,11 +39,9 @@ public class RegistroSolicitudDeposito {
 
     public ArrayList<Integer> getDepositosPorFolioYId(String folio, Integer idCuenta) {
         ArrayList<Integer> montos = new ArrayList<>();
-        for (SolicitudDeposito solicitud : solicitudes)
-        {
+        for (SolicitudDeposito solicitud : solicitudes) {
             AsociadoCuenta asoCuenta = solicitud.getAsociadoCuenta();
-            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta)
-            {
+            if (asoCuenta.getFolioAsociado().equals(folio) && asoCuenta.getIdCuenta() == idCuenta) {
                 montos.add(solicitud.getDeposito());
             }
         }
@@ -43,11 +50,9 @@ public class RegistroSolicitudDeposito {
     }
 
     public SolicitudDeposito buscarSolicitudDeposito(String folio, Integer idCuenta) {
-        for (SolicitudDeposito solicitud : solicitudes)
-        {
+        for (SolicitudDeposito solicitud : solicitudes) {
             AsociadoCuenta asoCuenta = new AsociadoCuenta(folio, idCuenta, 0);
-            if (asoCuenta.getFolioAsociado().equals(solicitud.getAsociadoCuenta().getFolioAsociado()) && asoCuenta.getIdCuenta() == solicitud.getAsociadoCuenta().getIdCuenta())
-            {
+            if (asoCuenta.getFolioAsociado().equals(solicitud.getAsociadoCuenta().getFolioAsociado()) && asoCuenta.getIdCuenta() == solicitud.getAsociadoCuenta().getIdCuenta()) {
                 return solicitud;
             }
         }
@@ -55,11 +60,9 @@ public class RegistroSolicitudDeposito {
     }
 
     public SolicitudDeposito buscarSolicitudDepositoPorMonto(String folio, Integer idCuenta, Integer monto) {
-        for (SolicitudDeposito solicitud : solicitudes)
-        {
+        for (SolicitudDeposito solicitud : solicitudes) {
             AsociadoCuenta asoCuenta = new AsociadoCuenta(folio, idCuenta, 0);
-            if (asoCuenta.getFolioAsociado().equals(solicitud.getAsociadoCuenta().getFolioAsociado()) && asoCuenta.getIdCuenta() == solicitud.getAsociadoCuenta().getIdCuenta() && monto == solicitud.getDeposito())
-            {
+            if (asoCuenta.getFolioAsociado().equals(solicitud.getAsociadoCuenta().getFolioAsociado()) && asoCuenta.getIdCuenta() == solicitud.getAsociadoCuenta().getIdCuenta() && monto == solicitud.getDeposito()) {
                 return solicitud;
             }
         }
@@ -67,23 +70,19 @@ public class RegistroSolicitudDeposito {
     }
 
     public String agregarDeposito(SolicitudDeposito solicitud) {
-        if (solicitud != null)
-        {
+        if (solicitud != null) {
             solicitudes.add(solicitud);
             return "Solicitud enviada exitosamente";
-        } else
-        {
+        } else {
             return "Error al agregar el deposito";
         }
     }
 
     public String eliminarSolicitud(SolicitudDeposito solicitud) {
-        if (solicitud != null)
-        {
+        if (solicitud != null) {
             solicitudes.remove(solicitud);
             return "Solicitud eliminada exitosamente";
-        } else
-        {
+        } else {
             return "Error al eliminar la solicitud";
         }
     }
@@ -94,37 +93,31 @@ public class RegistroSolicitudDeposito {
 
     public void guardarSolicitudes() {
         File directorio = new File(DIRECTORY);
-        if (!directorio.exists())
-        {
+        if (!directorio.exists()) {
             directorio.mkdirs();
         }
 
         Gson gson = new Gson();
         String json = gson.toJson(solicitudes);
-        try (FileWriter fileWriter = new FileWriter(DIRECTORY + ARCHIVO_SOLICITUDES))
-        {
+        try (FileWriter fileWriter = new FileWriter(DIRECTORY + ARCHIVO_SOLICITUDES)) {
             fileWriter.write(json);
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(RegistroAsociado.class.getName()).log(SEVERE, "[IOException archivo no encontrado]", ex);
         }
     }
 
     public void cargarSolicitudes() {
         File archivo = new File(DIRECTORY + ARCHIVO_SOLICITUDES);
-        if (!archivo.exists() || archivo.length() == 0)
-        {
+        if (!archivo.exists() || archivo.length() == 0) {
             System.out.println("El archivo está vacío o no existe.");
             return;
         }
-        try (FileReader fileReader = new FileReader(archivo))
-        {
+        try (FileReader fileReader = new FileReader(archivo)) {
             Gson gson = new Gson();
             solicitudes = gson.fromJson(fileReader, new TypeToken<ArrayList<SolicitudDeposito>>() {
             }.getType());
             System.out.println("Datos cargados desde " + DIRECTORY + " correctamente.");
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(RegistroAsociado.class.getName()).log(SEVERE, "[IOException archivo no encontrado]", ex);
         }
     }

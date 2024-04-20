@@ -19,9 +19,10 @@ import javafx.stage.Stage;
 /**
  * Universidad Nacional - Programación II 2024
  * <p>
- *     Controlador de la pantalla de inicio de sesión
+ * Controlador de la pantalla de inicio de sesión
  * </p>
- * @author Stiward Araya 
+ *
+ * @author Stiward Araya
  * @author Justin Mendez
  */
 public class LoginController extends Controller implements Initializable {
@@ -41,7 +42,8 @@ public class LoginController extends Controller implements Initializable {
     private MFXButton btnProfesores;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
     @Override
     public void initialize() {
@@ -49,26 +51,26 @@ public class LoginController extends Controller implements Initializable {
     }
 
     @FXML
-    public void onClickLabelAcercade(Event event) throws IOException{
+    public void onClickLabelAcercade(Event event) throws IOException {
         //TODO: abrir webView con la web
     }
 
     @FXML
     public void onActionBtnFuncionarios(ActionEvent event) {
         FlowController.getInstance().goMain("FuncionarioView");
-        ((Stage) btnFuncionarios.getScene().getWindow()).close();
+        ( (Stage) btnFuncionarios.getScene().getWindow() ).close();
     }
 
     @FXML
-    public void onActionBtnProfesores(ActionEvent event)  {
+    public void onActionBtnProfesores(ActionEvent event) {
         FlowController.getInstance().goMain("ProfesorView");
-        ((Stage) btnProfesores.getScene().getWindow()).close();
+        ( (Stage) btnProfesores.getScene().getWindow() ).close();
     }
 
 
     @FXML
     public void onActionBtnAsociados(ActionEvent event) {
         FlowController.getInstance().goMain("AsociadoView");
-        ((Stage) bntAsociados.getScene().getWindow()).close();
+        ( (Stage) bntAsociados.getScene().getWindow() ).close();
     }
 }
