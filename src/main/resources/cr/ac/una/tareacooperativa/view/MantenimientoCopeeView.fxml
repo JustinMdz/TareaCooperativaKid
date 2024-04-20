@@ -13,22 +13,26 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="400.0" maxWidth="600.0" styleClass="manCope-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.MantenimientoCoopeController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="400.0" maxWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareacooperativa.controller.MantenimientoCoopeController">
     <stylesheets>
       <URL value="@style.css" />
    </stylesheets>
    <children>
       <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="manCope-titulo" text="Mantenimiento cooperativa" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="manCope-main" VBox.vgrow="ALWAYS">
+            <Label styleClass="titulo" text="Mantenimiento cooperativa" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="contenedor-forms" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
                      <children>
-                        <Label styleClass="manCope-sub-titulo" text="Logo de la cooperativa" />
+                        <Label text="Logo de la cooperativa">
+                           <styleClass>
+                              <String fx:value="sub-titulo" />
+                              <String fx:value="titulo" />
+                           </styleClass></Label>
                         <ImageView fx:id="imvLogo" fitHeight="102.0" fitWidth="114.0" onDragDropped="#onDragDroppedImageView" onDragOver="#onDragOverImageView" pickOnBounds="true" preserveRatio="true">
                            <styleClass>
                               <String fx:value="camara-photo" />
@@ -38,20 +42,31 @@
                               <Image url="@../resources/LogoBanco02.jpg" />
                            </image>
                         </ImageView>
-                        <MFXButton maxHeight="45.0" maxWidth="150.0" styleClass="manCope-boton" text="Cambiar" VBox.vgrow="ALWAYS">
+                        <MFXButton maxHeight="45.0" maxWidth="150.0" text="Cambiar" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="45.0" />
                            </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/UpdateIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </MFXButton>
                      </children>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <Separator orientation="VERTICAL" prefHeight="200.0" styleClass="separator-blue" />
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
                      <children>
-                        <Label styleClass="manCope-sub-titulo" text="Nombre de la cooperativa" />
+                        <Label text="Nombre de la cooperativa">
+                           <styleClass>
+                              <String fx:value="titulo" />
+                              <String fx:value="sub-titulo" />
+                           </styleClass></Label>
                         <Label fx:id="lblNombreCoope" styleClass="manCope-titulo-coope" text="Nombre" />
                         <MFXTextField fx:id="txtfNombreCooperativa" floatingText="Nuevo nombre" maxWidth="150.0" promptText="CoopeKinder!">
                            <VBox.margin>
@@ -67,7 +82,7 @@
                   <Insets top="10.0" />
                </padding>
                <children>
-                  <MFXButton onAction="#onActionBtnGuardar" styleClass="manCope-boton" text="Guardar cambios">
+                  <MFXButton onAction="#onActionBtnGuardar" text="Guardar cambios">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-color--fix">
                            <image>
@@ -79,6 +94,14 @@
                </children>
             </HBox>
          </children>
+         <styleClass>
+            <String fx:value="contenedor-menus" />
+            <String fx:value="contenedor-menus-profesor" />
+         </styleClass>
       </VBox>
    </children>
+   <styleClass>
+      <String fx:value="standard-root" />
+      <String fx:value="standard-profesor-root" />
+   </styleClass>
 </AnchorPane>

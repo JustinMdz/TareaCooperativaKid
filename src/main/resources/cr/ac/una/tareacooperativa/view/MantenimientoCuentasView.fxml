@@ -4,8 +4,11 @@
 <?import io.github.palexdev.materialfx.controls.MFXListView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,11 +17,28 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label contentDisplay="CENTER" styleClass="manCuentas-titulo" text="Mantenimiento Cuentas" />
+            <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/IconoDinero.png" />
+                     </image>
+                  </ImageView>
+                  <Label contentDisplay="CENTER" styleClass="titulo" text="Mantenimiento Cuentas" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="contenedor-forms">
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
+                        <MFXButton fx:id="btnEditar" onAction="#onActionbtnEditar" prefHeight="50.0" prefWidth="196.0" styleClass="boton-profesor" text="Editar">
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/UpdateIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MFXButton>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <MFXListView fx:id="listView" prefHeight="137.0" prefWidth="131.0" HBox.hgrow="ALWAYS" />
@@ -30,23 +50,53 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <MFXButton fx:id="btnEditar" onAction="#onActionbtnEditar" prefHeight="50.0" prefWidth="196.0" styleClass="boton-profesor" text="Editar" />
                      </children>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="45.0" HBox.hgrow="ALWAYS">
+                  <Separator orientation="VERTICAL" prefHeight="200.0" styleClass="separator-blue" />
+                  <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="45.0" HBox.hgrow="ALWAYS">
                      <children>
+                        <MFXButton fx:id="btnCrear" onAction="#onActionbtnCrear" styleClass="boton-profesor" text="Crear">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/AddIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MFXButton>
                         <MFXTextField fx:id="txtfNuevoNombreTipoCuenta" floatingText="Nombre/Tipo de Cuenta" prefWidth="225.0" />
-                        <MFXButton fx:id="btnCrear" onAction="#onActionbtnCrear" styleClass="boton-profesor" text="Crear" />
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="manCuentas-containers">
                <children>
-                  <MFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" styleClass="boton-profesor" text="Guardar" />
-                  <MFXButton fx:id="btnEliminarCuenta" onAction="#onActionBtnEliminarCuenta" styleClass="boton-profesor" text="Eliminar Cuenta" />
-                  <MFXButton fx:id="btnCambiarNombre" onAction="#onActionBtnCambiarNombre" styleClass="boton-profesor" text="Cambiar Nombre Cuenta" />
+                  <MFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" styleClass="boton-profesor" text="Guardar">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/SaveIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MFXButton>
+                  <MFXButton fx:id="btnEliminarCuenta" onAction="#onActionBtnEliminarCuenta" styleClass="boton-profesor" text="Eliminar Cuenta">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/DeleteIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MFXButton>
+                  <MFXButton fx:id="btnCambiarNombre" onAction="#onActionBtnCambiarNombre" styleClass="boton-profesor" text="Cambiar Nombre Cuenta">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/UpdateIcon2.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MFXButton>
                </children>
             </HBox>
          </children>

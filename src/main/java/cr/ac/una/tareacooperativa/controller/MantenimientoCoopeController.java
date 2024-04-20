@@ -71,11 +71,9 @@ public class MantenimientoCoopeController extends Controller implements Initiali
 
     @Override
     public void initialize() {
-        String txt = ( (Label) AppContext.getInstance().get("NombreCoope") ).getText();
-        lblNombreCoope.setText(txt);
-
-        cooperativa = ( (Cooperativa) AppContext.getInstance().get("cooperativa") );
+        cooperativa = ((Cooperativa) AppContext.getInstance().get("cooperativa"));
         cooperativa.cargarDatosCooperativa();
+        lblNombreCoope.setText(cooperativa.getNombreCooperativa());
     }
 
     /**
