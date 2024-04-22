@@ -53,11 +53,14 @@ public class PdfManager {
 
     private Image cargarImagen(String rutaImagen) throws IOException {
         Image imagen = null;
-        if (rutaImagen != null && !rutaImagen.isEmpty()) {
+        if (rutaImagen != null && !rutaImagen.isEmpty())
+        {
             File archivo = new File(rutaImagen);
-            if (archivo.exists()) {
+            if (archivo.exists())
+            {
                 imagen = new Image(ImageDataFactory.create(rutaImagen));
-            } else {
+            } else
+            {
                 System.err.println("El archivo no existe en la ubicación especificada: " + rutaImagen);
             }
         }
@@ -89,13 +92,15 @@ public class PdfManager {
         document.add(segundoApellidoSocioParagraph);
         document.add(noombreCooperativaParagraph);
 
-        if (userImage != null) {
+        if (userImage != null)
+        {
             userImage.scaleAbsolute(65, 55);
             userImage.setFixedPosition(23, 50);
             document.add(userImage);
         }
 
-        if (coopeImage != null) {
+        if (coopeImage != null)
+        {
             coopeImage.scaleToFit(20, 20);
             coopeImage.setFixedPosition(211, 19);
             document.add(coopeImage);
@@ -103,7 +108,8 @@ public class PdfManager {
     }
 
     private String checkStrings(String data) {
-        if (data.isEmpty() || data == null) {
+        if (data.isEmpty() || data == null)
+        {
             return "";
         }
         return data;
@@ -112,9 +118,11 @@ public class PdfManager {
 
     public String crearPDF() {
 
-        try {
+        try
+        {
             File directorio = new File(DIRECTORY_REGISTRO);
-            if (!directorio.exists()) {
+            if (!directorio.exists())
+            {
                 directorio.mkdirs();
             }
             // Cargar el documento PDF existente
@@ -138,7 +146,8 @@ public class PdfManager {
             desktop.open(file);
 
             return "PDF creado exitosamente.";
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
             return null;
         }

@@ -268,7 +268,7 @@ public class CuentasController extends Controller implements Initializable {
     }
 
     private void toStringCuentasAsociados(String folioAsociado) {
-        ArrayList<Integer> idCuentasAsociado = registroAsociadoCuenta.idCuentasByFolio(folioAsociado);
+        ArrayList<Integer> idCuentasAsociado = registroAsociadoCuenta.getIdCuentasByFolio(folioAsociado);
 
         for (Integer auxId : idCuentasAsociado) {
             cuentasAsociado.add(registroCuenta.getNombreCuentaByID(auxId));

@@ -44,7 +44,7 @@ import org.slf4j.LoggerFactory;
 public class MantenimientoCoopeController extends Controller implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RegistroAsociadoController.class);
-    private static final String RUTA_FOTO = "./src/main/resources/cr/ac/una/tareacooperativa/resources/";
+   // private static final String RUTA_FOTO = "./src/main/resources/cr/ac/una/tareacooperativa/resources/";
     private static final String NOMBRE_FOTO = "logo_cooperativa";
 
     private Cooperativa cooperativa;
@@ -140,7 +140,7 @@ public class MantenimientoCoopeController extends Controller implements Initiali
             BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
 
             try {
-                String file = RUTA_FOTO + NOMBRE_FOTO + ".jpg";
+                String file =  NOMBRE_FOTO + ".jpg";
                 File output = new File(file);
                 ImageIO.write(bufferedImage, "jpg", output);
                 System.out.println("Imagen guardada correctamente en: " + output.getAbsolutePath());

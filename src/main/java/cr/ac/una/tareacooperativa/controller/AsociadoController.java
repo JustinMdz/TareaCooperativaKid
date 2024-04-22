@@ -1,5 +1,6 @@
 package cr.ac.una.tareacooperativa.controller;
 
+import cr.ac.una.tareacooperativa.model.HTMLOpener;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -24,11 +25,16 @@ import javafx.fxml.Initializable;
  */
 public class AsociadoController extends Controller implements Initializable {
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {}
+    private HTMLOpener openerWebView;
 
     @Override
-    public void initialize() {}
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+
+    @Override
+    public void initialize() {
+
+    }
 
     @FXML
     public void onActionBtnRegistro(ActionEvent actionEvent) {
@@ -52,8 +58,10 @@ public class AsociadoController extends Controller implements Initializable {
 
     @FXML
     public void onActionLinkAcercaDe(ActionEvent actionEvent) throws IOException {
-        Desktop desktop = Desktop.getDesktop();
-        File file = new File("../web/index.html");
-        desktop.open(file);
+        String rutaHtml = "src/main/web/index.html";
+        openerWebView = new HTMLOpener();
+        openerWebView.abrirArchivoHTML(rutaHtml);
+
+        //    FlowController.getInstance().goView("webView");
     }
 }

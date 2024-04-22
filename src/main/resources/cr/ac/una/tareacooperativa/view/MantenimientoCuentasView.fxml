@@ -76,11 +76,11 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <MFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" styleClass="boton-profesor" text="Guardar">
+                  <MFXButton fx:id="btnCambiarNombre" onAction="#onActionBtnCambiarNombre" styleClass="boton-profesor" text="Cambiar Nombre Cuenta">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../resources/SaveIcon.png" />
+                              <Image url="@../resources/UpdateIcon2.png" />
                            </image>
                         </ImageView>
                      </graphic></MFXButton>
@@ -92,14 +92,15 @@
                            </image>
                         </ImageView>
                      </graphic></MFXButton>
-                  <MFXButton fx:id="btnCambiarNombre" onAction="#onActionBtnCambiarNombre" styleClass="boton-profesor" text="Cambiar Nombre Cuenta">
+                  <MFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" styleClass="boton-profesor" text="Guardar">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../resources/UpdateIcon2.png" />
+                              <Image url="@../resources/SaveIcon.png" />
                            </image>
                         </ImageView>
-                     </graphic></MFXButton>
+                     </graphic>
+                  </MFXButton>
                </children>
                <padding>
                   <Insets top="5.0" />
