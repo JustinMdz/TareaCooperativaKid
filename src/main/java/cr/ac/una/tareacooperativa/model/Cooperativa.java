@@ -20,12 +20,15 @@ public class Cooperativa {
 
     public static final String ARCHIVO_COOPERATIVA = "dataCoperativa.json";
     public static final String DIRECTORY = "./Registros/";
+
     public String rutaLogoCooperativa;
     public String nombreCooperativa;
+    private boolean changes;
 
     public Cooperativa() {
         rutaLogoCooperativa = "";
         nombreCooperativa = "";
+        changes = false;
     }
 
     public Cooperativa(String nLogoCooperativa, String nNombreCooperativa) {
@@ -42,7 +45,15 @@ public class Cooperativa {
         rutaLogoCooperativa = nLogoCooperativa;
     }
 
+    public void setChanges(boolean changes) {
+        this.changes = changes;
+    }
+
     //getters
+    public boolean getChanges() {
+        return changes;
+    }
+
     public String getNombreCooperativa() {
         return nombreCooperativa;
     }
@@ -52,9 +63,11 @@ public class Cooperativa {
     }
 
     public void cargarDatosCooperativa() {
-        try {
+        try
+        {
             File archivo = new File(DIRECTORY + ARCHIVO_COOPERATIVA);
-            if (!archivo.exists() || archivo.length() == 0) {
+            if (!archivo.exists() || archivo.length() == 0)
+            {
                 System.out.println("El archivo está vacío o no existe.");
                 return;
             }
@@ -67,15 +80,18 @@ public class Cooperativa {
             this.nombreCooperativa = cooperativa.getNombreCooperativa();
             this.rutaLogoCooperativa = cooperativa.getLogoCooperativa();
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
 
     public void guardarDatosCooperativa() {
-        try {
+        try
+        {
             File directorio = new File(DIRECTORY);
-            if (!directorio.exists()) {
+            if (!directorio.exists())
+            {
                 directorio.mkdirs();
             }
 
@@ -88,7 +104,8 @@ public class Cooperativa {
 
             System.out.println("Datos de la cooperativa guardados exitosamente.");
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
     }

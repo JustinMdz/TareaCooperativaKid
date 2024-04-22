@@ -44,7 +44,7 @@ import org.slf4j.LoggerFactory;
 public class MantenimientoCoopeController extends Controller implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RegistroAsociadoController.class);
-   // private static final String RUTA_FOTO = "./src/main/resources/cr/ac/una/tareacooperativa/resources/";
+    // private static final String RUTA_FOTO = "./src/main/resources/cr/ac/una/tareacooperativa/resources/";
     private static final String NOMBRE_FOTO = "logo_cooperativa";
 
     private Cooperativa cooperativa;
@@ -92,7 +92,8 @@ public class MantenimientoCoopeController extends Controller implements Initiali
     @FXML
     private void onDragOverImageView(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        if (dragboard.hasImage() || dragboard.hasFiles()) {
+        if (dragboard.hasImage() || dragboard.hasFiles())
+        {
             event.acceptTransferModes(TransferMode.COPY);
         }
     }
@@ -111,11 +112,14 @@ public class MantenimientoCoopeController extends Controller implements Initiali
     @FXML
     private void onDragDroppedImageView(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        if (dragboard.hasImage() || dragboard.hasFiles()) {
-            try {
+        if (dragboard.hasImage() || dragboard.hasFiles())
+        {
+            try
+            {
                 imvLogo.setImage(new Image(new FileInputStream(dragboard.getFiles().get(0))));
                 this.isImageChanged = true;
-            } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException ex)
+            {
                 ex.printStackTrace();
             }
         }
@@ -123,12 +127,15 @@ public class MantenimientoCoopeController extends Controller implements Initiali
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
-        if (!( txtfNombreCooperativa.getText().isEmpty() ) || isImageChanged) {
+        if (!(txtfNombreCooperativa.getText().isEmpty()) || isImageChanged)
+        {
             saveChanges();
             new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Usuario agregado", getStage(), "Los cambios se han efectuado existosamente");
             this.isImageChanged = false;
             this.txtfNombreCooperativa.setText("");
-        } else {
+
+        } else
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "No existen cambios que guardar");
         }
     }
@@ -136,25 +143,30 @@ public class MantenimientoCoopeController extends Controller implements Initiali
     private void guardarFoto() {
         Image image = imvLogo.getImage();
 
-        if (image != null) {
+        if (image != null)
+        {
             BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
 
-            try {
-                String file =  NOMBRE_FOTO + ".jpg";
+            try
+            {
+                String file = NOMBRE_FOTO + ".jpg";
                 File output = new File(file);
                 ImageIO.write(bufferedImage, "jpg", output);
                 System.out.println("Imagen guardada correctamente en: " + output.getAbsolutePath());
                 cooperativa.setLogoCooperativa(file);
-            } catch (IOException ex) {
+            } catch (IOException ex)
+            {
                 ex.printStackTrace();
             }
-        } else {
+        } else
+        {
             System.out.println("No hay ninguna imagen para guardar.");
         }
     }
 
     private void saveName() {
-        if (!txtfNombreCooperativa.getText().isEmpty()) {
+        if (!txtfNombreCooperativa.getText().isEmpty())
+        {
             cooperativa.setNombreCooperativa(txtfNombreCooperativa.getText());
         }
     }
@@ -162,6 +174,8 @@ public class MantenimientoCoopeController extends Controller implements Initiali
     private void saveChanges() {
         guardarFoto();
         saveName();
+        boolean cambiosCoope = cooperativa.getChanges();
+        cooperativa.setChanges(!cambiosCoope);
         cooperativa.guardarDatosCooperativa();
     }
 

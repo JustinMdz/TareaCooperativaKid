@@ -101,6 +101,10 @@
 
 .contenedor-menus-profesor{
     -fx-background-color: -fx-celeste-hielo;
+    -fx-background-radius: 4.0;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
 }
 
 .boton-profesor, .boton-profesor:armed, .boton-profesor:focused{
@@ -118,7 +122,8 @@
     -fx-font-weight: bold;
     -fx-font-size: 15px;
     -fx-opacity: .6;
-}.acercade-link:hover{
+}
+.acercade-link:hover{
     -fx-text-fill: -fx-azul;
     -fx-cursor: hand;
     -fx-opacity: 1;

@@ -34,6 +34,12 @@
                </padding>
             </HBox>
             <Separator prefWidth="200.0" styleClass="separator-blue" />
+            <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="200.0" styleClass="contenedor-menus-profesor">
+               <children>
+                  <ImageView fx:id="imvLogoCoope" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="lblNombreCoope" styleClass="sub-titulo" />
+               </children>
+            </HBox>
             <MFXButton maxHeight="50.0" maxWidth="200.0" onAction="#onActionBtnCuentas" styleClass="boton-profesor" text="Cuentas" VBox.vgrow="ALWAYS">
                <graphic>
                   <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
