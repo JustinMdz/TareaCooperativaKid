@@ -86,7 +86,6 @@ public class ImpresionCarnetController extends Controller implements Initializab
             this.txtfNombre.clear();
             this.btnImprimir.setDisable(true);
             cargarImagenSocio("./src/main/resources/cr/ac/una/tareacooperativa/resources/userNotFound.jpg");
-
         }
     }
 
