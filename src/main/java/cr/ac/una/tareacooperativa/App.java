@@ -35,11 +35,14 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         guardarRegistros();
         FlowController.getInstance().InitializeFlow(stage, null);
-        FlowController.getInstance().goViewInWindow("LoginView");
+        goViewAccesParameter(accessParameter);
+        // FlowController.getInstance().goViewInWindow("LoginView");
+
     }
 
     public static void main(String[] args) {
-        if (args.length > 0) {
+        if (args.length > 0)
+        {
             accessParameter = args[0];
         }
 
@@ -47,13 +50,16 @@ public class App extends Application {
     }
 
     private void goViewAccesParameter(String parameter) {
-        if (parameter.equals("P")) {
+        if (parameter.equals("P"))
+        {
             FlowController.getInstance().goMain("ProfesorView");
         }
-        if (parameter.equals("F")) {
+        if (parameter.equals("F"))
+        {
             FlowController.getInstance().goMain("FuncionarioView");
         }
-        if (parameter.equals("A")) {
+        if (parameter.equals("A"))
+        {
             FlowController.getInstance().goMain("AsociadoView");
         }
     }
