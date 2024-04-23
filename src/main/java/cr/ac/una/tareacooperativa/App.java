@@ -36,7 +36,7 @@ public class App extends Application {
         guardarRegistros();
         FlowController.getInstance().InitializeFlow(stage, null);
         goViewAccesParameter(accessParameter);
-        //FlowController.getInstance().goViewInWindow("LoginView");
+        FlowController.getInstance().goViewInWindow("LoginView");
 
     }
 

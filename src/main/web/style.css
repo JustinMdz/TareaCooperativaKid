@@ -2,9 +2,137 @@
     Created on : 21/4/2024 | 3:38 PM
     Created by : Stiward Araya & Justin Mendez
 */
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+#header{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    background-color: rgb(0, 34, 77);
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+header{
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.titulo a{
+    font-size: 26px;
+    color: white;
+    margin-right: 300px;
+    text-decoration: none;
+}
+
+header ul{
+    display: flex;
+    list-style: none;
+}
+
+header nav ul li a{
+    text-align: none;
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: .5s;
+}header nav ul li a:hover{
+    color: rgb(255, 32, 78);
+}
+
+.nav-responsive{
+    background-color: rgb(255, 32, 78);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.inicio{
+    background: linear-gradient(to top, rgba(0, 34, 77, .8), rgba(0, 34, 77, 1)), url("img/ImagenPrincipal.jpg");
+    background-size: cover;
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.inicio .banner{
+    padding: 20px;
+    background-color: rgb(5, 5, 40);
+    max-width: 350px;
+    margin: auto;
+    text-align: center;
+    border-radius: 40px;
+}
+
+.inicio .banner img{
+    margin-top: 40px;
+    border: 10px solid rgb(255, 32, 78);
+    display: block;
+    width: 80%;
+    margin: auto;
+    border-radius: 100%;
+}
+
+.seccion-principal{
+    width: 100%;
+    padding: 10px;
+}
+
+.modulo{
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 2px solid rgb(5, 5, 40);
+    transition: .5s;
+}.modulo:hover{
+    transform: translateY(-10px);
+}
+
+.contenedor-desc{
+    width: 50vw;
+    height: 100%;
+    border: 2px solid rgb(255, 32, 78);
+    height: 600px;
+    padding: 30px;
+    background-color: rgb(255, 32, 78);
+}
+
+.contenedor-img{
+    background-position: center;
+    background-size: cover;
+    width: 50vw;
+    height: 600px;
+}
+
+.img-a{
+    background: linear-gradient(to right, rgba(255, 32, 78, .4), rgba(255, 32, 78, 1)), url("img/ImagenAsociados.png");
+}
+
+.img-f{
+    background: linear-gradient(to left, rgba(255, 32, 78, .4), rgba(255, 32, 78, 1)), url("img/ImagenFuncionarios.png");
+}
+
+.img-p{
+    background: linear-gradient(to right, rgba(255, 32, 78, .4), rgba(255, 32, 78, 1)), url("img/ImagenProfesores.png");
 }
 
