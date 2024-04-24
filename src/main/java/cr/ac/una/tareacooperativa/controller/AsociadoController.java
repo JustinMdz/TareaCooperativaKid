@@ -41,11 +41,12 @@ public class AsociadoController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cooperativa = new Cooperativa();
+        setCooperativaInfo();
     }
 
     @Override
     public void initialize() {
-        inicioCooperativaInfo();
     }
 
     @FXML
@@ -133,15 +134,6 @@ public class AsociadoController extends Controller implements Initializable {
         } else
         {
             return true;
-        }
-    }
-
-    private void inicioCooperativaInfo() {
-        cooperativa = new Cooperativa();
-        cargarDatosCooperativa();
-        if (checkExistentData(DIRECTORY + ARCHIVO_COOPERATIVA))
-        {
-            setCooperativaInfo();
         }
     }
 

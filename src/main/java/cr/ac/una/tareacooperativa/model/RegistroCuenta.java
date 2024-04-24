@@ -36,8 +36,10 @@ public class RegistroCuenta {
     }
 
     private int getIndiceCuenta(int idCuenta) {
-        for (int i = 0; i < cuentas.size(); i++) {
-            if (cuentas.get(i).getId() == idCuenta) {
+        for (int i = 0; i < cuentas.size(); i++)
+        {
+            if (cuentas.get(i).getId() == idCuenta)
+            {
                 return i;
             }
         }
@@ -45,8 +47,10 @@ public class RegistroCuenta {
     }
 
     public Cuenta buscarCuentaNombre(String nombre) {
-        for (Cuenta cuenta : cuentas) {
-            if (cuenta.getNombre().equals(nombre)) {
+        for (Cuenta cuenta : cuentas)
+        {
+            if (cuenta.getNombre().equals(nombre))
+            {
                 return cuenta;
             }
         }
@@ -54,8 +58,10 @@ public class RegistroCuenta {
     }
 
     public Cuenta buscarCuenta(int idCuenta) {
-        for (Cuenta cuenta : cuentas) {
-            if (cuenta.getId() == idCuenta) {
+        for (Cuenta cuenta : cuentas)
+        {
+            if (cuenta.getId() == idCuenta)
+            {
                 return cuenta;
             }
         }
@@ -63,28 +69,34 @@ public class RegistroCuenta {
     }
 
     public String agregarCuenta(Cuenta cuenta) {
-        if (buscarCuenta(cuenta.getId()) == null) {
+        if (buscarCuenta(cuenta.getId()) == null)
+        {
             cuentas.add(cuenta);
             return "Cuenta agregada exitosamente!";
-        } else {
+        } else
+        {
             return "Esa Cuenta ya está registrada";
         }
     }
 
     public String eliminarCuenta(int idCuenta) {
-        if (buscarCuenta(idCuenta) != null) {
+        if (buscarCuenta(idCuenta) != null)
+        {
             cuentas.remove(getIndiceCuenta(idCuenta));
             return "Cuenta eliminada exitosamente!";
-        } else {
+        } else
+        {
             return "Esa cuenta no se encuentra registrada";
         }
     }
 
     public String modificarCuenta(Cuenta cuenta) {
-        if (buscarCuenta(cuenta.getId()) != null) {
+        if (buscarCuenta(cuenta.getId()) != null)
+        {
             cuentas.set(getIndiceCuenta(cuenta.getId()), cuenta);
             return "Cuenta modificada exitosamente!";
-        } else {
+        } else
+        {
             return "Esa cuenta no se encuentra registrada";
         }
     }
@@ -92,16 +104,19 @@ public class RegistroCuenta {
     public Integer getProximoIdCuenta() {
         Integer proximoId = 0;
 
-        for (Cuenta cuenta : cuentas) {
+        for (Cuenta cuenta : cuentas)
+        {
             proximoId = cuenta.getId();
         }
 
         return proximoId + 1;
     }
 
-    public Integer buscarCuentaPorNombre(String nameCuenta) {
-        for (Cuenta cuentaId : cuentas) {
-            if (cuentaId.getNombre().equals(nameCuenta)) {
+    public Integer buscarCuentaIdPorNombre(String nameCuenta) {
+        for (Cuenta cuentaId : cuentas)
+        {
+            if (cuentaId.getNombre().equals(nameCuenta))
+            {
                 return cuentaId.getId();
             }
 
@@ -110,8 +125,10 @@ public class RegistroCuenta {
     }
 
     public String getNombreCuentaByID(Integer idCuenta) {
-        for (Cuenta cuentaId : cuentas) {
-            if (cuentaId.getId() == idCuenta) {
+        for (Cuenta cuentaId : cuentas)
+        {
+            if (cuentaId.getId() == idCuenta)
+            {
                 return cuentaId.getNombre();
             }
 
@@ -120,8 +137,10 @@ public class RegistroCuenta {
     }
 
     public Integer getIdCuentaByNombre(String nombreCuenta) {
-        for (Cuenta auxCuenta : cuentas) {
-            if (auxCuenta.getNombre().equals(nombreCuenta)) {
+        for (Cuenta auxCuenta : cuentas)
+        {
+            if (auxCuenta.getNombre().equals(nombreCuenta))
+            {
                 return auxCuenta.getId();
             }
 
@@ -138,15 +157,18 @@ public class RegistroCuenta {
     public void guardarCuentas() {
 
         File directorio = new File(DIRECTORY);
-        if (!directorio.exists()) {
+        if (!directorio.exists())
+        {
             directorio.mkdirs();
         }
         Gson gson = new Gson();
         String json = gson.toJson(cuentas);
-        try (FileWriter fileWriter = new FileWriter(DIRECTORY + ARCHIVO_CUENTAS)) {
+        try (FileWriter fileWriter = new FileWriter(DIRECTORY + ARCHIVO_CUENTAS))
+        {
             fileWriter.write(json);
             System.out.println("Datos guardados en: " + DIRECTORY + ARCHIVO_CUENTAS + " correctamente.");
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(RegistroAsociado.class.getName()).log(SEVERE, "[IOException archivo no encontrado]", ex);
         }
     }
@@ -159,16 +181,19 @@ public class RegistroCuenta {
      */
     public void cargarCuentas() {
         File archivo = new File(DIRECTORY + ARCHIVO_CUENTAS);
-        if (!archivo.exists() || archivo.length() == 0) {
+        if (!archivo.exists() || archivo.length() == 0)
+        {
             System.out.println("El archivo está vacío o no existe.");
             return;
         }
-        try (FileReader fileReader = new FileReader(archivo)) {
+        try (FileReader fileReader = new FileReader(archivo))
+        {
             Gson gson = new Gson();
             cuentas = gson.fromJson(fileReader, new TypeToken<ArrayList<Cuenta>>() {
             }.getType());
             System.out.println("Datos cargados desde " + DIRECTORY + ARCHIVO_CUENTAS + " correctamente.");
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(RegistroAsociado.class.getName()).log(SEVERE, "[IOException archivo no encontrado]", ex);
         }
     }
@@ -177,7 +202,8 @@ public class RegistroCuenta {
 
         ArrayList<String> nombreCuenta = new ArrayList<>();
 
-        for (Cuenta cuenta : cuentas) {
+        for (Cuenta cuenta : cuentas)
+        {
             nombreCuenta.add(cuenta.getNombre());
         }
 
@@ -188,7 +214,8 @@ public class RegistroCuenta {
 
         ArrayList<String> tipoAndID = new ArrayList<>();
 
-        for (Cuenta cuenta : cuentas) {
+        for (Cuenta cuenta : cuentas)
+        {
             tipoAndID.add(cuenta.getNombre() + " : " + Integer.toString(cuenta.getId()));
         }
 
@@ -197,8 +224,10 @@ public class RegistroCuenta {
 
     public boolean isCuentaIntheList(String nombreCuenta) {
 
-        for (Cuenta cuenta : cuentas) {
-            if (cuenta.getNombre().equals(nombreCuenta)) {
+        for (Cuenta cuenta : cuentas)
+        {
+            if (cuenta.getNombre().equals(nombreCuenta))
+            {
                 return true;
             }
 

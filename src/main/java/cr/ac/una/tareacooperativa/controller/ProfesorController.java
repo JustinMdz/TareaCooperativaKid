@@ -49,12 +49,7 @@ public class ProfesorController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cooperativa = new Cooperativa();
-        cargarDatosCooperativa();
-        if (checkExistentData(DIRECTORY + ARCHIVO_COOPERATIVA))
-        {
-            setCooperativaInfo();
-        }
-
+        setCooperativaInfo();
     }
 
     @Override
