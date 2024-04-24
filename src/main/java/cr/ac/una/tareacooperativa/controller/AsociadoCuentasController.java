@@ -9,6 +9,7 @@ import cr.ac.una.tareacooperativa.util.AppContext;
 import cr.ac.una.tareacooperativa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -38,6 +39,8 @@ public class AsociadoCuentasController extends Controller implements Initializab
     private MFXTextField txtfTipoCuenta;
     @javafx.fxml.FXML
     private MFXButton mbtnVer;
+    @javafx.fxml.FXML
+    private MFXListView mfListView;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,5 +102,10 @@ public class AsociadoCuentasController extends Controller implements Initializab
         registroAsociado.cargarAsociados();
         registroAsociadoCuenta.cargarAsociadoCuenta();
         registroCuenta.cargarCuentas();
+    }
+
+    @javafx.fxml.FXML
+    public void onActionBtnVerDetalle(ActionEvent actionEvent) {
+        //TODO: Cargar el listView con los movimientos de la cuenta seleccionada en el comboBox de cuentas
     }
 }
