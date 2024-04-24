@@ -51,6 +51,8 @@ public class AsociadoCuentasController extends Controller implements Initializab
         txtfSaldo.setEditable(false);
         txtfTipoCuenta.setEditable(false);
         mbtnVer.setDisable(true);
+        mfListView.setDisable(true);
+        mfListView.setOpacity(0);
     }
 
     @javafx.fxml.FXML
