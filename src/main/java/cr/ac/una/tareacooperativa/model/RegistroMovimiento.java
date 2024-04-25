@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
 
@@ -139,6 +140,18 @@ public class RegistroMovimiento {
 
         }
         return false;
+    }
+
+    public void eliminarInformacionAsociado(String folioAsociado) {
+        Iterator<Movimiento> iterator = movimientos.iterator();
+        while (iterator.hasNext())
+        {
+            Movimiento movimiento = iterator.next();
+            if (movimiento.getFolioAsociado().equals(folioAsociado))
+            {
+                iterator.remove();
+            }
+        }
     }
 
 }

@@ -38,18 +38,12 @@
                               <Image url="@../resources/LogoBanco02.jpg" />
                            </image>
                         </ImageView>
-                        <MFXButton maxHeight="45.0" maxWidth="150.0" styleClass="boton-profesor" text="Cambiar" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets top="45.0" />
-                           </VBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/UpdateIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MFXButton>
+                        <Label layoutX="25.0" layoutY="25.0" text="Arrastra una imagen">
+                           <styleClass>
+                              <String fx:value="sub-titulo" />
+                              <String fx:value="titulo" />
+                           </styleClass>
+                        </Label>
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" styleClass="separator-blue" />

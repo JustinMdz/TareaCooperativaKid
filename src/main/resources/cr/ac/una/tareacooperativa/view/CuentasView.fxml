@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXListView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -42,13 +43,33 @@
     <center>
         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="contenedor-forms" BorderPane.alignment="CENTER">
             <children>
-            <MFXListView fx:id="listViewCuentasDisponibles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" styleClass="contenedor-menus">
+               <children>
+                  <Label text="Cuentas Disponibles">
+                     <styleClass>
+                        <String fx:value="titulo" />
+                        <String fx:value="sub-titulo" />
+                     </styleClass>
+                  </Label>
+                  <MFXListView fx:id="listViewCuentasDisponibles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+               </children>
+            </VBox>
                 <ImageView fitHeight="34.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../resources/cambio.png" />
                     </image>
                 </ImageView>
-            <MFXListView fx:id="listViewCuentasCliente" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" styleClass="contenedor-menus-profesor">
+               <children>
+                  <Label text="Cuentas Agregadas">
+                     <styleClass>
+                        <String fx:value="sub-titulo" />
+                        <String fx:value="titulo" />
+                     </styleClass>
+                  </Label>
+                  <MFXListView fx:id="listViewCuentasCliente" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+               </children>
+            </VBox>
             </children>
         </HBox>
     </center>

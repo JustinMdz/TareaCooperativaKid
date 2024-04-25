@@ -84,7 +84,7 @@ public class AsociadoCuentasController extends Controller implements Initializab
                     mcbTipoCuenta.getItems().add(registroCuenta.buscarCuenta(asoCu.getIdCuenta()).getNombre());
                 }
             }
-            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Cuentas", getStage(), "Cuentas cargadas");
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "AsociadoINFO", getStage(), "Asociado Encontrado");
             mbtnVer.setDisable(false);
         }
     }

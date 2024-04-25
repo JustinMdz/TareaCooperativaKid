@@ -223,7 +223,7 @@ public class TransaccionesController extends Controller implements Initializable
                     mcbCuentas.getItems().add(registroCuenta.buscarCuenta(asoCu.getIdCuenta()).getNombre());
                 }
             }
-            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Cuentas", getStage(), "Cuentas cargadas");
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "AsociadoINFO", getStage(), "Asociado Encontrado");
         }
 
     }
@@ -368,9 +368,6 @@ public class TransaccionesController extends Controller implements Initializable
         registroMovimiento.cargarMovimientos();
     }
 
-    private void cargarRegistroMovimiento() {
-
-    }
 
     private void limpiarCombobox() {
         mcbDepositos.getItems().clear();

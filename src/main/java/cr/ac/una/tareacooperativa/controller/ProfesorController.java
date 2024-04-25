@@ -40,12 +40,6 @@ public class ProfesorController extends Controller implements Initializable {
     @FXML
     private Label lblNombreCoope;
 
-    /**
-     * Initializes the controller class.
-     *
-     * @param url
-     * @param rb
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cooperativa = new Cooperativa();
