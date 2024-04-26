@@ -14,15 +14,17 @@ import java.io.IOException;
  */
 public class HTMLOpener {
 
+    private static final String FILE = "classes/cr/ac/una/tareacooperativa/web/index.html";
+
     public HTMLOpener() {
 
     }
 
-    public void abrirArchivoHTML(String nameRuta) {
+    public void abrirArchivoHTML() {
         if (Desktop.isDesktopSupported())
         {
             Desktop desktop = Desktop.getDesktop();
-            File archivoHTML = new File(nameRuta);
+            File archivoHTML = new File(FILE);
             try
             {
                 if (archivoHTML.exists())

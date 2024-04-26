@@ -82,9 +82,8 @@ public class FuncionarioController extends Controller implements Initializable {
 
     @FXML
     public void onActionLinkAcercaDe(ActionEvent actionEvent) {
-        String rutaHtml = "src/main/web/index.html";
         openerWebView = new HTMLOpener();
-        openerWebView.abrirArchivoHTML(rutaHtml);
+        openerWebView.abrirArchivoHTML();
     }
 
     private void cargarDatosCooperativa() {
