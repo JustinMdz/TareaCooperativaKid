@@ -23,35 +23,23 @@ public class Cooperativa {
 
     public String rutaLogoCooperativa;
     public String nombreCooperativa;
-    private boolean changes;
 
     public Cooperativa() {
         rutaLogoCooperativa = "";
         nombreCooperativa = "";
-        changes = false;
     }
 
     public Cooperativa(String nLogoCooperativa, String nNombreCooperativa) {
         rutaLogoCooperativa = nLogoCooperativa;
         nombreCooperativa = nNombreCooperativa;
     }
-
-    //setters
+    
     public void setNombreCooperativa(String nNombreCooperativa) {
         nombreCooperativa = nNombreCooperativa;
     }
 
     public void setLogoCooperativa(String nLogoCooperativa) {
         rutaLogoCooperativa = nLogoCooperativa;
-    }
-
-    public void setChanges(boolean changes) {
-        this.changes = changes;
-    }
-
-    //getters
-    public boolean getChanges() {
-        return changes;
     }
 
     public String getNombreCooperativa() {

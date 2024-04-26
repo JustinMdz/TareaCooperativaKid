@@ -28,6 +28,7 @@ public class AsociadoCuentasController extends Controller implements Initializab
     RegistroAsociado registroAsociado;
     RegistroAsociadoCuenta registroAsociadoCuenta;
     RegistroCuenta registroCuenta;
+    RegistroMovimiento registroMovimiento;
 
     @javafx.fxml.FXML
     private MFXComboBox mcbTipoCuenta;
@@ -51,12 +52,19 @@ public class AsociadoCuentasController extends Controller implements Initializab
         txtfSaldo.setEditable(false);
         txtfTipoCuenta.setEditable(false);
         mbtnVer.setDisable(true);
+        ocultarListaDetalles();
+        cleanAll();
+    }
+
+    private void ocultarListaDetalles() {
         mfListView.setDisable(true);
         mfListView.setOpacity(0);
+        mfListView.getItems().clear();
     }
 
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) {
+        cleanCmb();
         txtfFolio.setText(txtfFolio.getText().toUpperCase());
         cargarRegistros();
 
@@ -76,7 +84,7 @@ public class AsociadoCuentasController extends Controller implements Initializab
                     mcbTipoCuenta.getItems().add(registroCuenta.buscarCuenta(asoCu.getIdCuenta()).getNombre());
                 }
             }
-            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Cuentas", getStage(), "Cuentas cargadas");
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "AsociadoINFO", getStage(), "Asociado Encontrado");
             mbtnVer.setDisable(false);
         }
     }
@@ -87,11 +95,22 @@ public class AsociadoCuentasController extends Controller implements Initializab
         AsociadoCuenta asoCu = registroAsociadoCuenta.buscarAsociadoCuenta(txtfFolio.getText(), cuenta.getId());
         txtfTipoCuenta.setText(cuenta.getNombre());
         txtfSaldo.setText(String.valueOf(asoCu.getBalanceCuenta()));
+        ocultarListaDetalles();
     }
 
     @javafx.fxml.FXML
     public void onActionBtnLimpiar(ActionEvent actionEvent) {
+        cleanAll();
+    }
+
+    private void cleanAll() {
         txtfFolio.setText("");
+        txtfSaldo.setText("");
+        txtfTipoCuenta.setText("");
+        mcbTipoCuenta.getItems().clear();
+    }
+
+    private void cleanCmb() {
         txtfSaldo.setText("");
         txtfTipoCuenta.setText("");
         mcbTipoCuenta.getItems().clear();
@@ -106,8 +125,34 @@ public class AsociadoCuentasController extends Controller implements Initializab
         registroCuenta.cargarCuentas();
     }
 
+    private void cargarRegistroMoviemientos() {
+        registroMovimiento = (RegistroMovimiento) AppContext.getInstance().get("movimientos");
+        registroMovimiento.cargarMovimientos();
+    }
+
     @javafx.fxml.FXML
     public void onActionBtnVerDetalle(ActionEvent actionEvent) {
-        //TODO: Cargar el listView con los movimientos de la cuenta seleccionada en el comboBox de cuentas
+        cargarRegistroMoviemientos();
+        mfListView.setDisable(false);
+        mfListView.setOpacity(1);
+        Integer cuentaId = registroCuenta.buscarCuentaIdPorNombre(mcbTipoCuenta.getSelectedItem().toString());
+        mfListView.getItems().clear();
+        registroMovimiento.cargarMovimientos();
+        ArrayList<String> moviemientosDetalle = registroMovimiento.getMovimientosDetalles(txtfFolio.getText(), cuentaId);
+        if (!moviemientosDetalle.isEmpty())
+        {
+            mfListView.getItems().addAll(moviemientosDetalle);
+        }
+
+    }
+
+    public Integer convertStringToInt(String cuentaId) {
+        try
+        {
+            return Integer.parseInt(cuentaId);
+        } catch (NumberFormatException e)
+        {
+            return Integer.MIN_VALUE;
+        }
     }
 }

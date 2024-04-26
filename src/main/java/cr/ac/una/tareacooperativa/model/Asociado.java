@@ -45,7 +45,6 @@ public class Asociado {
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 
-    // Setters
     public void setFolioAsociado(String nFolioAsociado) {
         folioAsociado = nFolioAsociado;
     }
@@ -70,7 +69,6 @@ public class Asociado {
         edad = nEdad;
     }
 
-    // Getters
     public String getFolio() {
         return folioAsociado;
     }

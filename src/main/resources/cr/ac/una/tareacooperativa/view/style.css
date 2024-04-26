@@ -176,6 +176,25 @@
     -fx-background-size: stretch;
 }
 
+.asociadoCuentas-fondo{
+    -fx-background-image: url("../resources/asociadosCuentaBackGround.jpeg");
+    -fx-background-position: center;
+    -fx-background-size: stretch;
+}
+
+.imagen{
+    -fx-background-position: center;
+    -fx-background-size: stretch;
+}
+
+.imp-Carnet-fondo{
+    -fx-background-image: url("../resources/fondoImprimirCarnet.jpg");
+}
+
+.funcionario-fondo{
+    -fx-background-image: url("../resources/fondoFuncionario.jpg");
+}
+
 .manCope-titulo-coope {
     -fx-border-width: 2px;
     -fx-border-color: -fx-azul;

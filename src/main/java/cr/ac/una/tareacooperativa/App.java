@@ -28,6 +28,7 @@ public class App extends Application {
     RegistroAsociadoCuenta asociadosCuentas = new RegistroAsociadoCuenta();
     Cooperativa cooperativa = new Cooperativa();
     RegistroSolicitudDeposito solicitudesDepositos = new RegistroSolicitudDeposito();
+    RegistroMovimiento movimientos = new RegistroMovimiento();
 
     private static Scene scene;
 
@@ -36,7 +37,7 @@ public class App extends Application {
         guardarRegistros();
         FlowController.getInstance().InitializeFlow(stage, null);
         goViewAccesParameter(accessParameter);
-        FlowController.getInstance().goViewInWindow("LoginView");
+        //FlowController.getInstance().goViewInWindow("LoginView");
 
     }
 
@@ -70,5 +71,6 @@ public class App extends Application {
         AppContext.getInstance().set("asociadosCuentas", asociadosCuentas);
         AppContext.getInstance().set("cooperativa", cooperativa);
         AppContext.getInstance().set("depositos", solicitudesDepositos);
+        AppContext.getInstance().set("movimientos", movimientos);
     }
 }

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.SEVERE;
@@ -66,7 +67,6 @@ public class RegistroAsociadoCuenta {
         }
     }
 
-    //El metodo modificar AsociadoCuenta se eliminó porque nunca se usaría
     public String eliminarAsociadoCuenta(String folio, int idCuenta) {
         if (buscarAsociadoCuenta(folio, idCuenta) != null)
         {
@@ -183,6 +183,18 @@ public class RegistroAsociadoCuenta {
 
         }
         return false;
+    }
+
+    public void eliminarInformacionAsociado(String folioAsociado) {
+        Iterator<AsociadoCuenta> iterator = asociadosCuentas.iterator();
+        while (iterator.hasNext())
+        {
+            AsociadoCuenta asociadoCuenta = iterator.next();
+            if (asociadoCuenta.getFolioAsociado().equals(folioAsociado))
+            {
+                iterator.remove();
+            }
+        }
     }
 
 }

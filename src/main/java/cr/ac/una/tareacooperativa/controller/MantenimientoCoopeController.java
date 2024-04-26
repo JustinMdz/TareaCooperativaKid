@@ -174,8 +174,6 @@ public class MantenimientoCoopeController extends Controller implements Initiali
     private void saveChanges() {
         guardarFoto();
         saveName();
-        boolean cambiosCoope = cooperativa.getChanges();
-        cooperativa.setChanges(!cambiosCoope);
         cooperativa.guardarDatosCooperativa();
     }
 

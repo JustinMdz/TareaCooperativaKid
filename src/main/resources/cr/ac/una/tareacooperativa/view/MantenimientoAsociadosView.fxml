@@ -72,7 +72,7 @@
       </VBox>
    </left>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0" styleClass="contenedor-forms" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="242.0" styleClass="manAso-form--vbox_img" HBox.hgrow="ALWAYS">
                <children>
@@ -119,6 +119,10 @@
                </padding>
             </VBox>
          </children>
+         <styleClass>
+            <String fx:value="contenedor-forms" />
+            <String fx:value="acercade-link" />
+         </styleClass>
       </HBox>
    </center>
 </BorderPane>

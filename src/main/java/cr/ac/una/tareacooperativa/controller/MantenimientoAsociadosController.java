@@ -2,6 +2,10 @@ package cr.ac.una.tareacooperativa.controller;
 
 import cr.ac.una.tareacooperativa.model.Asociado;
 import cr.ac.una.tareacooperativa.model.RegistroAsociado;
+import cr.ac.una.tareacooperativa.model.RegistroAsociadoCuenta;
+import cr.ac.una.tareacooperativa.model.RegistroCuenta;
+import cr.ac.una.tareacooperativa.model.RegistroMovimiento;
+import cr.ac.una.tareacooperativa.model.RegistroSolicitudDeposito;
 import cr.ac.una.tareacooperativa.util.AppContext;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
@@ -44,6 +48,10 @@ import javax.imageio.ImageIO;
 public class MantenimientoAsociadosController extends Controller implements Initializable {
 
     RegistroAsociado registroAsociado;
+    RegistroAsociadoCuenta registroAsociadoCuenta;
+    RegistroMovimiento registroMovimiento;
+    RegistroSolicitudDeposito registroSolicitudDeposito;
+
     @javafx.fxml.FXML
     private BorderPane root;
     @javafx.fxml.FXML
@@ -82,15 +90,20 @@ public class MantenimientoAsociadosController extends Controller implements Init
 
     @javafx.fxml.FXML
     public void onActionBtnModificar(ActionEvent actionEvent) {
-        if (txtfNombre.getText().isEmpty()) {
+        if (txtfNombre.getText().isEmpty())
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir un nombre");
-        } else if (txtfPApellido.getText().isEmpty()) {
+        } else if (txtfPApellido.getText().isEmpty())
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir un primer apellido");
-        } else if (txtfSApellido.getText().isEmpty()) {
+        } else if (txtfSApellido.getText().isEmpty())
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir un segundo apellido");
-        } else if (txtfEdad.getText().isEmpty() || !( isNumber(txtfEdad.getText()) )) {
+        } else if (txtfEdad.getText().isEmpty() || !(isNumber(txtfEdad.getText())))
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes escribir tu edad");
-        } else {
+        } else
+        {
             Asociado asociado = new Asociado();
             asociado.setFolioAsociado(txtfFolio.getText());
             asociado.setNombre(txtfNombre.getText());
@@ -110,7 +123,8 @@ public class MantenimientoAsociadosController extends Controller implements Init
     public void onActionBtnBuscar(ActionEvent actionEvent) {
         txtfFolio.setText(txtfFolio.getText().toUpperCase());
         Asociado asociado = registroAsociado.buscarAsociado(txtfFolio.getText());
-        if (asociado != null) {
+        if (asociado != null)
+        {
             cargarImagenAsociado(asociado.getRutaFoto());
             txtfNombre.setText(asociado.getNombre());
             txtfPApellido.setText(asociado.getPrimerApellido());
@@ -119,15 +133,18 @@ public class MantenimientoAsociadosController extends Controller implements Init
             setBotones(false);
             setFormFields(false);
             lblInfoImvDragAndDrop.setDisable(false);
-        } else {
+        } else
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Asociado no encontrado");
         }
     }
 
     @javafx.fxml.FXML
     public void onActionBtnEliminar(ActionEvent actionEvent) {
-        new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar usuario", getStage(), registroAsociado.eliminarAsociado(txtfFolio.getText()));
-        registroAsociado.guardarAsociados();
+        cargarRegistrosAsociado();
+        String folioAsociado = txtfFolio.getText();
+        eliminarRegistrosAsociado(folioAsociado);
+        new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar usuario", getStage(), registroAsociado.eliminarAsociado(folioAsociado));
         onActionBtnLimpiar(actionEvent);
     }
 
@@ -139,7 +156,8 @@ public class MantenimientoAsociadosController extends Controller implements Init
     @FXML
     private void onDragOverImvFoto(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        if (dragboard.hasImage() || dragboard.hasFiles()) {
+        if (dragboard.hasImage() || dragboard.hasFiles())
+        {
             event.acceptTransferModes(TransferMode.COPY);
         }
     }
@@ -147,19 +165,43 @@ public class MantenimientoAsociadosController extends Controller implements Init
     @FXML
     private void onDragDroppedImvFoto(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        if (dragboard.hasImage() || dragboard.hasFiles()) {
-            try {
+        if (dragboard.hasImage() || dragboard.hasFiles())
+        {
+            try
+            {
                 imvFoto.setImage(new Image(new FileInputStream(dragboard.getFiles().get(0))));
                 isImageChanged = true;
-            } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException ex)
+            {
                 ex.printStackTrace();
             }
         }
     }
 
     private void setRegistros() {
-        registroAsociado = ( (RegistroAsociado) AppContext.getInstance().get("asociados") );
+        registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
         registroAsociado.cargarAsociados();
+    }
+
+    private void cargarRegistrosAsociado() {
+        registroAsociadoCuenta = ((RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas"));
+        registroMovimiento = (RegistroMovimiento) AppContext.getInstance().get("movimientos");
+        registroSolicitudDeposito = ((RegistroSolicitudDeposito) AppContext.getInstance().get("depositos"));
+
+        registroAsociadoCuenta.cargarAsociadoCuenta();
+        registroMovimiento.cargarMovimientos();
+        registroSolicitudDeposito.cargarSolicitudes();
+    }
+
+    private void eliminarRegistrosAsociado(String folioAsociado) {
+        registroAsociadoCuenta.eliminarInformacionAsociado(folioAsociado);
+        registroMovimiento.eliminarInformacionAsociado(folioAsociado);
+        registroSolicitudDeposito.eliminarInformacionAsociado(folioAsociado);
+
+        registroAsociadoCuenta.guardarAsociadoCuenta();
+        registroMovimiento.guardarMovimientos();
+        registroSolicitudDeposito.guardarSolicitudes();
+        registroAsociado.guardarAsociados();
     }
 
     private void setBotones(boolean value) {
@@ -177,27 +219,34 @@ public class MantenimientoAsociadosController extends Controller implements Init
     }
 
     private boolean isNumber(String text) {
-        try {
+        try
+        {
             int numero = Integer.parseInt(text);
             return true;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             return false;
         }
     }
 
     private void cargarImagenAsociado(String ruta) {
-        try {
-            if (imvFoto != null) {
+        try
+        {
+            if (imvFoto != null)
+            {
                 File archivo = new File(ruta);
-                if (archivo.exists()) {
+                if (archivo.exists())
+                {
                     Image img = new Image(archivo.toURI().toString());
                     imvFoto.setImage(img);
-                } else {
+                } else
+                {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Error ,Archivo no encontrado", getStage(), "Error al cargar la imagen | Ruta no encontrada");
                     imvFoto.setImage(null);
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error al cargar la imagen", getStage(), "Ocurrió un error al intentar cargar la imagen.");
             imvFoto.setImage(null);
         }
@@ -213,25 +262,31 @@ public class MantenimientoAsociadosController extends Controller implements Init
         setBotones(true);
         isImageChanged = false;
         lblInfoImvDragAndDrop.setDisable(true);
+        imvFoto.setImage(null);
     }
 
     private void guardarFotoAsociado(String rutaFoto) {
         System.out.println("Euta: " + rutaFoto);
 
-        if (isImageChanged) {
+        if (isImageChanged)
+        {
             Image image = imvFoto.getImage();
 
-            if (image != null) {
+            if (image != null)
+            {
                 BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
 
-                try {
+                try
+                {
                     File output = new File(rutaFoto);
                     ImageIO.write(bufferedImage, "jpg", output);
                     System.out.println("Imagen guardada correctamente en: " + output.getAbsolutePath());
-                } catch (IOException ex) {
+                } catch (IOException ex)
+                {
                     ex.printStackTrace();
                 }
-            } else {
+            } else
+            {
                 System.out.println("No hay ninguna imagen para guardar.");
             }
             isImageChanged = false;

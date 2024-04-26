@@ -78,7 +78,7 @@ public class ImpresionCarnetController extends Controller implements Initializab
         this.txtfNombre.clear();
         this.txtfFolio.clear();
         this.btnImprimir.setDisable(true);
-        cargarImagenSocio("/src/main/resources/cr/ac/una/tareacooperativa/resources/userNotFound.jpg");
+        this.imvFotoAsociado.setImage(null);
     }
 
     @javafx.fxml.FXML
@@ -89,7 +89,8 @@ public class ImpresionCarnetController extends Controller implements Initializab
             this.txtfFolio.clear();
             this.txtfNombre.clear();
             this.btnImprimir.setDisable(true);
-            cargarImagenSocio("/src/main/resources/cr/ac/una/tareacooperativa/resources/userNotFound.jpg");
+            this.imvFotoAsociado.setImage(null);
+
         }
     }
 

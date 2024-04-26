@@ -241,7 +241,7 @@ public class CuentasController extends Controller implements Initializable {
             for (Object item : listViewCuentasDisponibles.getItems()) {
 
                 if (!cuentasDisponibles.contains(item)) {///...
-                    Integer cuentaId = registroCuenta.buscarCuentaPorNombre(item.toString());
+                    Integer cuentaId = registroCuenta.buscarCuentaIdPorNombre(item.toString());
                     AsociadoCuenta asociadoCuenta = registroAsociadoCuenta.buscarAsociadoCuenta(txtfFolio.getText(), cuentaId);
                     if (asociadoCuenta.getBalanceCuenta() <= 0) {
                         registroAsociadoCuenta.eliminarAsociadoCuenta(txtfFolio.getText(), cuentaId);
@@ -258,7 +258,7 @@ public class CuentasController extends Controller implements Initializable {
     }
 
     private AsociadoCuenta createAsociadoCuentaInstance(String item, String folioSocio) {
-        Integer cuentaId = registroCuenta.buscarCuentaPorNombre(item);
+        Integer cuentaId = registroCuenta.buscarCuentaIdPorNombre(item);
 
         if (cuentaId != 0 && !folioSocio.isEmpty()) {
             AsociadoCuenta asociadoCuenta = new AsociadoCuenta(folioSocio, cuentaId, 0);

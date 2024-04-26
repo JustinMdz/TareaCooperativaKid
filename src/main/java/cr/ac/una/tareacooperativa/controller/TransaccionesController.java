@@ -1,8 +1,10 @@
 package cr.ac.una.tareacooperativa.controller;
 
+import com.itextpdf.kernel.pdf.PdfName;
 import cr.ac.una.tareacooperativa.model.Asociado;
 import cr.ac.una.tareacooperativa.model.AsociadoCuenta;
 import cr.ac.una.tareacooperativa.model.Cuenta;
+import cr.ac.una.tareacooperativa.model.Movimiento;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +19,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import cr.ac.una.tareacooperativa.model.RegistroAsociadoCuenta;
 import cr.ac.una.tareacooperativa.model.RegistroCuenta;
+import cr.ac.una.tareacooperativa.model.RegistroMovimiento;
 import cr.ac.una.tareacooperativa.model.SolicitudDeposito;
 import cr.ac.una.tareacooperativa.util.AppContext;
 import cr.ac.una.tareacooperativa.util.Mensaje;
@@ -42,6 +45,7 @@ public class TransaccionesController extends Controller implements Initializable
     private RegistroAsociado registroAsociado;
     private RegistroSolicitudDeposito registroSolicitudDeposito;
     private RegistroCuenta registroCuenta;
+    private RegistroMovimiento registroMovimiento;
 
     @javafx.fxml.FXML
     private MFXTextField txtfFolio;
@@ -78,14 +82,16 @@ public class TransaccionesController extends Controller implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         mcbCuentas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
         {
-            if (mcbCuentas.getSelectedItem() != null) {
+            if (mcbCuentas.getSelectedItem() != null)
+            {
                 cargarSolicitudDepositos();
             }
         });
 
         mcbDepositos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
         {
-            if (mcbDepositos.getSelectedItem() != null) {
+            if (mcbDepositos.getSelectedItem() != null)
+            {
                 procesarMonto((Integer) mcbDepositos.getSelectedItem());
             }
         });
@@ -98,55 +104,88 @@ public class TransaccionesController extends Controller implements Initializable
 
     @javafx.fxml.FXML
     public void onActionBtnRetirar(ActionEvent actionEvent) {
-        if (getTotal() > 0) {
-            if (txtfFolio.getText().isEmpty()) {
+        if (getTotal() > 0)
+        {
+            if (txtfFolio.getText().isEmpty())
+            {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes escribir un folio");
-            } else if (mcbCuentas.getSelectedItem() == null) {
+            } else if (mcbCuentas.getSelectedItem() == null)
+            {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar una cuenta");
-            } else if (mcbDepositos.getSelectedItem() == null) {
-                retiroSinSoliciutd();
-            } else {
+            } else if (mcbDepositos.getSelectedItem() == null)
+            {
+                retirarDineroAsociado();
+            } else
+            {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Solo los depositos necesitan solitud");
                 cargarSolicitudDepositos();
             }
-        } else {
+        } else
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar un monto para su retiro");
         }
         mcbDepositos.getItems().clear();
         setSpnValueFactories();
     }
 
-    private void retiroSinSoliciutd() {
+    private void retirarDineroAsociado() {
         Integer monto = getTotal();
-        String mensaje = registroAsociadoCuenta.retirarDinero(txtfFolio.getText().toUpperCase(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), monto);
-        new Mensaje().showModal(Alert.AlertType.INFORMATION, " Funcionario", getStage(), mensaje);
+        String folioAso = txtfFolio.getText().toUpperCase();
+        Integer cuentaId = registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem());
+
+        String mensaje = registroAsociadoCuenta.retirarDinero(folioAso, cuentaId, monto);
+        Movimiento movimiento = new Movimiento(folioAso, cuentaId, monto);
+        registroMovimiento.agregarMovimientoRetiro(movimiento);
+        registroMovimiento.guardarMovimientos();
         registroAsociadoCuenta.guardarAsociadoCuenta();
+        new Mensaje().showModal(Alert.AlertType.INFORMATION, " Funcionario", getStage(), mensaje);
     }
 
     private void depositoSinSoliciutd() {
         Integer monto = getTotal();
-        registroAsociadoCuenta.depositarDinero(txtfFolio.getText().toUpperCase(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), monto);
-        new Mensaje().showModal(Alert.AlertType.INFORMATION, " Funcionario", getStage(), "Monto depositado con exito");
+        String folioAso = txtfFolio.getText().toUpperCase();
+        Integer cuentaId = registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem());
+
+        registroAsociadoCuenta.depositarDinero(folioAso, cuentaId, monto);
+        Movimiento movimiento = new Movimiento(folioAso, cuentaId, monto);
+
+        registroMovimiento.agregarMovimientoDeposito(movimiento);
         registroAsociadoCuenta.guardarAsociadoCuenta();
+        registroMovimiento.guardarMovimientos();
+
+        new Mensaje().showModal(Alert.AlertType.INFORMATION, " Funcionario", getStage(), "Monto depositado con exito");
+
     }
 
     @javafx.fxml.FXML
     public void onActionBtnDepositar(ActionEvent actionEvent) {
-        if (getTotal() > 0) {
-            if (txtfFolio.getText().isEmpty()) {
+        if (getTotal() > 0)
+        {
+            if (txtfFolio.getText().isEmpty())
+            {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes escribir un folio");
-            } else if (mcbCuentas.getSelectedItem() == null) {
+            } else if (mcbCuentas.getSelectedItem() == null)
+            {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes seleccionar una cuenta");
-            } else if (mcbDepositos.getSelectedItem() == null) {
+            } else if (mcbDepositos.getSelectedItem() == null)
+            {
                 depositoSinSoliciutd();
-            } else {
+            } else
+            {
+                Integer monto = getTotal();
+                String folioAso = txtfFolio.getText().toUpperCase();
+                Integer cuentaId = registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem());
+                Movimiento movimiento = new Movimiento(folioAso, cuentaId, monto);
 
-                registroAsociadoCuenta.depositarDinero(txtfFolio.getText().toUpperCase(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), getTotal());
+                registroAsociadoCuenta.depositarDinero(folioAso, cuentaId, monto);
+                registroMovimiento.agregarMovimientoDeposito(movimiento);
+                registroMovimiento.guardarMovimientos();
                 registroAsociadoCuenta.guardarAsociadoCuenta();
 
                 SolicitudDeposito deposito = registroSolicitudDeposito.buscarSolicitudDepositoPorMonto(txtfFolio.getText(), registroCuenta.getIdCuentaByNombre((String) mcbCuentas.getSelectedItem()), (Integer) mcbDepositos.getSelectedItem());
 
-                if (deposito != null) {
+                if (deposito != null)
+                {
                     registroSolicitudDeposito.eliminarSolicitud(deposito);
                     registroSolicitudDeposito.guardarSolicitudes();
                     mcbDepositos.getItems().clear();
@@ -155,7 +194,8 @@ public class TransaccionesController extends Controller implements Initializable
                 JOptionPane.showMessageDialog(null, getTotal());
                 new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Funcionario", getStage(), "Deposito realizado con exito");
             }
-        } else {
+        } else
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error Funcionario", getStage(), "Debes depositar un monto");
         }
         mcbDepositos.getItems().clear();
@@ -166,19 +206,24 @@ public class TransaccionesController extends Controller implements Initializable
     @javafx.fxml.FXML
     public void onActionBtnBuscar(ActionEvent actionEvent) {
         cargarRegistros();
-        if (txtfFolio.getText().isEmpty()) {
+        if (txtfFolio.getText().isEmpty())
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Debes ingresar un Folio");
-        } else if (registroAsociado.buscarAsociado(txtfFolio.getText().toUpperCase()) == null) {
+        } else if (registroAsociado.buscarAsociado(txtfFolio.getText().toUpperCase()) == null)
+        {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error de usuario", getStage(), "Usuario no encontrado");
-        } else {
+        } else
+        {
             txtfFolio.setText(txtfFolio.getText().toUpperCase());
             ArrayList<AsociadoCuenta> asociadosCuentas = registroAsociadoCuenta.getAsociadosCuentas();
-            for (AsociadoCuenta asoCu : asociadosCuentas) {
-                if (asoCu.getFolioAsociado().equals(txtfFolio.getText().toUpperCase())) {
+            for (AsociadoCuenta asoCu : asociadosCuentas)
+            {
+                if (asoCu.getFolioAsociado().equals(txtfFolio.getText().toUpperCase()))
+                {
                     mcbCuentas.getItems().add(registroCuenta.buscarCuenta(asoCu.getIdCuenta()).getNombre());
                 }
             }
-            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Cuentas", getStage(), "Cuentas cargadas");
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "AsociadoINFO", getStage(), "Asociado Encontrado");
         }
 
     }
@@ -188,8 +233,10 @@ public class TransaccionesController extends Controller implements Initializable
         Cuenta cuenta = registroCuenta.buscarCuentaNombre(mcbCuentas.getSelectedItem().toString());
         ArrayList<Integer> solicitudDepositosMontos = registroSolicitudDeposito.getDepositosPorFolioYId(txtfFolio.getText(), cuenta.getId());
 
-        if (cuenta != null) {
-            if (!solicitudDepositosMontos.isEmpty()) {
+        if (cuenta != null)
+        {
+            if (!solicitudDepositosMontos.isEmpty())
+            {
                 mcbDepositos.getItems().addAll(solicitudDepositosMontos);
             }
         }
@@ -235,78 +282,92 @@ public class TransaccionesController extends Controller implements Initializable
 
     private Integer getTotal() {
         int total = 0;
-        total += ( (Integer) spnMil.getValue() ) * 1000;
-        total += ( (Integer) spnDosmil.getValue() ) * 2000;
-        total += ( (Integer) spnCincomil.getValue() ) * 5000;
-        total += ( (Integer) spnDiezmil.getValue() ) * 10000;
-        total += ( (Integer) spnVeintemil.getValue() ) * 20000;
-        total += ( (Integer) spnCinco.getValue() ) * 5;
-        total += ( (Integer) spnDiez.getValue() ) * 10;
-        total += ( (Integer) spnVeinticinco.getValue() ) * 25;
-        total += ( (Integer) spnCincuenta.getValue() ) * 50;
-        total += ( (Integer) spnCien.getValue() ) * 100;
-        total += ( (Integer) spnQuinientos.getValue() ) * 500;
+        total += ((Integer) spnMil.getValue()) * 1000;
+        total += ((Integer) spnDosmil.getValue()) * 2000;
+        total += ((Integer) spnCincomil.getValue()) * 5000;
+        total += ((Integer) spnDiezmil.getValue()) * 10000;
+        total += ((Integer) spnVeintemil.getValue()) * 20000;
+        total += ((Integer) spnCinco.getValue()) * 5;
+        total += ((Integer) spnDiez.getValue()) * 10;
+        total += ((Integer) spnVeinticinco.getValue()) * 25;
+        total += ((Integer) spnCincuenta.getValue()) * 50;
+        total += ((Integer) spnCien.getValue()) * 100;
+        total += ((Integer) spnQuinientos.getValue()) * 500;
         return total;
     }
 
     private void procesarMonto(Integer monto) {
-        if (( monto / 20000 ) != 0) {
+        if ((monto / 20000) != 0)
+        {
             spnVeintemil.getValueFactory().setValue(monto / 20000);
-            monto -= 20000 * ( monto / 20000 );
+            monto -= 20000 * (monto / 20000);
         }
-        if (( monto / 10000 ) != 0) {
+        if ((monto / 10000) != 0)
+        {
             spnDiezmil.getValueFactory().setValue(monto / 10000);
-            monto -= 10000 * ( monto / 10000 );
+            monto -= 10000 * (monto / 10000);
         }
-        if (( monto / 5000 ) != 0) {
+        if ((monto / 5000) != 0)
+        {
             spnCincomil.getValueFactory().setValue(monto / 5000);
-            monto -= 5000 * ( monto / 5000 );
+            monto -= 5000 * (monto / 5000);
         }
-        if (( monto / 2000 ) != 0) {
+        if ((monto / 2000) != 0)
+        {
             spnDosmil.getValueFactory().setValue(monto / 2000);
-            monto -= 2000 * ( monto / 2000 );
+            monto -= 2000 * (monto / 2000);
         }
-        if (( monto / 1000 ) != 0) {
+        if ((monto / 1000) != 0)
+        {
             spnMil.getValueFactory().setValue(monto / 1000);
-            monto -= 1000 * ( monto / 1000 );
+            monto -= 1000 * (monto / 1000);
         }
-        if (( monto / 500 ) != 0) {
+        if ((monto / 500) != 0)
+        {
             spnQuinientos.getValueFactory().setValue(monto / 500);
-            monto -= 500 * ( monto / 500 );
+            monto -= 500 * (monto / 500);
         }
-        if (( monto / 100 ) != 0) {
+        if ((monto / 100) != 0)
+        {
             spnCien.getValueFactory().setValue(monto / 100);
-            monto -= 100 * ( monto / 100 );
+            monto -= 100 * (monto / 100);
         }
-        if (( monto / 50 ) != 0) {
+        if ((monto / 50) != 0)
+        {
             spnCincuenta.getValueFactory().setValue(monto / 50);
-            monto -= 50 * ( monto / 50 );
+            monto -= 50 * (monto / 50);
         }
-        if (( monto / 25 ) != 0) {
+        if ((monto / 25) != 0)
+        {
             spnVeinticinco.getValueFactory().setValue(monto / 25);
-            monto -= 25 * ( monto / 25 );
+            monto -= 25 * (monto / 25);
         }
-        if (( monto / 10 ) != 0) {
+        if ((monto / 10) != 0)
+        {
             spnDiez.getValueFactory().setValue(monto / 10);
-            monto -= 10 * ( monto / 10 );
+            monto -= 10 * (monto / 10);
         }
-        if (( monto / 2000 ) != 0) {
+        if ((monto / 2000) != 0)
+        {
             spnCinco.getValueFactory().setValue(monto / 5);
-            monto -= 5 * ( monto / 5 );
+            monto -= 5 * (monto / 5);
         }
     }
 
     private void cargarRegistros() {
         limpiarCombobox();
-        registroCuenta = ( (RegistroCuenta) AppContext.getInstance().get("cuentas") );
-        registroAsociado = ( (RegistroAsociado) AppContext.getInstance().get("asociados") );
-        registroAsociadoCuenta = ( (RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas") );
-        registroSolicitudDeposito = ( (RegistroSolicitudDeposito) AppContext.getInstance().get("depositos") );
+        registroCuenta = ((RegistroCuenta) AppContext.getInstance().get("cuentas"));
+        registroAsociado = ((RegistroAsociado) AppContext.getInstance().get("asociados"));
+        registroAsociadoCuenta = ((RegistroAsociadoCuenta) AppContext.getInstance().get("asociadosCuentas"));
+        registroSolicitudDeposito = ((RegistroSolicitudDeposito) AppContext.getInstance().get("depositos"));
         registroCuenta.cargarCuentas();
         registroAsociado.cargarAsociados();
         registroAsociadoCuenta.cargarAsociadoCuenta();
         registroSolicitudDeposito.cargarSolicitudes();
+        registroMovimiento = (RegistroMovimiento) AppContext.getInstance().get("movimientos");
+        registroMovimiento.cargarMovimientos();
     }
+
 
     private void limpiarCombobox() {
         mcbDepositos.getItems().clear();
