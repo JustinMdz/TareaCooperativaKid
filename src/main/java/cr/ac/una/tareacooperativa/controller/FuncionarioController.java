@@ -3,6 +3,7 @@ package cr.ac.una.tareacooperativa.controller;
 import cr.ac.una.tareacooperativa.model.Cooperativa;
 import static cr.ac.una.tareacooperativa.model.Cooperativa.ARCHIVO_COOPERATIVA;
 import static cr.ac.una.tareacooperativa.model.Cooperativa.DIRECTORY;
+import cr.ac.una.tareacooperativa.model.HTMLOpener;
 import cr.ac.una.tareacooperativa.util.AppContext;
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +32,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class FuncionarioController extends Controller implements Initializable {
 
+    private HTMLOpener openerWebView;
     private Cooperativa cooperativa;
     @FXML
     private BorderPane root;
@@ -79,7 +81,9 @@ public class FuncionarioController extends Controller implements Initializable {
 
     @FXML
     public void onActionLinkAcercaDe(ActionEvent actionEvent) {
-        //TODO: abrir webView con pagina web
+        String rutaHtml = "src/main/web/index.html";
+        openerWebView = new HTMLOpener();
+        openerWebView.abrirArchivoHTML(rutaHtml);
     }
 
     private void cargarDatosCooperativa() {

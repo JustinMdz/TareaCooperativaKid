@@ -3,6 +3,7 @@ package cr.ac.una.tareacooperativa.controller;
 import cr.ac.una.tareacooperativa.model.Cooperativa;
 import static cr.ac.una.tareacooperativa.model.Cooperativa.ARCHIVO_COOPERATIVA;
 import static cr.ac.una.tareacooperativa.model.Cooperativa.DIRECTORY;
+import cr.ac.una.tareacooperativa.model.HTMLOpener;
 import cr.ac.una.tareacooperativa.util.AppContext;
 import cr.ac.una.tareacooperativa.util.FlowController;
 import cr.ac.una.tareacooperativa.util.Mensaje;
@@ -35,6 +36,7 @@ public class ProfesorController extends Controller implements Initializable {
     @FXML
     private BorderPane root;
     private Cooperativa cooperativa;
+    private HTMLOpener openerWebView;
     @FXML
     private ImageView imvLogoCoope;
     @FXML
@@ -80,7 +82,9 @@ public class ProfesorController extends Controller implements Initializable {
 
     @FXML
     public void onActionLinkAcercaDe(ActionEvent actionEvent) {
-        //TODO: abrir webView con pagina web
+        String rutaHtml = "src/main/web/index.html";
+        openerWebView = new HTMLOpener();
+        openerWebView.abrirArchivoHTML(rutaHtml);
     }
 
     private void setCooperativaInfo() {

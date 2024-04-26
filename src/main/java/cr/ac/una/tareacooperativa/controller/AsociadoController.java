@@ -76,8 +76,6 @@ public class AsociadoController extends Controller implements Initializable {
         String rutaHtml = "src/main/web/index.html";
         openerWebView = new HTMLOpener();
         openerWebView.abrirArchivoHTML(rutaHtml);
-
-        //    FlowController.getInstance().goView("webView");
     }
 
     private void cargarDatosCooperativa() {
